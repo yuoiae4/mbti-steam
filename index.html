@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>MBTI × Steam マッチャー</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+  * { box-sizing: border-box; }
+  html, body, #root { margin: 0; min-height: 100%; }
+  body { background: #14162B; color: #F2F0E9; font-family: 'Inter', sans-serif; }
+  .display { font-family: 'Space Grotesk', sans-serif; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel" data-type="module">
+const { useState, useEffect } = React;
+
+/* ---------- UI text ---------- */
+const UI = {
+  ja: {
+    appTitle: "MBTI × Steam マッチャー",
+    tagline: "12個の質問に答えると、あなたのMBTIタイプと、そのタイプに合いそうなSteamゲームがわかります。",
+    start: "診断をはじめる",
+    back: "戻る",
+    questionOf: (n, total) => `質問 ${n} / ${total}`,
+    yourType: "あなたのタイプ",
+    retake: "もう一度診断する",
+    save: "この結果を保存する",
+    saved: "保存しました",
+    savedResults: "保存した結果",
+    delete: "削除",
+    viewOnSteam: "Steamで探す",
+    loadThis: "この結果を見る",
+    savedOn: "保存日",
+    navHome: "ホーム",
+    navSaved: "保存した結果",
+    noSaved: "まだ保存した結果がありません。",
+    noSavedHint: "診断が終わったら「この結果を保存する」を押してみましょう。",
+    goQuiz: "診断へ",
+    countLabel: (n) => `${n}件保存中`,
+  },
+  en: {
+    appTitle: "MBTI × Steam Matcher",
+    tagline: "Answer 12 quick questions to find your MBTI type and the Steam games that tend to fit it.",
+    start: "Start the quiz",
+    back: "Back",
+    questionOf: (n, total) => `Question ${n} of ${total}`,
+    yourType: "Your type",
+    retake: "Retake the quiz",
+    save: "Save this result",
+    saved: "Saved",
+    savedResults: "Saved results",
+    delete: "Delete",
+    viewOnSteam: "Find on Steam",
+    loadThis: "View this result",
+    savedOn: "Saved on",
+    navHome: "Home",
+    navSaved: "Saved results",
+    noSaved: "You don't have any saved results yet.",
+    noSavedHint: "Finish the quiz and tap \"Save this result\" to keep it here.",
+    goQuiz: "Take the quiz",
+    countLabel: (n) => `${n} saved`,
+  },
+  zh: {
+    appTitle: "MBTI × Steam 匹配器",
+    tagline: "回答12个简单问题，了解你的MBTI类型，以及适合这个类型的Steam游戏。",
+    start: "开始测试",
+    back: "上一题",
+    questionOf: (n, total) => `第 ${n} / ${total} 题`,
+    yourType: "你的类型",
+    retake: "重新测试",
+    save: "保存这个结果",
+    saved: "已保存",
+    savedResults: "已保存的结果",
+    delete: "删除",
+    viewOnSteam: "在Steam上查找",
+    loadThis: "查看该结果",
+    savedOn: "保存于",
+    navHome: "首页",
+    navSaved: "已保存的结果",
+    noSaved: "还没有已保存的结果。",
+    noSavedHint: "完成测试后，点击「保存这个结果」即可保存在这里。",
+    goQuiz: "去测试",
+    countLabel: (n) => `已保存 ${n} 条`,
+  },
+};
+
+/* ---------- Quiz questions ---------- */
+const QUESTIONS = [
+  { axis: "EI", text: { ja: "誰かと一緒に過ごすと元気が出る", en: "Being around people energizes me", zh: "和别人在一起会让我充满活力" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
+    b: { ja: "一人の時間で充電する", en: "I recharge alone instead", zh: "我更需要独处充电" }, bVal: "I" },
+  { axis: "EI", text: { ja: "話しながら考えをまとめるタイプだ", en: "I think out loud while talking", zh: "我喜欢边说边整理想法" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
+    b: { ja: "考えてから話すタイプだ", en: "I think before I speak", zh: "我会先想清楚再说" }, bVal: "I" },
+  { axis: "EI", text: { ja: "大勢の集まりが好きだ", en: "I enjoy big group gatherings", zh: "我喜欢大型聚会" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
+    b: { ja: "少人数や1対1が好きだ", en: "I prefer small groups or one-on-one", zh: "我更喜欢小圈子或一对一" }, bVal: "I" },
+  { axis: "SN", text: { ja: "具体的な事実やデータを重視する", en: "I focus on concrete facts and details", zh: "我更看重具体的事实和细节" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
+    b: { ja: "可能性やアイデアを重視する", en: "I focus on possibilities and ideas", zh: "我更看重可能性和想法" }, bVal: "N" },
+  { axis: "SN", text: { ja: "実績のある確実な方法を選ぶ", en: "I stick with proven, reliable methods", zh: "我倾向于选择已经验证过的方法" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
+    b: { ja: "新しいやり方を試したくなる", en: "I like trying new approaches", zh: "我更愿意尝试新方法" }, bVal: "N" },
+  { axis: "SN", text: { ja: "今、目の前のことに集中する", en: "I focus on the here and now", zh: "我更专注于当下的事情" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
+    b: { ja: "将来のビジョンをよく考える", en: "I often think about future possibilities", zh: "我经常思考未来的可能性" }, bVal: "N" },
+  { axis: "TF", text: { ja: "物事は論理で判断する", en: "I make decisions with logic", zh: "我依靠逻辑来做判断" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
+    b: { ja: "気持ちや価値観で判断する", en: "I make decisions with feelings and values", zh: "我依靠感受和价值观来判断" }, bVal: "F" },
+  { axis: "TF", text: { ja: "率直にはっきり伝える方だ", en: "I tend to be direct and blunt", zh: "我说话比较直接" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
+    b: { ja: "相手を気遣った伝え方をする", en: "I choose my words to spare feelings", zh: "我会照顾对方的感受来表达" }, bVal: "F" },
+  { axis: "TF", text: { ja: "公平さを優先したい", en: "I prioritize fairness", zh: "我更重视公平" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
+    b: { ja: "その場の調和を優先したい", en: "I prioritize harmony in the moment", zh: "我更重视当下的和谐" }, bVal: "F" },
+  { axis: "JP", text: { ja: "計画を立ててから動く", en: "I plan things out before acting", zh: "我会先计划再行动" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
+    b: { ja: "その場の流れに任せる", en: "I go with the flow", zh: "我更喜欢随机应变" }, bVal: "P" },
+  { axis: "JP", text: { ja: "締め切りより早めに終わらせる", en: "I finish things well before the deadline", zh: "我通常会提前完成任务" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
+    b: { ja: "締め切り直前に一気に動く", en: "I do it in a rush near the deadline", zh: "我经常临近截止日期才冲刺" }, bVal: "P" },
+  { axis: "JP", text: { ja: "物事は早めに決めたい", en: "I like to decide things early", zh: "我喜欢尽早做决定" },
+    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
+    b: { ja: "選択肢はなるべく残しておきたい", en: "I like to keep my options open", zh: "我更喜欢保留多种选择" }, bVal: "P" },
+];
+
+const steamUrl = (name) => `https://store.steampowered.com/search/?term=${encodeURIComponent(name)}`;
+
+const TEMPERAMENTS = {
+  NT: { accent: "#7C6CF0", soft: "#7C6CF033" },
+  NF: { accent: "#F2A83C", soft: "#F2A83C33" },
+  SJ: { accent: "#4FBDBA", soft: "#4FBDBA33" },
+  SP: { accent: "#F0668C", soft: "#F0668C33" },
+};
+const temperamentOf = (code) => {
+  if (code.includes("N") && code.includes("T")) return "NT";
+  if (code.includes("N") && code.includes("F")) return "NF";
+  if (code.includes("S") && code.includes("J")) return "SJ";
+  return "SP";
+};
+
+const TYPES = {
+  INTJ: { nickname: { ja: "建築家", en: "The Architect", zh: "建筑师" },
+    blurb: { ja: "頭の中で全体の設計図を組み上げてから動くタイプ。長期戦略とシステムの支配が快感になる。", en: "You build the whole blueprint in your head before moving. Long-term strategy and mastering systems feel satisfying.", zh: "你会先在脑海中搭建好整体蓝图再行动。长期战略和掌控系统会让你感到满足。" },
+    games: [
+      { name: "Civilization VI", why: { ja: "文明をゼロから育て上げる長期戦略", en: "Build a civilization with long-term strategy", zh: "从零开始经营文明的长线战略" } },
+      { name: "Divinity: Original Sin 2", why: { ja: "戦闘前に全て計算し尽くせるRPG", en: "Plan every fight before it happens", zh: "每场战斗都能提前算计的RPG" } },
+      { name: "Slay the Spire", why: { ja: "3手先まで読むデッキ構築", en: "Deckbuilding that rewards planning ahead", zh: "需要提前几步思考的卡牌构筑" } },
+    ]},
+  INTP: { nickname: { ja: "論理学者", en: "The Theorist", zh: "逻辑学家" },
+    blurb: { ja: "力ずくで勝つより、なぜ動くのかを理解したいタイプ。仕組みそのものをいじれるゲームが刺さる。", en: "You'd rather understand why something works than force a win. Games where you bend the rules themselves are your favorite.", zh: "比起硬拼取胜，你更想理解系统运作的原理，喜欢可以摆弄规则本身的游戏。" },
+    games: [
+      { name: "Baba Is You", why: { ja: "ルール自体がパズルになるゲーム", en: "The rules themselves are the puzzle", zh: "规则本身就是谜题" } },
+      { name: "Portal 2", why: { ja: "物理法則を書き換えて解く快感", en: "Rewrite physics to solve each room", zh: "改写物理法则来解谜的快感" } },
+      { name: "Kerbal Space Program", why: { ja: "本物の軌道力学で遊べる", en: "Real orbital mechanics, no textbook needed", zh: "用真实的轨道力学来玩" } },
+    ]},
+  ENTJ: { nickname: { ja: "指揮官", en: "The Commander", zh: "指挥官" },
+    blurb: { ja: "結果から逆算して最短ルートを取りたいタイプ。任されたものは徹底的に最適化する。", en: "You work backward from the outcome you want and take the fastest legitimate path. Whatever you run, you optimize.", zh: "你习惯从结果反推最快路径，一旦掌管什么，就会彻底优化它。" },
+    games: [
+      { name: "Crusader Kings III", why: { ja: "王朝を育てる冷徹な野心", en: "Ruthless, patient dynasty-building", zh: "冷静而有野心地经营王朝" } },
+      { name: "Frostpunk", why: { ja: "厳しい判断を下し続ける都市経営", en: "Hard calls under constant pressure", zh: "在压力下不断做出艰难决策的城市经营" } },
+      { name: "Total War: WARHAMMER III", why: { ja: "戦略と統率を両方求められる", en: "Demands both strategy and command", zh: "同时考验战略与统率能力" } },
+    ]},
+  ENTP: { nickname: { ja: "討論者", en: "The Debater", zh: "辩论家" },
+    blurb: { ja: "すぐ飽きるけど好奇心は止まらないタイプ。ゲームの前提そのものに突っ込みたくなる。", en: "You get bored fast but stay endlessly curious. You want to argue with a game's own premise.", zh: "你容易感到无聊，但好奇心永不停歇，喜欢质疑游戏本身的前提。" },
+    games: [
+      { name: "Disco Elysium", why: { ja: "どんな突飛な発想も拾ってくれる", en: "Every strange idea gets a reaction", zh: "任何奇怪的想法都能得到回应" } },
+      { name: "The Stanley Parable: Ultra Deluxe", why: { ja: "ゲームの期待を裏切り続ける構造", en: "Built entirely to defy expectations", zh: "整个游戏都在颠覆你的预期" } },
+      { name: "Risk of Rain 2", why: { ja: "毎回違う組み合わせを試せる", en: "A new build combination every run", zh: "每局都能尝试不同的组合" } },
+    ]},
+  INFJ: { nickname: { ja: "提唱者", en: "The Advocate", zh: "提倡者" },
+    blurb: { ja: "クリア率より、心に残る体験を求めるタイプ。静かに深い物語に惹かれる。", en: "You play for meaning, not completion rate. Quiet, deep stories draw you in.", zh: "比起通关率，你更在意能否留下深刻的体验，容易被安静而深刻的故事打动。" },
+    games: [
+      { name: "Outer Wilds", why: { ja: "太陽系をめぐる静かな謎解き", en: "A quiet mystery across a solar system", zh: "在太阳系中展开的静谧解谜" } },
+      { name: "What Remains of Edith Finch", why: { ja: "短くも胸に残る一族の物語", en: "Short stories that stay with you", zh: "短小却令人难忘的家族故事" } },
+      { name: "Firewatch", why: { ja: "会話だけで築かれる関係性", en: "A relationship built through conversation alone", zh: "仅靠对话构建的人际关系" } },
+    ]},
+  INFP: { nickname: { ja: "仲介者", en: "The Mediator", zh: "调停者" },
+    blurb: { ja: "優しさが実際に報われる世界を求めるタイプ。キャラクターに本気で感情移入する。", en: "You want a world where kindness genuinely pays off. You get attached to characters for real.", zh: "你希望在善良真的能得到回报的世界里游戏，并会真心投入到角色之中。" },
+    games: [
+      { name: "Undertale", why: { ja: "見逃す優しさが本当に報われる", en: "Mercy is a real, rewarded choice", zh: "宽恕真的会得到回报" } },
+      { name: "Life is Strange", why: { ja: "小さな選択が物語を変えていく", en: "Small choices ripple into the story", zh: "小小的选择会改变整个故事" } },
+      { name: "Stardew Valley", why: { ja: "自分のペースで築く優しい暮らし", en: "A gentle life at your own pace", zh: "按自己的节奏经营温柔的生活" } },
+    ]},
+  ENFJ: { nickname: { ja: "主人公", en: "The Protagonist", zh: "主人公" },
+    blurb: { ja: "みんなで勝ちたいタイプ。気づけば場をまとめる役になっている。", en: "You'd rather everyone win together, and you naturally end up holding the group together.", zh: "你希望大家一起获胜，也总是自然而然地成为凝聚团队的那个人。" },
+    games: [
+      { name: "It Takes Two", why: { ja: "二人で解く前提の物語", en: "A story built for two people to solve", zh: "为两人共同解谜而设计的故事" } },
+      { name: "Overcooked! 2", why: { ja: "誰かがまとめないと崩壊する厨房", en: "Chaos that needs someone leading it", zh: "没人指挥就会崩溃的厨房" } },
+      { name: "Among Us", why: { ja: "人を読み、場をまとめる力が試される", en: "Reading people and holding the group together", zh: "考验读心和凝聚团队的能力" } },
+    ]},
+  ENFP: { nickname: { ja: "運動家", en: "The Campaigner", zh: "竞选者" },
+    blurb: { ja: "決まったルートより寄り道を求めるタイプ。地図にない発見にワクワクする。", en: "You want to wander off the main path. Discoveries that aren't on the map excite you most.", zh: "比起固定路线，你更想绕道而行，地图之外的发现最让你兴奋。" },
+    games: [
+      { name: "Hades", why: { ja: "1回ごとに新しい出会いがある", en: "New relationships branch off every run", zh: "每一局都会遇到新的关系" } },
+      { name: "No Man's Sky", why: { ja: "間違った方向がない広大な宇宙", en: "A universe with no wrong direction", zh: "没有错误方向的浩瀚宇宙" } },
+      { name: "Slime Rancher", why: { ja: "自由で気ままな探索と発見", en: "Free, playful exploration and discovery", zh: "自由随性的探索与发现" } },
+    ]},
+  ISTJ: { nickname: { ja: "管理者", en: "The Logistician", zh: "物流师" },
+    blurb: { ja: "きちんと回る仕組みに満足感を覚えるタイプ。手順通りにやり遂げるのが心地いい。", en: "A well-run system is deeply satisfying to you. Doing things properly, step by step, feels good.", zh: "运转良好的系统会让你感到满足，按部就班地把事情做好会让你安心。" },
+    games: [
+      { name: "Factorio", why: { ja: "効率化そのものが目的になる", en: "Efficiency isn't optional, it's the goal", zh: "效率本身就是目标" } },
+      { name: "Euro Truck Simulator 2", why: { ja: "決まったルートを着実にこなす", en: "A route and a job done right", zh: "踏实完成既定路线和任务" } },
+      { name: "RimWorld", why: { ja: "コロニーを堅実に運営する", en: "Steadily running a colony the right way", zh: "稳扎稳打地经营殖民地" } },
+    ]},
+  ISFJ: { nickname: { ja: "擁護者", en: "The Defender", zh: "守护者" },
+    blurb: { ja: "誰かの世話をすることが、実はいちばん落ち着くタイプ。攻略よりケアに向いている。", en: "Taking care of someone is actually what relaxes you most. You lean toward caretaking over conquest.", zh: "照顾别人其实才是你最放松的方式，比起征服，你更擅长照料。" },
+    games: [
+      { name: "Spiritfarer", why: { ja: "文字通り誰かの最期に寄り添う", en: "Caring for people, quite literally, to the end", zh: "字面意义上陪伴他人走完最后一程" } },
+      { name: "Two Point Hospital", why: { ja: "みんなをちゃんと治す運営", en: "Running things smoothly so everyone's cared for", zh: "把每个人都照顾好的经营" } },
+      { name: "My Time at Portia", why: { ja: "手を動かして誰かの役に立つ", en: "Crafting things that genuinely help people", zh: "亲手制作对他人有用的东西" } },
+    ]},
+  ESTJ: { nickname: { ja: "幹部", en: "The Executive", zh: "总经理" },
+    blurb: { ja: "ルールと結果がはっきりしていると安心するタイプ。秩序そのものが快感。", en: "Clear rules and clear results put you at ease. Order itself feels satisfying.", zh: "明确的规则和结果会让你安心，秩序本身就是一种享受。" },
+    games: [
+      { name: "Cities: Skylines", why: { ja: "自分の計画通りに動く街", en: "A city that runs exactly as planned", zh: "完全按你的规划运转的城市" } },
+      { name: "XCOM 2", why: { ja: "限られた資源をきっちり管理", en: "Tight resource management under pressure", zh: "在压力下严格管理有限资源" } },
+      { name: "Rocket League", why: { ja: "誰が勝っているか一目瞭然", en: "No ambiguity about who's winning", zh: "谁在获胜一目了然" } },
+    ]},
+  ESFJ: { nickname: { ja: "領事官", en: "The Consul", zh: "执政官" },
+    blurb: { ja: "一人より、みんなで盛り上がる時間が好きなタイプ。誰でもすぐ入れるゲームが向いている。", en: "You'd rather share the moment than play alone. Games anyone can jump into fast suit you best.", zh: "比起独自游玩，你更喜欢和大家一起热闹的时刻，容易上手的游戏最适合你。" },
+    games: [
+      { name: "PowerWash Simulator", why: { ja: "みんなでやるとなぜか盛り上がる", en: "Oddly fun to do together", zh: "一起玩莫名地很有趣" } },
+      { name: "Golf With Your Friends", why: { ja: "誰でもすぐ参加できる気軽さ", en: "Anyone can jump in within seconds", zh: "任何人都能立刻加入" } },
+      { name: "Phasmophobia", why: { ja: "みんなで悲鳴を上げる楽しさ", en: "Screaming together is half the fun", zh: "一起尖叫本身就是乐趣" } },
+    ]},
+  ISTP: { nickname: { ja: "巨匠", en: "The Virtuoso", zh: "鉴赏家" },
+    blurb: { ja: "仕組みに直接手を触れたいタイプ。分解して理解する過程そのものが楽しい。", en: "You want your hands directly on the mechanics. Taking things apart to understand them is the fun part.", zh: "你喜欢亲手接触机制本身，拆解和理解的过程本身就是乐趣。" },
+    games: [
+      { name: "Grand Theft Auto V", why: { ja: "いじり倒せる自由な箱庭", en: "A sandbox built for tinkering and chaos", zh: "可以随意折腾的自由沙盒" } },
+      { name: "SnowRunner", why: { ja: "車両の挙動を身体で覚える", en: "Learn a vehicle's behavior by feel", zh: "用身体感受车辆的操控" } },
+      { name: "Human: Fall Flat", why: { ja: "物理演算を手探りで攻略", en: "Physics puzzles with zero hand-holding", zh: "靠摸索解决物理谜题" } },
+    ]},
+  ISFP: { nickname: { ja: "冒険家", en: "The Adventurer", zh: "探险家" },
+    blurb: { ja: "結果よりも、その瞬間の感覚を大事にするタイプ。美しい世界に浸る時間が好き。", en: "You care more about the feeling in the moment than the outcome. You love sitting inside a beautiful world.", zh: "比起结果，你更在意当下的感受，喜欢沉浸在美丽的世界里。" },
+    games: [
+      { name: "Gris", why: { ja: "感情そのものを描く美しさ", en: "Beauty that expresses emotion itself", zh: "用美来表达情感本身" } },
+      { name: "Abzu", why: { ja: "何も証明しなくていい海の世界", en: "An ocean with nothing to prove", zh: "无需证明什么的海洋世界" } },
+      { name: "A Short Hike", why: { ja: "急がなくていい短い旅", en: "A short trip with nowhere to rush", zh: "无需匆忙的短途旅行" } },
+    ]},
+  ESTP: { nickname: { ja: "起業家", en: "The Entrepreneur", zh: "企业家" },
+    blurb: { ja: "じっくりよりスピード重視のタイプ。今この瞬間の判断が快感になる。", en: "Speed beats a slow burn for you. Making the split-second call is where the fun is.", zh: "比起慢慢来，你更喜欢速度，瞬间的判断本身就是乐趣。" },
+    games: [
+      { name: "Apex Legends", why: { ja: "一瞬の判断が勝敗を分ける", en: "Split-second decisions decide everything", zh: "瞬间的判断决定胜负" } },
+      { name: "Forza Horizon 5", why: { ja: "止まらないスピード感", en: "Speed with barely a pause", zh: "几乎不停歇的速度感" } },
+      { name: "PUBG: BATTLEGROUNDS", why: { ja: "常に緊張感のある状況判断", en: "Constant high-stakes situational calls", zh: "持续紧张的临场判断" } },
+    ]},
+  ESFP: { nickname: { ja: "エンターテイナー", en: "The Entertainer", zh: "表演者" },
+    blurb: { ja: "みんなで笑っている時間がいちばん楽しいタイプ。誰かと一緒に遊ぶ前提のゲームが向いている。", en: "The best moment is everyone laughing together. Games built to be played with others suit you.", zh: "大家一起笑的时刻最让你开心，为共同游玩设计的游戏最适合你。" },
+    games: [
+      { name: "Fall Guys", why: { ja: "気軽で誰でも笑える混戦", en: "Easy, chaotic, and fun for anyone", zh: "轻松又能让所有人开怀大笑" } },
+      { name: "The Jackbox Party Pack", why: { ja: "スマホだけで全員参加できる", en: "Everyone joins in with just their phone", zh: "只用手机就能全员参与" } },
+      { name: "Overcooked! 2", why: { ja: "騒ぎながら協力するのが楽しい", en: "Loud, funny teamwork", zh: "热闹又搞笑的团队合作" } },
+    ]},
+};
+
+function computeType(scores) {
+  const ei = scores.E >= scores.I ? "E" : "I";
+  const sn = scores.S >= scores.N ? "S" : "N";
+  const tf = scores.T >= scores.F ? "T" : "F";
+  const jp = scores.J >= scores.P ? "J" : "P";
+  return ei + sn + tf + jp;
+}
+
+const STORAGE_KEY = "mbti-steam-history";
+
+function App() {
+  const [lang, setLang] = useState("ja");
+  const [screen, setScreen] = useState("start");
+  const [qIndex, setQIndex] = useState(0);
+  const [scores, setScores] = useState({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
+  const [resultType, setResultType] = useState(null);
+  const [history, setHistory] = useState([]);
+  const [saveMsg, setSaveMsg] = useState(false);
+  const t = UI[lang];
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) setHistory(JSON.parse(raw));
+    } catch (e) {}
+  }, []);
+
+  const startQuiz = () => {
+    setScores({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
+    setQIndex(0);
+    setScreen("quiz");
+  };
+
+  const answer = (value) => {
+    const next = { ...scores, [value]: scores[value] + 1 };
+    setScores(next);
+    if (qIndex + 1 < QUESTIONS.length) {
+      setQIndex(qIndex + 1);
+    } else {
+      setResultType(computeType(next));
+      setScreen("result");
+    }
+  };
+
+  const goBack = () => { if (qIndex > 0) setQIndex(qIndex - 1); };
+
+  const saveResult = () => {
+    const entry = { type: resultType, date: new Date().toISOString().slice(0, 10) };
+    const next = [entry, ...history].slice(0, 20);
+    setHistory(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      setSaveMsg(true);
+      setTimeout(() => setSaveMsg(false), 1800);
+    } catch (e) {}
+  };
+
+  const deleteEntry = (idx) => {
+    const next = history.filter((_, i) => i !== idx);
+    setHistory(next);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch (e) {}
+  };
+
+  const loadEntry = (type) => { setResultType(type); setScreen("result"); };
+
+  const goHome = () => setScreen("start");
+  const goSaved = () => setScreen("saved");
+
+  const current = resultType ? TYPES[resultType] : null;
+  const temp = resultType ? TEMPERAMENTS[temperamentOf(resultType)] : null;
+  const q = QUESTIONS[qIndex];
+
+  const s = styles;
+
+  return (
+    <div style={s.app}>
+      <div style={s.wrap}>
+        <div style={s.langRow}>
+          {["ja", "en", "zh"].map((code) => (
+            <button key={code} onClick={() => setLang(code)}
+              style={{ ...s.langBtn, borderColor: lang === code ? "#7C6CF0" : "#2A2D52", color: lang === code ? "#F2F0E9" : "#A9ACC7" }}>
+              {code === "ja" ? "日本語" : code === "en" ? "English" : "中文"}
+            </button>
+          ))}
+        </div>
+
+        {(screen === "start" || screen === "saved") && (
+          <div style={s.navRow}>
+            <button onClick={goHome}
+              style={{ ...s.navBtn, ...(screen === "start" ? s.navBtnActive : {}) }}>
+              {t.navHome}
+            </button>
+            <button onClick={goSaved}
+              style={{ ...s.navBtn, ...(screen === "saved" ? s.navBtnActive : {}) }}>
+              {t.navSaved}{history.length > 0 ? ` (${history.length})` : ""}
+            </button>
+          </div>
+        )}
+
+        {screen === "start" && (
+          <React.Fragment>
+            <p className="display" style={s.eyebrow}>MBTI × STEAM</p>
+            <h1 className="display" style={s.title}>{t.appTitle}</h1>
+            <p style={s.subtitle}>{t.tagline}</p>
+            <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
+
+            {history.length > 0 && (
+              <button style={s.savedTeaser} onClick={goSaved}>
+                <span>{t.savedResults}</span>
+                <span style={s.savedTeaserCount}>{t.countLabel(history.length)} →</span>
+              </button>
+            )}
+          </React.Fragment>
+        )}
+
+        {screen === "saved" && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.navSaved}</p>
+            {history.length === 0 ? (
+              <div style={s.emptyState}>
+                <p style={s.subtitle}>{t.noSaved}</p>
+                <p style={{ ...s.subtitle, marginBottom: 24 }}>{t.noSavedHint}</p>
+                <button style={s.primaryBtn} onClick={startQuiz}>{t.goQuiz}</button>
+              </div>
+            ) : (
+              <div style={s.historyBox}>
+                {history.map((h, i) => (
+                  <div key={i} style={s.historyRow}>
+                    <span className="display" style={{ fontWeight: 700 }}>{h.type}</span>
+                    <span style={{ color: "#A9ACC7", fontSize: 13 }}>{t.savedOn}: {h.date}</span>
+                    <button style={s.smallBtn} onClick={() => loadEntry(h.type)}>{t.loadThis}</button>
+                    <button style={s.smallBtnGhost} onClick={() => deleteEntry(i)}>{t.delete}</button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {screen === "quiz" && q && (
+          <div>
+            <p style={s.progress}>{t.questionOf(qIndex + 1, QUESTIONS.length)}</p>
+            <div style={s.progressBarOuter}>
+              <div style={{ ...s.progressBarInner, width: `${(qIndex / QUESTIONS.length) * 100}%` }} />
+            </div>
+            <h2 className="display" style={s.question}>{q.text[lang]}</h2>
+            <div style={s.optionCol}>
+              <button style={s.optionBtn} onClick={() => answer(q.aVal)}>{q.a[lang]}</button>
+              <button style={s.optionBtn} onClick={() => answer(q.bVal)}>{q.b[lang]}</button>
+            </div>
+            {qIndex > 0 && <button style={s.backBtn} onClick={goBack}>{t.back}</button>}
+          </div>
+        )}
+
+        {screen === "result" && current && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.yourType}</p>
+            <div style={s.resultHead}>
+              <span className="display" style={{ ...s.resultCode, color: temp.accent }}>{resultType}</span>
+              <span className="display" style={s.resultNickname}>{current.nickname[lang]}</span>
+            </div>
+            <p style={s.subtitle}>{current.blurb[lang]}</p>
+
+            <div style={s.gameList}>
+              {current.games.map((g) => (
+                <div key={g.name} style={{ ...s.gameCard, borderLeft: `3px solid ${temp.accent}` }}>
+                  <div className="display" style={s.gameName}>{g.name}</div>
+                  <div style={s.gameWhy}>{g.why[lang]}</div>
+                  <a href={steamUrl(g.name)} target="_blank" rel="noreferrer" style={{ ...s.steamLink, color: temp.accent }}>
+                    {t.viewOnSteam} →
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div style={s.actionRow}>
+              <button style={s.primaryBtn} onClick={saveResult}>{saveMsg ? t.saved : t.save}</button>
+              <button style={s.ghostBtn} onClick={startQuiz}>{t.retake}</button>
+              <button style={s.ghostBtn} onClick={goHome}>{t.navHome}</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  app: { minHeight: "100vh", width: "100%", background: "#14162B", color: "#F2F0E9" },
+  wrap: { maxWidth: 640, margin: "0 auto", padding: "40px 20px 72px" },
+  langRow: { display: "flex", gap: 8, justifyContent: "flex-end", marginBottom: 24 },
+  langBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 6, padding: "6px 10px", fontSize: 12, cursor: "pointer" },
+  navRow: { display: "flex", gap: 8, marginBottom: 28, background: "#1E2140", borderRadius: 8, padding: 4 },
+  navBtn: { flex: 1, background: "transparent", border: "none", borderRadius: 6, padding: "10px 14px", fontSize: 14, fontWeight: 600, color: "#A9ACC7", cursor: "pointer" },
+  navBtnActive: { background: "#7C6CF0", color: "#14162B" },
+  savedTeaser: { display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", marginTop: 16, background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 8, padding: "14px 16px", color: "#F2F0E9", fontSize: 14, fontWeight: 600, cursor: "pointer", textAlign: "left" },
+  savedTeaserCount: { color: "#A9ACC7", fontWeight: 500, fontSize: 13 },
+  emptyState: { paddingTop: 8 },
+  eyebrow: { fontSize: 13, color: "#A9ACC7", margin: "0 0 8px" },
+  title: { fontSize: 34, fontWeight: 700, margin: "0 0 14px", lineHeight: 1.2 },
+  subtitle: { color: "#A9ACC7", fontSize: 15, lineHeight: 1.6, maxWidth: 520, margin: "0 0 28px" },
+  primaryBtn: { background: "#7C6CF0", color: "#14162B", border: "none", borderRadius: 6, padding: "12px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer" },
+  ghostBtn: { background: "transparent", color: "#A9ACC7", border: "1px solid #2A2D52", borderRadius: 6, padding: "12px 20px", fontSize: 14, cursor: "pointer" },
+  progress: { color: "#A9ACC7", fontSize: 13, marginBottom: 8 },
+  progressBarOuter: { height: 4, background: "#1E2140", borderRadius: 2, marginBottom: 28, overflow: "hidden" },
+  progressBarInner: { height: "100%", background: "#7C6CF0", transition: "width 200ms ease" },
+  question: { fontSize: 22, fontWeight: 700, lineHeight: 1.4, marginBottom: 24 },
+  optionCol: { display: "flex", flexDirection: "column", gap: 10 },
+  optionBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 8, padding: "16px", color: "#F2F0E9", fontSize: 15, textAlign: "left", cursor: "pointer" },
+  backBtn: { marginTop: 20, background: "transparent", border: "none", color: "#A9ACC7", fontSize: 13, cursor: "pointer", textDecoration: "underline" },
+  resultHead: { display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8, flexWrap: "wrap" },
+  resultCode: { fontSize: 48, fontWeight: 700 },
+  resultNickname: { fontSize: 18, color: "#A9ACC7" },
+  gameList: { display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 },
+  gameCard: { background: "#1E2140", borderRadius: 6, padding: 16 },
+  gameName: { fontWeight: 700, fontSize: 16, marginBottom: 4 },
+  gameWhy: { fontSize: 14, color: "#A9ACC7", marginBottom: 10 },
+  steamLink: { fontSize: 13, fontWeight: 600, textDecoration: "none" },
+  actionRow: { display: "flex", gap: 10, flexWrap: "wrap" },
+  historyBox: { marginTop: 20 },
+  historyTitle: { fontSize: 14, color: "#A9ACC7", marginBottom: 12 },
+  historyRow: { display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px solid #1E2140", flexWrap: "wrap" },
+  smallBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#F2F0E9", cursor: "pointer", marginLeft: "auto" },
+  smallBtnGhost: { background: "transparent", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#A9ACC7", cursor: "pointer" },
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
