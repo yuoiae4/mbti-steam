@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>合うゲームを探そう | 性格と好みから診断（Steam・スイッチ・スマホ・Xbox）</title>
+<title>MBTI ゲーム診断 | 合うゲームを探そう（Steam・スイッチ・スマホ・Xbox）</title>
 <meta name="description" content="MBTIゲーム診断。MBTIとゲーム人格で、自分に合うゲームを探すサイト。類似推薦・条件検索・今日の1本・友達相性・合わないゲームまで。無料・登録不要。" />
 <meta name="keywords" content="MBTI ゲーム 診断,MBTI おすすめゲーム,性格 ゲーム 診断,MBTI Steam,MBTI スイッチ おすすめ,MBTI スマホゲーム" />
 <link rel="canonical" href="index.html" />
@@ -366,14 +366,14 @@ const temperamentOf = (code) => {
 
 const UI = {
   ja: {
-    appTitle:"合うゲームを探そう", tagline:"性格とゲームの好みは別物です。20問で分けて判定し、今の自分に合う1本まで落とします。",
+    appTitle:"MBTI ゲーム診断", tagline:"MBTIとゲームの好みは別物です。20問で分けて判定し、今の自分に合う1本まで絞ります。",
     start:"診断する →", back:"戻る", questionOf:(n,total)=>`質問 ${n} / ${total}`,
     yourType:"あなたの性格", retake:"もう一度診断する", save:"この結果を保存する", saved:"保存しました",
     savedResults:"保存した結果", delete:"削除", viewOnSteam:"探す",
     platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"スマホ", platformXbox:"Xbox",
     loadThis:"この結果を見る", savedOn:"保存日", navHome:"ホーム", navSaved:"履歴",
     noSaved:"まだ保存した結果がありません。", goQuiz:"診断へ", countLabel:(n)=>`${n}件保存中`,
-    support:"作者にコーヒーをおごる", brand:"MB", heroKicker:"性格 × ゲームの好みから、あなた向けのゲームを診断",
+    support:"作者にコーヒーをおごる", brand:"MB", heroKicker:"MBTI × ゲームの好みから、あなた向けのゲームを診断",
     howTitle:"使い方", step1Title:"20問に答える", step1Desc:"性格12問＋ゲームの好み8問。2〜3分です。",
     step2Title:"タイプと嗜好が分かる", step2Desc:"MBTIと、ソロ／対戦／やり込みなどの好みを分けて出します。",
     step3Title:"ゲームを探す", step3Desc:"おすすめ・向かないゲーム・今日の1本・友達相性まで見られます。",
@@ -387,7 +387,7 @@ const UI = {
     updatedLabel:"更新",
     typeIndexTitle:"タイプから探す",
     gameIndexTitle:"ゲームから探す",
-    seoHomeTitle:"MBTI ゲーム診断 | 自分に合うゲームを探す",
+    seoHomeTitle:"MBTI ゲーム診断 | 合うゲームを探そう",
     tabFit:"合うゲーム", tabAvoid:"合わないかも", tabTaste:"ゲーム嗜好", tabToday:"今日の1本", tabFriend:"友達相性",
     tasteTitle:"あなたのゲーム人格",
     fitTitle:"特に相性がいいゲーム",
@@ -1007,7 +1007,7 @@ function shareUrlFor(type){
 function applySeo(type, lang){
   const ui = UI[lang] || UI.ja;
   try {
-    if (!type || !TYPES[type]) { document.title = ui.seoHomeTitle; return; }
+    if (!type || !TYPES[type]) { document.title = "MBTI ゲーム診断 | 合うゲームを探そう"; return; }
     const nick = TYPES[type].nickname[lang];
     document.title = `${type}におすすめのゲーム診断 | MBTI ゲーム おすすめ`;
     const desc = `${type}（${nick}）向けのおすすめゲーム。Steam・Nintendo・スマホ・Xbox。`;
