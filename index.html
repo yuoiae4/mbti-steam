@@ -24,6 +24,20 @@
   html, body, #root { margin: 0; min-height: 100%; }
   body { background: #14162B; color: #F2F0E9; font-family: 'Inter', sans-serif; }
   .display { font-family: 'Space Grotesk', sans-serif; }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.07;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><g fill='none' stroke='%237C6CF0' stroke-width='3'><rect x='18' y='48' width='48' height='30' rx='10'/><circle cx='30' cy='63' r='3'/><circle cx='54' cy='63' r='3'/><path d='M88 58h18M97 49v18'/><rect x='86' y='86' width='22' height='14' rx='3'/></g></svg>"),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><path d='M45 12l8 16 18 3-13 12 3 18-16-8-16 8 3-18-13-12 18-3z' fill='none' stroke='%23F2A83C' stroke-width='3'/></svg>");
+    background-size: 180px 180px, 120px 120px;
+    background-position: 12px 20px, 70% 40%;
+  }
+  #root { position: relative; z-index: 1; }
+  .motif-row { display:flex; gap:10px; align-items:center; color:#7C6CF0; opacity:.75; font-size:16px; letter-spacing:6px; margin:8px 0 4px; }
+  .chip-icon { width:16px; height:16px; vertical-align:-2px; margin-right:4px; }
 </style>
 </head>
 <body>
@@ -343,6 +357,30 @@ var e,a,n="function"==typeof Symbol?Symbol:{},t=n.iterator||"@@iterator",r=n.toS
 
 <script type="text/babel" data-type="module">
 const { useState, useEffect } = React;
+
+const IconPad = ({size=18, color="#7C6CF0"}) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="2" y="8" width="20" height="12" rx="6" stroke={color} strokeWidth="1.8"/>
+    <path d="M7 14h4M9 12v4" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+    <circle cx="16.2" cy="12.2" r="1.1" fill={color}/>
+    <circle cx="18.4" cy="14.6" r="1.1" fill={color}/>
+  </svg>
+);
+const IconCard = ({size=16, color="#F2A83C"}) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="5" y="3" width="14" height="18" rx="2" stroke={color} strokeWidth="1.8"/>
+    <path d="M8 8h8M8 12h8M8 16h5" stroke={color} strokeWidth="1.6" strokeLinecap="round"/>
+  </svg>
+);
+const IconDice = ({size=16, color="#4FBDBA"}) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="4" y="4" width="16" height="16" rx="3" stroke={color} strokeWidth="1.8"/>
+    <circle cx="9" cy="9" r="1.2" fill={color}/>
+    <circle cx="15" cy="15" r="1.2" fill={color}/>
+    <circle cx="12" cy="12" r="1.2" fill={color}/>
+  </svg>
+);
+
 
 const ALL_TYPES = ["INTJ","INTP","ENTJ","ENTP","INFJ","INFP","ENFJ","ENFP","ISTJ","ISFJ","ESTJ","ESFJ","ISTP","ISFP","ESTP","ESFP"];
 const PLATFORMS = ["steam","nintendo","mobile","xbox"];
@@ -1195,7 +1233,7 @@ function App(){
       <header style={s.header}>
         <div style={s.headerInner}>
           <button style={s.brand} onClick={()=>setScreen("start")}>
-            <span className="display" style={s.brandMark}>{t.brand}</span>
+            <span className="display" style={s.brandMark}><IconPad size={16} color="#14162B" /></span>
             <span className="display" style={s.brandName}>{t.appTitle}</span>
           </button>
           <nav style={s.navRow}>
@@ -1218,11 +1256,12 @@ function App(){
         {screen==="start" && (
           <React.Fragment>
             <section style={s.hero}>
+              <div className="motif-row"><IconPad /><IconCard /><IconDice /><IconPad color="#F0668C" /></div>
               <p className="display" style={s.eyebrow}>{t.heroKicker}</p>
               <h1 className="display" style={s.title}>{t.appTitle}</h1>
               <p style={s.subtitle}>{t.tagline}</p>
               <p style={s.compatLine}>{t.homeLead}</p>
-              <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
+              <button style={s.primaryBtn} onClick={startQuiz}><span style={{display:"inline-flex",alignItems:"center",gap:8}}><IconPad size={16} color="#14162B" />{t.start}</span></button>
               <button style={{...s.ghostBtn, marginLeft:8}} onClick={startQuick}>{t.quickStart}</button>
               <div style={{...s.tasteBox, marginTop:20}}>
                 <h2 className="display" style={s.blockTitle}>{t.homeWhat}</h2>
@@ -1254,7 +1293,7 @@ function App(){
                     <button key={id} onClick={()=>setTodayTime(id)} style={{...s.platformBtn, borderColor: todayTime===id?"#7C6CF0":"#2A2D52"}}>{lab}</button>
                   ))}
                 </div>
-                <button style={s.primaryBtn} onClick={()=>{ pickToday(false); setScreen(resultType?"result":"today"); }}>{t.todayBtn}</button>
+                <button style={s.primaryBtn} onClick={()=>{ pickToday(false); setScreen(resultType?"result":"today"); }}><span style={{display:"inline-flex",alignItems:"center",gap:8}}><IconDice size={16} color="#14162B" />{t.todayBtn}</span></button>
               </div>
               <button style={s.savedTeaser} onClick={()=>setScreen("saved")}>
                 <span>{t.savedResults}</span>
@@ -1333,6 +1372,7 @@ function App(){
 
         {screen==="result" && current && (
           <div>
+            <div className="motif-row"><IconCard /><IconPad color="#F2A83C" /><IconDice /></div>
             <p className="display" style={s.eyebrow}>{t.personalityLabel}</p>
             <div style={s.resultHead}>
               <span className="display" style={{...s.resultCode, color:temp.accent}}>{resultType}</span>
@@ -1633,6 +1673,7 @@ function App(){
 
       {screen!=="quiz" && (
         <footer style={s.footer}>
+          <div className="motif-row" style={{justifyContent:"center", marginTop:20}}><IconPad /><IconCard /><IconDice /></div>
           <a href={SUPPORT_URL} target="_blank" rel="noreferrer" style={s.supportLinkFooter}>☕ {t.support}</a>
           <p style={s.footerNote}>{t.footerNote}</p>
         </footer>
