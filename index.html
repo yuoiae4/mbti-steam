@@ -450,6 +450,21 @@ const UI = {
     homeWhat:"診断すると分かること",
     dataUpdated:"ゲームデータ更新",
     nextPick:"条件を変えて次の1本",
+    quickStart:"4問ですぐ決める",
+    fullQuiz:"もっと正確に探す（20問）",
+    moodAsk:"今、どんなゲームがしたい？",
+    moodChill:"まったりしたい",
+    moodBrain:"頭を使いたい",
+    moodAction:"暴れたい",
+    moodStory:"世界観に浸りたい",
+    moodFight:"勝負したい",
+    moodShort:"30分だけ",
+    whyYou:"あなたとの相性が高い理由",
+    whyYouCase:"あなたの場合",
+    playFit:"今の自分との遊び方",
+    profileCard:"GAME PROFILE",
+    likeAbout:"このゲームのどこが好き？",
+    browseStyle:"探し方から見る",
   },
   en: {
     appTitle:"MBTI Game Finder", tagline:"20 questions split personality and game taste. You get fits and mismatches.",
@@ -536,6 +551,21 @@ const UI = {
     homeWhat:"What you get",
     dataUpdated:"Data updated",
     nextPick:"Pick another with the same filters",
+    quickStart:"Decide in 4 questions",
+    fullQuiz:"More accurate 20-question quiz",
+    moodAsk:"What do you want right now?",
+    moodChill:"Unwind",
+    moodBrain:"Think",
+    moodAction:"Go loud",
+    moodStory:"Sink into a world",
+    moodFight:"Compete",
+    moodShort:"Just 30 minutes",
+    whyYou:"Why this fits you",
+    whyYouCase:"In your case",
+    playFit:"How it fits today",
+    profileCard:"GAME PROFILE",
+    likeAbout:"What do you like about it?",
+    browseStyle:"Browse by play style",
   },
   zh: {
     appTitle:"MBTI 游戏诊断", tagline:"20题把性格和游戏口味分开判断，既有适合的，也有不太适合的。",
@@ -622,6 +652,21 @@ const UI = {
     homeWhat:"診断すると分かること",
     dataUpdated:"ゲームデータ更新",
     nextPick:"条件を変えて次の1本",
+    quickStart:"4問ですぐ決める",
+    fullQuiz:"もっと正確に探す（20問）",
+    moodAsk:"今、どんなゲームがしたい？",
+    moodChill:"まったりしたい",
+    moodBrain:"頭を使いたい",
+    moodAction:"暴れたい",
+    moodStory:"世界観に浸りたい",
+    moodFight:"勝負したい",
+    moodShort:"30分だけ",
+    whyYou:"あなたとの相性が高い理由",
+    whyYouCase:"あなたの場合",
+    playFit:"今の自分との遊び方",
+    profileCard:"GAME PROFILE",
+    likeAbout:"このゲームのどこが好き？",
+    browseStyle:"探し方から見る",
   },
 };
 
@@ -750,6 +795,35 @@ const GAMES = [
   G({name:"Just Dance", platforms:["nintendo","xbox"], tags:["party","friends","short"], stats:{solo:2,multi:5,grind:1,story:1,chill:4,hard:1,brain:1,action:3,short:5,tension:1}, boost:{ESFP:97,ESFJ:90,ENFP:82}, why:{ja:"みんなで体を動かして笑える",en:"Move and laugh together",zh:"一起动起来就能笑"}}),
   G({name:"Arknights", platforms:["mobile"], tags:["solo","brain","grind","strategy"], stats:{solo:5,multi:1,grind:5,story:3,chill:2,hard:4,brain:5,action:1,short:3,tension:3}, boost:{INTJ:90,INTP:86,ISTJ:80}, why:{ja:"配置を事前に組む塔防",en:"Pre-plan every route",zh:"提前规划路线的塔防"}}),
   G({name:"Sky: Children of the Light", platforms:["mobile","nintendo"], tags:["friends","chill","adventure"], stats:{solo:3,multi:4,grind:2,story:3,chill:5,hard:1,brain:1,action:1,short:4,tension:1}, boost:{ENFP:90,INFP:88,ENFJ:86,ISFP:84}, why:{ja:"見知らぬ人と空をさまよう",en:"Wander the sky with strangers",zh:"和陌生人在天空漫游"}}),
+  G({name:"Subnautica", platforms:["steam","xbox"], tags:["solo","explore","story","sandbox"], stats:{solo:5,multi:1,grind:3,story:4,chill:2,hard:3,brain:3,action:2,short:2,tension:4}, boost:{INTP:93,INFP:88,INFJ:84,INTJ:82}, why:{ja:"未知の海を一人で掘る",en:"Dive an unknown ocean alone",zh:"一个人潜入未知的海"}}),
+  G({name:"Terraria", platforms:["steam","nintendo","mobile","xbox"], tags:["solo","grind","sandbox","friends"], stats:{solo:4,multi:4,grind:5,story:2,chill:3,hard:3,brain:3,action:3,short:3,tension:3}, boost:{INTP:88,ISTP:86,INFP:80}, why:{ja:"掘って作って深くなる",en:"Dig, craft, go deeper",zh:"挖、造、再往下"}}),
+  G({name:"Core Keeper", platforms:["steam","xbox"], tags:["solo","friends","sandbox","grind"], stats:{solo:4,multi:4,grind:4,story:2,chill:3,hard:3,brain:3,action:2,short:3,tension:2}, boost:{INTP:86,ISTP:84,INFP:78}, why:{ja:"地下を自分のペースで開拓",en:"Carve the underground at your pace",zh:"按自己的节奏开地下"}}),
+  G({name:"Balatro", platforms:["steam","nintendo","xbox","mobile"], tags:["solo","brain","short","grind"], stats:{solo:5,multi:1,grind:4,story:1,chill:3,hard:3,brain:5,action:1,short:5,tension:3}, boost:{INTP:92,INTJ:88,ENTP:84}, why:{ja:"短い勝負でシステムをいじる",en:"Short runs that twist the system",zh:"短局里改系统"}}),
+  G({name:"Baldur's Gate 3", platforms:["steam","xbox"], tags:["solo","story","rpg","friends"], stats:{solo:4,multi:4,grind:4,story:5,chill:2,hard:4,brain:4,action:2,short:1,tension:3}, boost:{INFJ:90,INFP:88,ENFP:86,INTJ:84}, why:{ja:"選択がそのまま物語になる",en:"Choices become the story",zh:"选择本身就是故事"}}),
+  G({name:"Palworld", platforms:["steam","xbox"], tags:["solo","friends","sandbox","grind"], stats:{solo:4,multi:4,grind:5,story:2,chill:2,hard:3,brain:2,action:3,short:2,tension:3}, boost:{ENTP:86,ENFP:84,ISTP:80}, why:{ja:"収集と拠点を好きに伸ばす",en:"Collect and grow a base your way",zh:"收集和据点随便长"}}),
+  G({name:"Vampire Survivors", platforms:["steam","nintendo","xbox","mobile"], tags:["solo","short","action","chill"], stats:{solo:5,multi:2,grind:3,story:1,chill:4,hard:2,brain:2,action:4,short:5,tension:2}, boost:{ISTP:84,INTP:78,ISFP:76}, why:{ja:"短時間で手が動く快感",en:"Short bursts of motion",zh:"短时间就能动手"}}),
+  G({name:"Dave the Diver", platforms:["steam","nintendo","xbox"], tags:["solo","story","chill","short"], stats:{solo:5,multi:1,grind:3,story:4,chill:4,hard:2,brain:2,action:2,short:4,tension:2}, boost:{INFP:90,ISFP:88,ISFJ:84}, why:{ja:"潜って、店を出して、一日が終わる",en:"Dive, run the shop, call it a day",zh:"潜水、开店、一天结束"}}),
+  G({name:"Lethal Company", platforms:["steam"], tags:["friends","coop","horror","short"], stats:{solo:1,multi:5,grind:2,story:1,chill:1,hard:3,brain:2,action:3,short:4,tension:5}, boost:{ESFP:88,ENTP:86,ENFJ:82}, why:{ja:"友達と叫びながら回収する",en:"Scream-collect with friends",zh:"和朋友边叫边捡"}}),
+  G({name:"Schedule I", platforms:["steam"], tags:["solo","sim","grind"], stats:{solo:5,multi:2,grind:4,story:2,chill:3,hard:2,brain:4,action:1,short:3,tension:2}, boost:{INTJ:82,ENTJ:80,ISTJ:78}, why:{ja:"仕組みを回して伸ばす",en:"Grow a system and scale it",zh:"把系统转起来再放大"}}),
+
+];
+
+
+const QUICK = [
+  { axis:"solo", a:{ja:"ソロ",en:"Solo",zh:"单人"}, b:{ja:"友達",en:"Friends",zh:"朋友"}, aVal:"soloHi", bVal:"soloLo" },
+  { axis:"chill", a:{ja:"まったり",en:"Chill",zh:"轻松"}, b:{ja:"刺激",en:"Intense",zh:"刺激"}, aVal:"chillHi", bVal:"chillLo" },
+  { axis:"short", a:{ja:"短時間",en:"Short",zh:"短时间"}, b:{ja:"がっつり",en:"Long",zh:"长时间"}, aVal:"shortHi", bVal:"shortLo" },
+  { axis:"story", a:{ja:"ストーリー",en:"Story",zh:"剧情"}, b:{ja:"やり込み",en:"Mastery",zh:"肝"}, aVal:"storyHi", bVal:"storyLo" },
+];
+const STYLE_PAGES = [
+  {id:"solo", ja:"一人で遊ぶのが好きな人向け", tag:"solo"},
+  {id:"short", ja:"30分だけ遊べる", tag:"short"},
+  {id:"chill", ja:"疲れているときに遊べる", tag:"chill"},
+  {id:"grind", ja:"やり込みが好きな人向け", tag:"grind"},
+  {id:"story", ja:"ストーリー重視", tag:"story"},
+  {id:"brain", ja:"頭を使う", tag:"brain"},
+  {id:"sandbox", ja:"自由度が高い", tag:"sandbox"},
+  {id:"friends", ja:"友達と遊べる", tag:"friends"},
 ];
 
 const STAT_KEYS = ["solo","multi","grind","story","chill","hard","brain","action","short","tension"];
@@ -969,6 +1043,9 @@ function App(){
   const [filterFree, setFilterFree] = useState(false);
   const [votes, setVotes] = useState({});
   const [profileMsg, setProfileMsg] = useState(false);
+  const [quickMode, setQuickMode] = useState(false);
+  const [likeAspect, setLikeAspect] = useState("");
+  const [stylePage, setStylePage] = useState(null);
   const t = UI[lang];
 
   useEffect(()=>{
@@ -997,7 +1074,10 @@ function App(){
   const shareMessage = resultType && current ? t.shareText(resultType, current.nickname[lang], gamesLine) : "";
 
   const startQuiz = () => {
-    setMbtiScores(emptyMbti()); setPrefs(emptyPrefs()); setQIndex(0); setTodayPick(null); setTab("fit"); setScreen("quiz");
+    setQuickMode(false); setMbtiScores(emptyMbti()); setPrefs(emptyPrefs()); setQIndex(0); setTodayPick(null); setTab("fit"); setScreen("quiz");
+  };
+  const startQuick = () => {
+    setQuickMode(true); setPrefs(emptyPrefs()); setQIndex(0); setTodayPick(null); setTab("fit"); setScreen("quick");
   };
   const answer = (value) => {
     const item = QUESTIONS[qIndex];
@@ -1072,12 +1152,15 @@ function App(){
         </div>
         <div style={s.gameWhy}>{t.matchWhy}</div>
         <div style={s.matchTrack}><div style={{...s.matchFill, width:bar+"%", background:temp.accent}} /></div>
+        <div style={s.gameWhy}>{t.whyYou}</div>
         <div style={s.miniStats}>
           <span>{t.sectionSolo} {stars(g.stats.solo)}</span>
+          <span>{t.freedom} {stars(g.stats.solo>=4 && g.stats.short<=3 ? 5 : 3)}</span>
           <span>{t.sectionGrind} {stars(g.stats.grind)}</span>
-          <span>{t.sectionBrain} {stars(g.stats.brain)}</span>
-          <span>{t.sectionTension} {stars(g.stats.tension)}</span>
+          <span>{t.sectionTension} {stars(5-(g.stats.tension||3)+1)}</span>
         </div>
+        <div style={s.gameWhy}>{t.playFit}: {t.sectionSolo}{stars(g.stats.solo)} {t.sectionMulti}{stars(g.stats.multi)} {t.sectionShort}{stars(g.stats.short)} {t.sectionChill}{stars(g.stats.chill)}</div>
+        <div style={s.gameWhy}>{t.whyYouCase}「{tasteSummary(prefs, lang)}」{lang==="ja"?"と相性が高め。":""}</div>
         <div style={s.gameWhy}>{g.why[lang]}</div>
         {showAvoid && (
           <div>
@@ -1140,6 +1223,7 @@ function App(){
               <p style={s.subtitle}>{t.tagline}</p>
               <p style={s.compatLine}>{t.homeLead}</p>
               <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
+              <button style={{...s.ghostBtn, marginLeft:8}} onClick={startQuick}>{t.quickStart}</button>
               <div style={{...s.tasteBox, marginTop:20}}>
                 <h2 className="display" style={s.blockTitle}>{t.homeWhat}</h2>
                 <p style={s.compatLine}>🧠 {t.personalityLabel}</p>
@@ -1148,6 +1232,13 @@ function App(){
                 <p style={s.compatLine}>⚠️ {t.avoidTitle}</p>
                 <p style={s.compatLine}>👥 {t.friendTitle}</p>
                 <p style={s.compatLine}>🎲 {t.todayTitle}</p>
+              </div>
+              <h2 className="display" style={s.blockTitle}>{t.moodAsk}</h2>
+              <div style={s.platformRow}>
+                {[["tired",t.moodChill],["bored",t.moodBrain],["friends",t.moodFight]].map(([id,lab])=>(
+                  <button key={id} onClick={()=>{ setTodayMood(id); pickToday(false); setScreen(resultType?"result":"today"); }} style={s.platformBtn}>{lab}</button>
+                ))}
+                <button onClick={()=>{ setTodayTime("30"); setTodayMood("tired"); pickToday(false); setScreen(resultType?"result":"today"); }} style={s.platformBtn}>{t.moodShort}</button>
               </div>
               <div style={s.tasteBox}>
                 <h2 className="display" style={s.blockTitle}>🎲 {t.todayHome}</h2>
@@ -1183,6 +1274,14 @@ function App(){
               </div>
             </section>
             <section style={s.howSection}>
+              <h2 className="display" style={s.howSectionTitle}>{t.browseStyle}</h2>
+              <div style={s.heroMosaic}>
+                {STYLE_PAGES.map((p)=>(
+                  <button key={p.id} type="button" onClick={()=>{ setFilterTag(p.tag); setScreen("games"); }} className="display" style={{...s.mosaicChip, cursor:"pointer", color:"#F2F0E9", borderColor:"#2A2D52"}}>{p.ja}</button>
+                ))}
+              </div>
+            </section>
+            <section style={s.howSection}>
               <h2 className="display" style={s.howSectionTitle}>{t.typeIndexTitle}</h2>
               <div style={s.heroMosaic}>
                 {ALL_TYPES.map((code)=>{
@@ -1194,6 +1293,29 @@ function App(){
               </div>
             </section>
           </React.Fragment>
+        )}
+
+        {screen==="quick" && (
+          <div>
+            <p style={s.progress}>{t.questionOf(qIndex+1, QUICK.length)} · QUICK</p>
+            <div style={s.progressBarOuter}><div style={{...s.progressBarInner, width:`${(qIndex/QUICK.length)*100}%`}} /></div>
+            <h2 className="display" style={s.question}>{QUICK[qIndex].a[lang]} / {QUICK[qIndex].b[lang]}</h2>
+            <div style={s.optionCol}>
+              <button style={s.optionBtn} onClick={()=>{
+                const nextP = applyGameAnswer(prefs, QUICK[qIndex].aVal);
+                setPrefs(nextP);
+                if (qIndex+1<QUICK.length) setQIndex(qIndex+1);
+                else { if(!resultType) setResultType("INTP"); setScreen("result"); }
+              }}>{QUICK[qIndex].a[lang]}</button>
+              <button style={s.optionBtn} onClick={()=>{
+                const nextP = applyGameAnswer(prefs, QUICK[qIndex].bVal);
+                setPrefs(nextP);
+                if (qIndex+1<QUICK.length) setQIndex(qIndex+1);
+                else { if(!resultType) setResultType("INTP"); setScreen("result"); }
+              }}>{QUICK[qIndex].b[lang]}</button>
+            </div>
+            <button style={s.backBtn} onClick={startQuiz}>{t.fullQuiz}</button>
+          </div>
         )}
 
         {screen==="quiz" && q && (
@@ -1227,6 +1349,19 @@ function App(){
               </p>
               <p style={s.compatLine}>{t.personaLike}: {likesAndHates(prefs, lang).like.join(" / ") || "-"}</p>
               <p style={s.compatLine}>{t.personaHate}: {likesAndHates(prefs, lang).hate.join(" / ") || "-"}</p>
+              <div style={{...s.tasteBox, marginTop:12}}>
+                <p className="display" style={s.eyebrow}>{t.profileCard}</p>
+                {STAT_KEYS.slice(0,6).map((k)=>{
+                  const v = Math.round(((prefs[k]||3)/5)*100);
+                  return (
+                    <div key={k} style={s.statRow}>
+                      <span style={s.statLab}>{STAT_LABEL[lang][k]}</span>
+                      <span style={s.matchTrack}><span style={{...s.matchFill, width:v+"%", display:"block", background:temp.accent}} /></span>
+                      <span>{v}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <p style={s.compatLine}>{t.compatLabel}: {(COMPAT[resultType]||[]).join(" / ")}　·　{t.updatedLabel}: {GAMES_UPDATED}</p>
 
@@ -1386,6 +1521,15 @@ function App(){
             <p className="display" style={s.eyebrow}>{t.fromGame}</p>
             <h1 className="display" style={s.title}>{focusGame.name}</h1>
             <p style={s.subtitle}>{focusGame.why[lang]}</p>
+            <p style={s.compatLine}>{t.likeAbout}</p>
+            <div style={s.platformRow}>
+              {(focusGame.tags||[]).map((tag)=>(
+                <button key={tag} onClick={()=>setLikeAspect(tag)} style={{...s.platformBtn, borderColor: likeAspect===tag?"#7C6CF0":"#2A2D52"}}>{tag}</button>
+              ))}
+            </div>
+            {likeAspect && (
+              <p style={s.compatLine}>{lang==="ja"?`あなたがこのゲームで好きなのは「${likeAspect}」。近いゲームを下に出しています。`:`You liked "${likeAspect}".`}</p>
+            )}
             {resultType && (
               <div style={s.tasteBox}>
                 <h2 className="display" style={s.blockTitle}>{t.compatWithGame}</h2>
