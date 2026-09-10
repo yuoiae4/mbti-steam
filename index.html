@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
-<title>MBTI ゲーム診断 | おすすめゲームが分かる性格診断（Steam・スイッチ・スマホ・Xbox）</title>
-<meta name="description" content="MBTIゲーム診断。12問で性格タイプと、Steam・Nintendoスイッチ・スマホ・Xboxのおすすめゲームが分かります。無料・登録不要の性格ゲーム診断。" />
+<title>MBTI ゲーム診断 | 自分に合うゲームを探す（Steam・スイッチ・スマホ・Xbox）</title>
+<meta name="description" content="MBTIゲーム診断。20問で性格とゲーム嗜好を分けて判定。合うゲーム・合わないゲーム・今日の1本・友達相性まで。無料・登録不要。" />
 <meta name="keywords" content="MBTI ゲーム 診断,MBTI おすすめゲーム,性格 ゲーム 診断,MBTI Steam,MBTI スイッチ おすすめ,MBTI スマホゲーム" />
 <link rel="canonical" href="index.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,26 +31,7 @@
 <noscript>
   <main style="max-width:760px;margin:40px auto;padding:0 20px;font-family:sans-serif">
     <h1>MBTI ゲーム診断</h1>
-    <p>12問の性格診断で、Steam・Nintendo・スマホ・Xboxのおすすめゲームが分かります。</p>
-    <h2>タイプ別おすすめゲーム</h2>
-    <ul>
-      <li><a href="?type=INTJ">INTJにおすすめのゲーム</a></li>
-      <li><a href="?type=INTP">INTPにおすすめのゲーム</a></li>
-      <li><a href="?type=ENTJ">ENTJにおすすめのゲーム</a></li>
-      <li><a href="?type=ENTP">ENTPにおすすめのゲーム</a></li>
-      <li><a href="?type=INFJ">INFJにおすすめのゲーム</a></li>
-      <li><a href="?type=INFP">INFPにおすすめのゲーム</a></li>
-      <li><a href="?type=ENFJ">ENFJにおすすめのゲーム</a></li>
-      <li><a href="?type=ENFP">ENFPにおすすめのゲーム</a></li>
-      <li><a href="?type=ISTJ">ISTJにおすすめのゲーム</a></li>
-      <li><a href="?type=ISFJ">ISFJにおすすめのゲーム</a></li>
-      <li><a href="?type=ESTJ">ESTJにおすすめのゲーム</a></li>
-      <li><a href="?type=ESFJ">ESFJにおすすめのゲーム</a></li>
-      <li><a href="?type=ISTP">ISTPにおすすめのゲーム</a></li>
-      <li><a href="?type=ISFP">ISFPにおすすめのゲーム</a></li>
-      <li><a href="?type=ESTP">ESTPにおすすめのゲーム</a></li>
-      <li><a href="?type=ESFP">ESFPにおすすめのゲーム</a></li>
-    </ul>
+    <p>20問で性格タイプとゲームの好みを分けて判定します。合うゲーム、合わないゲーム、ゲームからの逆引き、友達との相性も見られます。このサイトはJavaScriptが必要です。</p>
   </main>
 </noscript>
 
@@ -363,263 +344,18 @@ var e,a,n="function"==typeof Symbol?Symbol:{},t=n.iterator||"@@iterator",r=n.toS
 <script type="text/babel" data-type="module">
 const { useState, useEffect } = React;
 
-/* ---------- UI text ---------- */
-const UI = {
-  ja: {
-    appTitle: "MBTI ゲーム診断",
-    tagline: "12個の質問に答えると、あなたのMBTIタイプと、Steam・Nintendo・スマホ・Xboxで合いそうなゲームがわかります。",
-    start: "診断をはじめる",
-    back: "戻る",
-    questionOf: (n, total) => `質問 ${n} / ${total}`,
-    yourType: "あなたのタイプ",
-    retake: "もう一度診断する",
-    save: "この結果を保存する",
-    saved: "保存しました",
-    savedResults: "保存した結果",
-    delete: "削除",
-    viewOnSteam: "探す",
-    platformSteam: "Steam",
-    platformNintendo: "Nintendo",
-    platformMobile: "スマホ",
-    platformXbox: "Xbox",
-    gamesForPlatform: "このタイプ向きのゲーム",
-    loadThis: "この結果を見る",
-    savedOn: "保存日",
-    navHome: "ホーム",
-    navSaved: "保存した結果",
-    noSaved: "まだ保存した結果がありません。",
-    noSavedHint: "診断が終わったら「この結果を保存する」を押してみましょう。",
-    goQuiz: "診断へ",
-    countLabel: (n) => `${n}件保存中`,
-    support: "作者にコーヒーをおごる",
-    brand: "MB",
-    heroKicker: "無料・登録不要の性格診断",
-    howTitle: "使い方",
-    step1Title: "12個の質問に答える",
-    step1Desc: "2択の質問だけ。所要時間は1〜2分ほどです。",
-    step2Title: "MBTIタイプが分かる",
-    step2Desc: "回答からあなたの4文字タイプと特徴を判定します。",
-    step3Title: "合うゲームが見つかる",
-    step3Desc: "Steam・Nintendo・スマホ・Xboxから、タイプ向きのゲームを理由つきで紹介します。",
-    shareTitle: "結果をシェア",
-    shareX: "Xでシェア",
-    shareLine: "LINEでシェア",
-    shareCopy: "リンクをコピー",
-    shareCopied: "コピーしました",
-    shareNative: "シェア",
-    shareText: (type, nickname, games) => `私のMBTIは${type}（${nickname}）でした。おすすめは${games}。あなたのタイプは？ #MBTI #ゲーム診断`,
-    resultHeading: (type) => `${type}に合うSteam・Switch・スマホ・Xboxゲーム`,
-    platformHint: "同じタイプでも、Switch勢はNintendo、通勤中はスマホ、テレビ勢はXboxを見てみてください。",
-    inviteFriend: "友達のタイプも見る",
-    compatLabel: "一緒に遊びやすいタイプ",
-    updatedLabel: "ゲームリスト更新",
-    typeIndexTitle: "タイプ別おすすめゲーム",
-    seoHomeTitle: "MBTI ゲーム診断 | おすすめゲームが分かる性格診断",
-    footerNote: "本サイトはSteam・Nintendo・XboxおよびMBTIの公式サービスではありません。診断結果は簡易的な目安としてお楽しみください。",
-  },
-  en: {
-    appTitle: "MBTI × Game Matcher",
-    tagline: "Answer 12 quick questions to find your MBTI type and matching games on Steam, Nintendo, mobile, and Xbox.",
-    start: "Start the quiz",
-    back: "Back",
-    questionOf: (n, total) => `Question ${n} of ${total}`,
-    yourType: "Your type",
-    retake: "Retake the quiz",
-    save: "Save this result",
-    saved: "Saved",
-    savedResults: "Saved results",
-    delete: "Delete",
-    viewOnSteam: "Find it",
-    platformSteam: "Steam",
-    platformNintendo: "Nintendo",
-    platformMobile: "Mobile",
-    platformXbox: "Xbox",
-    gamesForPlatform: "Games that fit this type",
-    loadThis: "View this result",
-    savedOn: "Saved on",
-    navHome: "Home",
-    navSaved: "Saved results",
-    noSaved: "You don't have any saved results yet.",
-    noSavedHint: "Finish the quiz and tap \"Save this result\" to keep it here.",
-    goQuiz: "Take the quiz",
-    countLabel: (n) => `${n} saved`,
-    support: "Buy me a coffee",
-    brand: "MB",
-    heroKicker: "Free personality quiz, no sign-up",
-    howTitle: "How it works",
-    step1Title: "Answer 12 questions",
-    step1Desc: "Just pick between two options each time. Takes about a minute.",
-    step2Title: "Get your MBTI type",
-    step2Desc: "Your answers map to a 4-letter type and a short profile.",
-    step3Title: "See games that fit",
-    step3Desc: "Three games per platform — Steam, Nintendo, mobile, and Xbox — each with a reason why.",
-    shareTitle: "Share your result",
-    shareX: "Share on X",
-    shareLine: "Share on LINE",
-    shareCopy: "Copy link",
-    shareCopied: "Copied",
-    shareNative: "Share",
-    shareText: (type, nickname, games) => `My MBTI is ${type} (${nickname}). Top picks: ${games}. What's yours? #MBTI`,
-    resultHeading: (type) => `Games for ${type} on Steam, Switch, mobile, and Xbox`,
-    platformHint: "Same type, different shelf: Nintendo for Switch, mobile for commutes, Xbox for the TV.",
-    inviteFriend: "See a friend's type",
-    compatLabel: "Types that play well together",
-    updatedLabel: "Game list updated",
-    typeIndexTitle: "Games by type",
-    seoHomeTitle: "MBTI game quiz | Find games that fit your type",
-    footerNote: "This site is an independent project and is not affiliated with Steam, Nintendo, Xbox, or the official MBTI trademark holders. Treat results as a fun approximation.",
-  },
-  zh: {
-    appTitle: "MBTI × 游戏匹配器",
-    tagline: "回答12个简单问题，了解你的MBTI类型，以及适合这个类型的Steam、Nintendo、手机和Xbox游戏。",
-    start: "开始测试",
-    back: "上一题",
-    questionOf: (n, total) => `第 ${n} / ${total} 题`,
-    yourType: "你的类型",
-    retake: "重新测试",
-    save: "保存这个结果",
-    saved: "已保存",
-    savedResults: "已保存的结果",
-    delete: "删除",
-    viewOnSteam: "去查找",
-    platformSteam: "Steam",
-    platformNintendo: "Nintendo",
-    platformMobile: "手机",
-    platformXbox: "Xbox",
-    gamesForPlatform: "适合这个类型的游戏",
-    loadThis: "查看该结果",
-    savedOn: "保存于",
-    navHome: "首页",
-    navSaved: "已保存的结果",
-    noSaved: "还没有已保存的结果。",
-    noSavedHint: "完成测试后，点击「保存这个结果」即可保存在这里。",
-    goQuiz: "去测试",
-    countLabel: (n) => `已保存 ${n} 条`,
-    support: "请作者喝杯咖啡",
-    brand: "MB",
-    heroKicker: "免费性格测试，无需注册",
-    howTitle: "使用方法",
-    step1Title: "回答12个问题",
-    step1Desc: "只需二选一，大约1分钟即可完成。",
-    step2Title: "获得你的MBTI类型",
-    step2Desc: "根据你的回答判定四字类型及简介。",
-    step3Title: "找到适合的游戏",
-    step3Desc: "按Steam、Nintendo、手机、Xbox分别推荐3款游戏，并附上推荐理由。",
-    shareTitle: "分享你的结果",
-    shareX: "分享到 X",
-    shareLine: "分享到 LINE",
-    shareCopy: "复制链接",
-    shareCopied: "已复制",
-    shareNative: "分享",
-    shareText: (type, nickname, games) => `我的MBTI是${type}（${nickname}）。推荐：${games}。你的呢？`,
-    resultHeading: (type) => `${type}适合的Steam、Switch、手机、Xbox游戏`,
-    platformHint: "同一类型也可以换平台看：Switch看Nintendo、通勤看手机、客厅看Xbox。",
-    inviteFriend: "看看朋友的类型",
-    compatLabel: "比较好一起玩的类型",
-    updatedLabel: "游戏列表更新",
-    typeIndexTitle: "按类型看推荐游戏",
-    seoHomeTitle: "MBTI游戏测试 | 找出适合你的游戏",
-    footerNote: "本站为独立项目，与Steam、Nintendo、Xbox及MBTI官方无关，测试结果仅供娱乐参考。",
-  },
-};
-
-/* ---------- Quiz questions ---------- */
-const QUESTIONS = [
-  { axis: "EI", text: { ja: "誰かと一緒に過ごすと元気が出る", en: "Being around people energizes me", zh: "和别人在一起会让我充满活力" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
-    b: { ja: "一人の時間で充電する", en: "I recharge alone instead", zh: "我更需要独处充电" }, bVal: "I" },
-  { axis: "EI", text: { ja: "話しながら考えをまとめるタイプだ", en: "I think out loud while talking", zh: "我喜欢边说边整理想法" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
-    b: { ja: "考えてから話すタイプだ", en: "I think before I speak", zh: "我会先想清楚再说" }, bVal: "I" },
-  { axis: "EI", text: { ja: "大勢の集まりが好きだ", en: "I enjoy big group gatherings", zh: "我喜欢大型聚会" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "E",
-    b: { ja: "少人数や1対1が好きだ", en: "I prefer small groups or one-on-one", zh: "我更喜欢小圈子或一对一" }, bVal: "I" },
-  { axis: "SN", text: { ja: "具体的な事実やデータを重視する", en: "I focus on concrete facts and details", zh: "我更看重具体的事实和细节" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
-    b: { ja: "可能性やアイデアを重視する", en: "I focus on possibilities and ideas", zh: "我更看重可能性和想法" }, bVal: "N" },
-  { axis: "SN", text: { ja: "実績のある確実な方法を選ぶ", en: "I stick with proven, reliable methods", zh: "我倾向于选择已经验证过的方法" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
-    b: { ja: "新しいやり方を試したくなる", en: "I like trying new approaches", zh: "我更愿意尝试新方法" }, bVal: "N" },
-  { axis: "SN", text: { ja: "今、目の前のことに集中する", en: "I focus on the here and now", zh: "我更专注于当下的事情" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "S",
-    b: { ja: "将来のビジョンをよく考える", en: "I often think about future possibilities", zh: "我经常思考未来的可能性" }, bVal: "N" },
-  { axis: "TF", text: { ja: "物事は論理で判断する", en: "I make decisions with logic", zh: "我依靠逻辑来做判断" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
-    b: { ja: "気持ちや価値観で判断する", en: "I make decisions with feelings and values", zh: "我依靠感受和价值观来判断" }, bVal: "F" },
-  { axis: "TF", text: { ja: "率直にはっきり伝える方だ", en: "I tend to be direct and blunt", zh: "我说话比较直接" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
-    b: { ja: "相手を気遣った伝え方をする", en: "I choose my words to spare feelings", zh: "我会照顾对方的感受来表达" }, bVal: "F" },
-  { axis: "TF", text: { ja: "公平さを優先したい", en: "I prioritize fairness", zh: "我更重视公平" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "T",
-    b: { ja: "その場の調和を優先したい", en: "I prioritize harmony in the moment", zh: "我更重视当下的和谐" }, bVal: "F" },
-  { axis: "JP", text: { ja: "計画を立ててから動く", en: "I plan things out before acting", zh: "我会先计划再行动" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
-    b: { ja: "その場の流れに任せる", en: "I go with the flow", zh: "我更喜欢随机应变" }, bVal: "P" },
-  { axis: "JP", text: { ja: "締め切りより早めに終わらせる", en: "I finish things well before the deadline", zh: "我通常会提前完成任务" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
-    b: { ja: "締め切り直前に一気に動く", en: "I do it in a rush near the deadline", zh: "我经常临近截止日期才冲刺" }, bVal: "P" },
-  { axis: "JP", text: { ja: "物事は早めに決めたい", en: "I like to decide things early", zh: "我喜欢尽早做决定" },
-    a: { ja: "そう思う", en: "Agree", zh: "同意" }, aVal: "J",
-    b: { ja: "選択肢はなるべく残しておきたい", en: "I like to keep my options open", zh: "我更喜欢保留多种选择" }, bVal: "P" },
-];
-
-const steamUrl = (name) => `https://store.steampowered.com/search/?term=${encodeURIComponent(name)}`;
-const nintendoUrl = (name) => `https://www.nintendo.com/jp/search/?q=${encodeURIComponent(name)}`;
-const mobileUrl = (name) => `https://www.google.com/search?q=${encodeURIComponent(name + " アプリ")}`;
-const xboxUrl = (name) => `https://www.xbox.com/ja-JP/Search?q=${encodeURIComponent(name)}`;
-const platformUrl = (platform, name) => {
-  if (platform === "nintendo") return nintendoUrl(name);
-  if (platform === "mobile") return mobileUrl(name);
-  if (platform === "xbox") return xboxUrl(name);
-  return steamUrl(name);
-};
-const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
-const PLATFORMS = ["steam", "nintendo", "mobile", "xbox"];
+const ALL_TYPES = ["INTJ","INTP","ENTJ","ENTP","INFJ","INFP","ENFJ","ENFP","ISTJ","ISFJ","ESTJ","ESFJ","ISTP","ISFP","ESTP","ESFP"];
+const PLATFORMS = ["steam","nintendo","mobile","xbox"];
 const GAMES_UPDATED = "2026-09";
+const STORAGE_KEY = "mbti-steam-history-v2";
 const COMPAT = {
-  INTJ: ["INTP","ENTJ"], INTP: ["INTJ","ENTP"], ENTJ: ["INTJ","ENTP"], ENTP: ["INTP","ENFP"],
-  INFJ: ["INFP","ENFJ"], INFP: ["INFJ","ENFP"], ENFJ: ["INFJ","ENFP"], ENFP: ["INFP","ENTP"],
-  ISTJ: ["ISFJ","ESTJ"], ISFJ: ["ISTJ","ESFJ"], ESTJ: ["ISTJ","ESTP"], ESFJ: ["ISFJ","ESFP"],
-  ISTP: ["ESTP","ISFP"], ISFP: ["INFP","ISTP"], ESTP: ["ESFP","ISTP"], ESFP: ["ESFJ","ESTP"],
+  INTJ:["INTP","ENTJ"], INTP:["INTJ","ENTP"], ENTJ:["INTJ","ENTP"], ENTP:["INTP","ENFP"],
+  INFJ:["INFP","ENFJ"], INFP:["INFJ","ENFP"], ENFJ:["INFJ","ENFP"], ENFP:["INFP","ENTP"],
+  ISTJ:["ISFJ","ESTJ"], ISFJ:["ISTJ","ESFJ"], ESTJ:["ISTJ","ESTP"], ESFJ:["ISFJ","ESFP"],
+  ISTP:["ESTP","ISFP"], ISFP:["INFP","ISTP"], ESTP:["ESFP","ISTP"], ESFP:["ESFJ","ESTP"],
 };
-const shortGame = (name) => name.replace(/: .*$/, "").replace("The Legend of Zelda", "ゼルダ").replace("Super Smash Bros. Ultimate", "スマブラ");
-const shareGamesLine = (typeObj) => {
-  if (!typeObj) return "";
-  const a = (typeObj.steam && typeObj.steam[0] && typeObj.steam[0].name) || "";
-  const b = (typeObj.nintendo && typeObj.nintendo[0] && typeObj.nintendo[0].name) || "";
-  const c = (typeObj.mobile && typeObj.mobile[0] && typeObj.mobile[0].name) || "";
-  return [shortGame(a), shortGame(b), shortGame(c)].filter(Boolean).join(" / ");
-};
-const typePagePath = (type) => { try { const u = new URL(window.location.href); u.searchParams.set("type", String(type).toUpperCase()); return u.toString(); } catch (e) { return window.location.href; } };
-const applySeo = (type, typeObj, lang) => {
-  const ui = UI[lang] || UI.ja;
-  try {
-    if (!type || !typeObj) {
-      document.title = ui.seoHomeTitle;
-      return;
-    }
-    const nickn = typeObj.nickname[lang];
-    document.title = `${type}におすすめのゲーム診断 | MBTI ゲーム おすすめ`;
-    const desc = `${type}（${nickn}）向けのSteam・Nintendo・スマホ・Xboxおすすめ。${shareGamesLine(typeObj)}`;
-    const setMeta = (sel, attr, val) => {
-      const el = document.querySelector(sel);
-      if (el) el.setAttribute(attr, val);
-    };
-    setMeta('meta[name="description"]', 'content', desc);
-    setMeta('meta[property="og:title"]', 'content', `${type}（${nickn}）におすすめのゲーム`);
-    setMeta('meta[property="og:description"]', 'content', desc);
-    setMeta('meta[property="og:image"]', 'content', '');
-    setMeta('meta[name="twitter:title"]', 'content', `${type}（${nickn}）におすすめのゲーム`);
-    setMeta('meta[name="twitter:description"]', 'content', desc);
-    setMeta('meta[name="twitter:image"]', 'content', '');
-  } catch (e) {}
-};
-
 const TEMPERAMENTS = {
-  NT: { accent: "#7C6CF0", soft: "#7C6CF033" },
-  NF: { accent: "#F2A83C", soft: "#F2A83C33" },
-  SJ: { accent: "#4FBDBA", soft: "#4FBDBA33" },
-  SP: { accent: "#F0668C", soft: "#F0668C33" },
+  NT:{accent:"#7C6CF0"}, NF:{accent:"#F2A83C"}, SJ:{accent:"#4FBDBA"}, SP:{accent:"#F0668C"},
 };
 const temperamentOf = (code) => {
   if (code.includes("N") && code.includes("T")) return "NT";
@@ -628,515 +364,504 @@ const temperamentOf = (code) => {
   return "SP";
 };
 
-const TYPES = {
-  INTJ: { nickname: { ja: "建築家", en: "The Architect", zh: "建筑师" },
-    blurb: { ja: "頭の中で全体の設計図を組み上げてから動くタイプ。長期戦略とシステムの支配が快感になる。", en: "You build the whole blueprint in your head before moving. Long-term strategy and mastering systems feel satisfying.", zh: "你会先在脑海中搭建好整体蓝图再行动。长期战略和掌控系统会让你感到满足。" },
-    steam: [
-      { name: "Civilization VI", why: { ja: "文明をゼロから育て上げる長期戦略", en: "Build a civilization with long-term strategy", zh: "从零开始经营文明的长线战略" } },
-      { name: "Divinity: Original Sin 2", why: { ja: "戦闘前に全て計算し尽くせるRPG", en: "Plan every fight before it happens", zh: "每场战斗都能提前算计的RPG" } },
-      { name: "Slay the Spire", why: { ja: "3手先まで読むデッキ構築", en: "Deckbuilding that rewards planning ahead", zh: "需要提前几步思考的卡牌构筑" } },
-    ],
-    nintendo:     [
-      { name: "Fire Emblem: Three Houses", why: { ja: "長期で派閥と育成を設計できる戦略SRPG", en: "Long-term faction and unit planning", zh: "长期规划派系与培养的战略SRPG" } },
-      { name: "The Legend of Zelda: Tears of the Kingdom", why: { ja: "仕組みを組み合わせて世界を解く", en: "Solve the world by combining systems", zh: "通过组合机制解开整个世界" } },
-      { name: "Metroid Prime Remastered", why: { ja: "地図と装備を頭の中で組み立てる探索", en: "Map the world and assemble the loadout in your head", zh: "在脑中拼好地图与装备再探索" } },
-    ],
-    mobile:     [
-      { name: "Slay the Spire", why: { ja: "3手先を読むデッキ構築がそのまま遊べる", en: "The same planning-heavy deckbuilder on the go", zh: "同样需要提前规划的卡牌构筑" } },
-      { name: "Arknights", why: { ja: "配置とルートを事前に組むタワーディフェンス", en: "Tower defense that rewards pre-planned routes", zh: "需要提前规划路线的塔防" } },
-      { name: "Civilization VI", why: { ja: "スマホでも文明の長期戦略が組める", en: "Long-term civ strategy that fits a phone", zh: "在手机上也能做长线文明战略" } },
-    ],
-    xbox:     [
-      { name: "Age of Empires IV", why: { ja: "文明ごとの長期戦略を組み立てる", en: "Build a long-term plan unique to each civ", zh: "为每个文明搭建长期战略" } },
-      { name: "Pentiment", why: { ja: "情報を集めて全体像を組み立てる推理", en: "Gather facts and assemble the bigger picture", zh: "收集信息并拼出全貌的推理" } },
-      { name: "Microsoft Flight Simulator", why: { ja: "システム全体を把握して操縦する", en: "Master a whole system before you fly", zh: "先掌握整套系统再去操控" } },
-    ]},
-  INTP: { nickname: { ja: "論理学者", en: "The Theorist", zh: "逻辑学家" },
-    blurb: { ja: "力ずくで勝つより、なぜ動くのかを理解したいタイプ。仕組みそのものをいじれるゲームが刺さる。", en: "You'd rather understand why something works than force a win. Games where you bend the rules themselves are your favorite.", zh: "比起硬拼取胜，你更想理解系统运作的原理，喜欢可以摆弄规则本身的游戏。" },
-    steam: [
-      { name: "Baba Is You", why: { ja: "ルール自体がパズルになるゲーム", en: "The rules themselves are the puzzle", zh: "规则本身就是谜题" } },
-      { name: "Portal 2", why: { ja: "物理法則を書き換えて解く快感", en: "Rewrite physics to solve each room", zh: "改写物理法则来解谜的快感" } },
-      { name: "Kerbal Space Program", why: { ja: "本物の軌道力学で遊べる", en: "Real orbital mechanics, no textbook needed", zh: "用真实的轨道力学来玩" } },
-    ],
-    nintendo:     [
-      { name: "The Legend of Zelda: Tears of the Kingdom", why: { ja: "物理と装置を実験するように解ける", en: "Experiment with physics and devices", zh: "像做实验一样用物理和装置解谜" } },
-      { name: "Baba Is You", why: { ja: "Switchでもルールそのものを書き換えられる", en: "Rewrite the rules on Switch too", zh: "在Switch上也能改写规则本身" } },
-      { name: "Pikmin 4", why: { ja: "小さな仕組みを観察して最適化する", en: "Watch small systems and optimize them", zh: "观察小系统并不断优化" } },
-    ],
-    mobile:     [
-      { name: "The Witness", why: { ja: "法則を自分で発見する純粋パズル", en: "Pure puzzles about discovering the rules", zh: "自己发现规律的纯解谜" } },
-      { name: "Mini Metro", why: { ja: "路線というルールをいじって都市を回す", en: "Tinker with transit rules to keep a city moving", zh: "摆弄线路规则来运转城市" } },
-      { name: "Opus Magnum", why: { ja: "装置を組んで答えを自分で発明する", en: "Invent your own machine for every answer", zh: "自己发明装置来得出答案" } },
-    ],
-    xbox:     [
-      { name: "Portal: Prelude RTX", why: { ja: "ポータルの論理をXboxでもいじれる", en: "Portal logic you can poke at on Xbox", zh: "在Xbox上也能摆弄传送门逻辑" } },
-      { name: "Outer Wilds", why: { ja: "宇宙の法則を自分で解明する", en: "Figure out the laws of a solar system yourself", zh: "自己揭开太阳系的运作法则" } },
-      { name: "The Talos Principle 2", why: { ja: "哲学とパズルが同時に動く", en: "Philosophy and puzzles running at once", zh: "哲学与谜题同时运转" } },
-    ]},
-  ENTJ: { nickname: { ja: "指揮官", en: "The Commander", zh: "指挥官" },
-    blurb: { ja: "結果から逆算して最短ルートを取りたいタイプ。任されたものは徹底的に最適化する。", en: "You work backward from the outcome you want and take the fastest legitimate path. Whatever you run, you optimize.", zh: "你习惯从结果反推最快路径，一旦掌管什么，就会彻底优化它。" },
-    steam: [
-      { name: "Crusader Kings III", why: { ja: "王朝を育てる冷徹な野心", en: "Ruthless, patient dynasty-building", zh: "冷静而有野心地经营王朝" } },
-      { name: "Frostpunk", why: { ja: "厳しい判断を下し続ける都市経営", en: "Hard calls under constant pressure", zh: "在压力下不断做出艰难决策的城市经营" } },
-      { name: "Total War: WARHAMMER III", why: { ja: "戦略と統率を両方求められる", en: "Demands both strategy and command", zh: "同时考验战略与统率能力" } },
-    ],
-    nintendo:     [
-      { name: "Fire Emblem Engage", why: { ja: "部隊を最適化して戦局を握る", en: "Optimize an army and take the map", zh: "优化部队并掌控战局" } },
-      { name: "Advance Wars 1+2: Re-Boot Camp", why: { ja: "最短手数で勝ち切る戦術", en: "Win in the fewest decisive moves", zh: "用最少手数赢下战术" } },
-      { name: "Mario Kart 8 Deluxe", why: { ja: "順位とルートを常に最適化する", en: "Constantly optimize place and route", zh: "不断优化名次与路线" } },
-    ],
-    mobile:     [
-      { name: "Clash Royale", why: { ja: "限られたコストで最短勝利を狙う", en: "Win with tight cost and tempo control", zh: "用有限费用争取最快胜利" } },
-      { name: "Raid: Shadow Legends", why: { ja: "編成と進行を管理して突き進む", en: "Manage roster and progress like a campaign", zh: "管理阵容与进度不断推进" } },
-      { name: "Lords Mobile", why: { ja: "同盟を動かして結果を取りにいく", en: "Move an alliance toward a concrete win", zh: "调动同盟去拿结果" } },
-    ],
-    xbox:     [
-      { name: "Halo Wars 2", why: { ja: "戦力配分と目標を同時に握るRTS", en: "RTS that wants both allocation and objectives", zh: "同时抓住兵力分配与目标的RTS" } },
-      { name: "Forza Motorsport", why: { ja: "データでタイムを削っていく", en: "Shave time with data, not vibes", zh: "用数据一点点削掉圈速" } },
-      { name: "Gears Tactics", why: { ja: "1手ごとに最適解を出す戦術", en: "Tactics that reward the best next move", zh: "每一步都要拿出最优解的战术" } },
-    ]},
-  ENTP: { nickname: { ja: "討論者", en: "The Debater", zh: "辩论家" },
-    blurb: { ja: "すぐ飽きるけど好奇心は止まらないタイプ。ゲームの前提そのものに突っ込みたくなる。", en: "You get bored fast but stay endlessly curious. You want to argue with a game's own premise.", zh: "你容易感到无聊，但好奇心永不停歇，喜欢质疑游戏本身的前提。" },
-    steam: [
-      { name: "Disco Elysium", why: { ja: "どんな突飛な発想も拾ってくれる", en: "Every strange idea gets a reaction", zh: "任何奇怪的想法都能得到回应" } },
-      { name: "The Stanley Parable: Ultra Deluxe", why: { ja: "ゲームの期待を裏切り続ける構造", en: "Built entirely to defy expectations", zh: "整个游戏都在颠覆你的预期" } },
-      { name: "Risk of Rain 2", why: { ja: "毎回違う組み合わせを試せる", en: "A new build combination every run", zh: "每局都能尝试不同的组合" } },
-    ],
-    nintendo:     [
-      { name: "Super Smash Bros. Ultimate", why: { ja: "対戦の前提を毎回ひっくり返す", en: "Flip the premise of every match", zh: "每场对战都能推翻前提" } },
-      { name: "Super Mario Maker 2", why: { ja: "コースというルールを自分で作れる", en: "Invent the rules of a course yourself", zh: "自己制定关卡规则" } },
-      { name: "Splatoon 3", why: { ja: "武器と塗りで毎回違う戦い方", en: "A new argument every match via ink and kits", zh: "每次都能用武器和涂墨打出不同打法" } },
-    ],
-    mobile:     [
-      { name: "Among Us", why: { ja: "その場の嘘と論理で場を壊せる", en: "Break the room with a well-timed lie", zh: "用当场的谎言和逻辑搅动局面" } },
-      { name: "Marvel Snap", why: { ja: "短いターンで奇策が通る", en: "Short turns where weird lines can work", zh: "短回合里也能打出奇招" } },
-      { name: "Genshin Impact", why: { ja: "寄り道と実験が無限にある", en: "Endless side paths and experiments", zh: "有无限的绕路和实验空间" } },
-    ],
-    xbox:     [
-      { name: "Sea of Thieves", why: { ja: "計画よりその場の思いつきが勝つ", en: "Improvisation beats a rigid plan", zh: "临场发挥往往胜过死板计划" } },
-      { name: "Hi-Fi Rush", why: { ja: "リズムで戦闘の前提を変える", en: "Combat that rewrites itself to the beat", zh: "用节奏改写战斗前提" } },
-      { name: "Fallout 76", why: { ja: "世界のルールを自分の遊び方でねじる", en: "Bend a huge world to a weird playstyle", zh: "用自己的玩法拧转世界规则" } },
-    ]},
-  INFJ: { nickname: { ja: "提唱者", en: "The Advocate", zh: "提倡者" },
-    blurb: { ja: "クリア率より、心に残る体験を求めるタイプ。静かに深い物語に惹かれる。", en: "You play for meaning, not completion rate. Quiet, deep stories draw you in.", zh: "比起通关率，你更在意能否留下深刻的体验，容易被安静而深刻的故事打动。" },
-    steam: [
-      { name: "Outer Wilds", why: { ja: "太陽系をめぐる静かな謎解き", en: "A quiet mystery across a solar system", zh: "在太阳系中展开的静谧解谜" } },
-      { name: "What Remains of Edith Finch", why: { ja: "短くも胸に残る一族の物語", en: "Short stories that stay with you", zh: "短小却令人难忘的家族故事" } },
-      { name: "Firewatch", why: { ja: "会話だけで築かれる関係性", en: "A relationship built through conversation alone", zh: "仅靠对话构建的人际关系" } },
-    ],
-    nintendo:     [
-      { name: "Xenoblade Chronicles 3", why: { ja: "大きな物語の意味を静かに追う", en: "Follow a vast story for its meaning", zh: "安静地追随宏大故事的意义" } },
-      { name: "The Legend of Zelda: Breath of the Wild", why: { ja: "孤独な探索がそのまま物語になる", en: "Solitary exploration becomes the story", zh: "孤独的探索本身就是故事" } },
-      { name: "Octopath Traveler II", why: { ja: "短い人生の断片が心に残る", en: "Short life stories that linger", zh: "短小的人生片段会留在心里" } },
-    ],
-    mobile:     [
-      { name: "Florence", why: { ja: "短い関係性の物語に浸れる", en: "A short relationship story you sit inside", zh: "沉浸在一段短小的关系故事里" } },
-      { name: "Reigns", why: { ja: "選択の重みを静かに感じる", en: "Feel the weight of quiet choices", zh: "安静地感受选择的分量" } },
-      { name: "Monument Valley", why: { ja: "静かな美と謎が同時にある", en: "Quiet beauty and mystery at once", zh: "安静的美与谜题并存" } },
-    ],
-    xbox:     [
-      { name: "Tell Me Why", why: { ja: "記憶と関係性を掘る物語", en: "A story that digs through memory and ties", zh: "挖掘记忆与关系的故事" } },
-      { name: "A Plague Tale: Requiem", why: { ja: "暗い世界で守りたいものを追う", en: "Protect what matters in a dark world", zh: "在黑暗世界里守护想守护的东西" } },
-      { name: "Ori and the Will of the Wisps", why: { ja: "美しい世界の中で意味を探す", en: "Look for meaning inside a beautiful world", zh: "在美丽世界中寻找意义" } },
-    ]},
-  INFP: { nickname: { ja: "仲介者", en: "The Mediator", zh: "调停者" },
-    blurb: { ja: "優しさが実際に報われる世界を求めるタイプ。キャラクターに本気で感情移入する。", en: "You want a world where kindness genuinely pays off. You get attached to characters for real.", zh: "你希望在善良真的能得到回报的世界里游戏，并会真心投入到角色之中。" },
-    steam: [
-      { name: "Undertale", why: { ja: "見逃す優しさが本当に報われる", en: "Mercy is a real, rewarded choice", zh: "宽恕真的会得到回报" } },
-      { name: "Life is Strange", why: { ja: "小さな選択が物語を変えていく", en: "Small choices ripple into the story", zh: "小小的选择会改变整个故事" } },
-      { name: "Stardew Valley", why: { ja: "自分のペースで築く優しい暮らし", en: "A gentle life at your own pace", zh: "按自己的节奏经营温柔的生活" } },
-    ],
-    nintendo:     [
-      { name: "Animal Crossing: New Horizons", why: { ja: "自分の優しさで島を育てられる", en: "Grow an island at the pace of kindness", zh: "用自己的温柔经营一座岛" } },
-      { name: "Pokémon Scarlet", why: { ja: "相棒と一緒に世界を歩く", en: "Walk a world with partners you care about", zh: "和伙伴一起走遍世界" } },
-      { name: "Xenoblade Chronicles 2", why: { ja: "キャラに感情移入して旅する", en: "Travel by getting attached to people", zh: "通过投入角色感情来旅行" } },
-    ],
-    mobile:     [
-      { name: "Stardew Valley", why: { ja: "自分のペースで優しい暮らしを作る", en: "Build a gentle life at your own pace", zh: "按自己的节奏经营温柔生活" } },
-      { name: "Cats & Soup", why: { ja: "何も急かされない小さな世界", en: "A tiny world that never rushes you", zh: "不会催促你的小小世界" } },
-      { name: "Love and Deepspace", why: { ja: "関係性そのものが遊びになる", en: "The relationship itself is the game", zh: "关系本身就是玩法" } },
-    ],
-    xbox:     [
-      { name: "Unpacking", why: { ja: "日常の物から人の物語が立ち上がる", en: "A life story told through everyday objects", zh: "从日常物品中长出人生故事" } },
-      { name: "Grounded", why: { ja: "小さくて優しい世界でサバイブする", en: "Survive in a small, oddly gentle world", zh: "在小小而温柔的世界里生存" } },
-      { name: "Minecraft", why: { ja: "自分の価値観で世界を作れる", en: "Build a world that matches your values", zh: "按自己的价值观建造世界" } },
-    ]},
-  ENFJ: { nickname: { ja: "主人公", en: "The Protagonist", zh: "主人公" },
-    blurb: { ja: "みんなで勝ちたいタイプ。気づけば場をまとめる役になっている。", en: "You'd rather everyone win together, and you naturally end up holding the group together.", zh: "你希望大家一起获胜，也总是自然而然地成为凝聚团队的那个人。" },
-    steam: [
-      { name: "It Takes Two", why: { ja: "二人で解く前提の物語", en: "A story built for two people to solve", zh: "为两人共同解谜而设计的故事" } },
-      { name: "Overcooked! 2", why: { ja: "誰かがまとめないと崩壊する厨房", en: "Chaos that needs someone leading it", zh: "没人指挥就会崩溃的厨房" } },
-      { name: "Among Us", why: { ja: "人を読み、場をまとめる力が試される", en: "Reading people and holding the group together", zh: "考验读心和凝聚团队的能力" } },
-    ],
-    nintendo:     [
-      { name: "Super Mario Party Jamboree", why: { ja: "場を盛り上げる役が自然に回ってくる", en: "You naturally end up hosting the fun", zh: "你会自然成为带动气氛的人" } },
-      { name: "Splatoon 3", why: { ja: "チームの空気を読んで勝つ", en: "Win by reading the team's mood", zh: "靠读取团队气氛取胜" } },
-      { name: "Animal Crossing: New Horizons", why: { ja: "島の人たちをまとめる世話役", en: "The island's unofficial host", zh: "成为把岛上的人聚在一起的人" } },
-    ],
-    mobile:     [
-      { name: "Pokémon GO", why: { ja: "外で人とつながりながら集める", en: "Collect while connecting with people outside", zh: "在户外一边连接他人一边收集" } },
-      { name: "Identity V", why: { ja: "チームの役割を引き受けて場を回す", en: "Take a role and keep the group together", zh: "承担职责并带动全队" } },
-      { name: "LINE：ディズニー ツムツム", why: { ja: "気軽に一緒に遊べる協力感", en: "Easy co-op energy you can share", zh: "轻松就能一起玩的合作感" } },
-    ],
-    xbox:     [
-      { name: "It Takes Two", why: { ja: "二人で勝つ前提の物語", en: "A story that only works if both win", zh: "以两人一起获胜为前提的故事" } },
-      { name: "Sea of Thieves", why: { ja: "クルーをまとめて冒険する", en: "Hold a crew together through an adventure", zh: "把船员聚在一起去冒险" } },
-      { name: "Minecraft", why: { ja: "サーバーのまとめ役になれる", en: "Become the person who holds a server together", zh: "成为撑起服务器的那个人" } },
-    ]},
-  ENFP: { nickname: { ja: "運動家", en: "The Campaigner", zh: "竞选者" },
-    blurb: { ja: "決まったルートより寄り道を求めるタイプ。地図にない発見にワクワクする。", en: "You want to wander off the main path. Discoveries that aren't on the map excite you most.", zh: "比起固定路线，你更想绕道而行，地图之外的发现最让你兴奋。" },
-    steam: [
-      { name: "Hades", why: { ja: "1回ごとに新しい出会いがある", en: "New relationships branch off every run", zh: "每一局都会遇到新的关系" } },
-      { name: "No Man's Sky", why: { ja: "間違った方向がない広大な宇宙", en: "A universe with no wrong direction", zh: "没有错误方向的浩瀚宇宙" } },
-      { name: "Slime Rancher", why: { ja: "自由で気ままな探索と発見", en: "Free, playful exploration and discovery", zh: "自由随性的探索与发现" } },
-    ],
-    nintendo:     [
-      { name: "Super Mario Odyssey", why: { ja: "地図にない寄り道が本体になる", en: "The detours are the real game", zh: "地图之外的绕路才是本体" } },
-      { name: "Kirby and the Forgotten Land", why: { ja: "気ままに能力を試せる探索", en: "Casual power experiments while exploring", zh: "随性尝试能力的探索" } },
-      { name: "Pokémon Scarlet", why: { ja: "行きたい方向にそのまま行ける", en: "Go whichever direction looks fun", zh: "想去哪个方向就去哪个方向" } },
-    ],
-    mobile:     [
-      { name: "Genshin Impact", why: { ja: "寄り道するほど世界が広がる", en: "The world grows the more you wander", zh: "越绕路世界越广阔" } },
-      { name: "Sky: Children of the Light", why: { ja: "見知らぬ人と空をさまよう", en: "Wander the sky with strangers", zh: "和陌生人一起在天空中漫游" } },
-      { name: "Pokémon GO", why: { ja: "日常の移動が冒険になる", en: "Everyday movement becomes an adventure", zh: "日常移动本身变成冒险" } },
-    ],
-    xbox:     [
-      { name: "Forza Horizon 5", why: { ja: "地図を気ままに走って発見する", en: "Drive off the map and find something new", zh: "随性开车去发现新事物" } },
-      { name: "Sea of Thieves", why: { ja: "その日の気分で冒険の形が変わる", en: "The adventure changes with the day's mood", zh: "冒险会随当天的心情改变形状" } },
-      { name: "Rare Replay", why: { ja: "昔の奇妙なゲームをつまみ食いできる", en: "Snack on weird old games at random", zh: "可以随便尝一尝古怪的老游戏" } },
-    ]},
-  ISTJ: { nickname: { ja: "管理者", en: "The Logistician", zh: "物流师" },
-    blurb: { ja: "きちんと回る仕組みに満足感を覚えるタイプ。手順通りにやり遂げるのが心地いい。", en: "A well-run system is deeply satisfying to you. Doing things properly, step by step, feels good.", zh: "运转良好的系统会让你感到满足，按部就班地把事情做好会让你安心。" },
-    steam: [
-      { name: "Factorio", why: { ja: "効率化そのものが目的になる", en: "Efficiency isn't optional, it's the goal", zh: "效率本身就是目标" } },
-      { name: "Euro Truck Simulator 2", why: { ja: "決まったルートを着実にこなす", en: "A route and a job done right", zh: "踏实完成既定路线和任务" } },
-      { name: "RimWorld", why: { ja: "コロニーを堅実に運営する", en: "Steadily running a colony the right way", zh: "稳扎稳打地经营殖民地" } },
-    ],
-    nintendo:     [
-      { name: "Animal Crossing: New Horizons", why: { ja: "毎日の決まった作業が心地いい", en: "A satisfying daily routine", zh: "每天固定的事务让人安心" } },
-      { name: "Pokémon Brilliant Diamond", why: { ja: "図鑑を着実に埋めていく収集", en: "Fill the dex the proper way", zh: "踏实地填满图鉴的收集" } },
-      { name: "Mario Kart 8 Deluxe", why: { ja: "コースを覚えて安定して走る", en: "Learn the track and run it clean", zh: "记熟赛道并稳定跑完" } },
-    ],
-    mobile:     [
-      { name: "Stardew Valley", why: { ja: "農作業の手順を毎日こなす", en: "Do the farm chores the right way, every day", zh: "每天按步骤完成农活" } },
-      { name: "Two Dots", why: { ja: "ルール通りに盤面を整える", en: "Clear the board by following the rules", zh: "按规则把盘面整理干净" } },
-      { name: "Railroad Empire", why: { ja: "路線を堅実に伸ばしていく", en: "Grow a rail network steadily", zh: "稳扎稳打地延伸线路" } },
-    ],
-    xbox:     [
-      { name: "Microsoft Flight Simulator", why: { ja: "手順通りに飛ばす正確さ", en: "Fly the procedure correctly", zh: "按流程准确地飞行" } },
-      { name: "Forza Motorsport", why: { ja: "同じコースを安定して更新する", en: "Repeat a track until the time is clean", zh: "在同一条赛道上稳定刷新成绩" } },
-      { name: "House Flipper", why: { ja: "決まった作業を丁寧に終わらせる", en: "Finish a defined job properly", zh: "把既定工作认真做完" } },
-    ]},
-  ISFJ: { nickname: { ja: "擁護者", en: "The Defender", zh: "守护者" },
-    blurb: { ja: "誰かの世話をすることが、実はいちばん落ち着くタイプ。攻略よりケアに向いている。", en: "Taking care of someone is actually what relaxes you most. You lean toward caretaking over conquest.", zh: "照顾别人其实才是你最放松的方式，比起征服，你更擅长照料。" },
-    steam: [
-      { name: "Spiritfarer", why: { ja: "文字通り誰かの最期に寄り添う", en: "Caring for people, quite literally, to the end", zh: "字面意义上陪伴他人走完最后一程" } },
-      { name: "Two Point Hospital", why: { ja: "みんなをちゃんと治す運営", en: "Running things smoothly so everyone's cared for", zh: "把每个人都照顾好的经营" } },
-      { name: "My Time at Portia", why: { ja: "手を動かして誰かの役に立つ", en: "Crafting things that genuinely help people", zh: "亲手制作对他人有用的东西" } },
-    ],
-    nintendo:     [
-      { name: "Animal Crossing: New Horizons", why: { ja: "誰かの島を整えてあげるのが楽しい", en: "Happiness is tidying someone else's island", zh: "帮别人把岛整理好最开心" } },
-      { name: "Kirby and the Forgotten Land", why: { ja: "優しくて世話がしたくなる世界", en: "A world that makes you want to look after it", zh: "让人想去照顾的温柔世界" } },
-      { name: "Detective Pikachu Returns", why: { ja: "小さな手がかりを丁寧に拾う", en: "Gently pick up every small clue", zh: "仔细拾起每一个小线索" } },
-    ],
-    mobile:     [
-      { name: "Cats & Soup", why: { ja: "小さな店の世話がそのまま癒し", en: "Looking after a tiny shop is the comfort", zh: "照料小店本身就是疗愈" } },
-      { name: "Stardew Valley", why: { ja: "村の人の頼みを丁寧にこなす", en: "Handle the town's requests with care", zh: "认真完成村里人的拜托" } },
-      { name: "Two Point Hospital", why: { ja: "患者を漏れなく診ていく運営", en: "Run things so nobody is left untreated", zh: "不遗漏地照顾好每位患者" } },
-    ],
-    xbox:     [
-      { name: "Unravel Two", why: { ja: "誰かを支えながら進む協力", en: "Progress by supporting someone else", zh: "一边支撑对方一边前进的合作" } },
-      { name: "Minecraft", why: { ja: "拠点を整えて仲間の居場所を作る", en: "Build a base that feels like home for others", zh: "把据点整理成伙伴的去处" } },
-      { name: "Grounded", why: { ja: "小さな仲間と安全な場所を守る", en: "Keep a small group safe in a huge yard", zh: "和小小同伴一起守住安全的地方" } },
-    ]},
-  ESTJ: { nickname: { ja: "幹部", en: "The Executive", zh: "总经理" },
-    blurb: { ja: "ルールと結果がはっきりしていると安心するタイプ。秩序そのものが快感。", en: "Clear rules and clear results put you at ease. Order itself feels satisfying.", zh: "明确的规则和结果会让你安心，秩序本身就是一种享受。" },
-    steam: [
-      { name: "Cities: Skylines", why: { ja: "自分の計画通りに動く街", en: "A city that runs exactly as planned", zh: "完全按你的规划运转的城市" } },
-      { name: "XCOM 2", why: { ja: "限られた資源をきっちり管理", en: "Tight resource management under pressure", zh: "在压力下严格管理有限资源" } },
-      { name: "Rocket League", why: { ja: "誰が勝っているか一目瞭然", en: "No ambiguity about who's winning", zh: "谁在获胜一目了然" } },
-    ],
-    nintendo:     [
-      { name: "Mario Kart 8 Deluxe", why: { ja: "順位がはっきりして気持ちいい", en: "Standings are unambiguous", zh: "名次一目了然很痛快" } },
-      { name: "Fire Emblem Engage", why: { ja: "部隊編成と戦術を管理する", en: "Manage army composition and tactics", zh: "管理部队编制与战术" } },
-      { name: "Nintendo Switch Sports", why: { ja: "ルールが明確で結果が出る", en: "Clear rules, clear results", zh: "规则明确、结果清楚" } },
-    ],
-    mobile:     [
-      { name: "Clash of Clans", why: { ja: "拠点と戦力を計画通りに伸ばす", en: "Grow a base and army on a schedule", zh: "按计划扩张据点和战力" } },
-      { name: "Pokémon GO", why: { ja: "タスクを消化してコレクションを完成させる", en: "Clear tasks and finish the collection", zh: "完成任务并补完收藏" } },
-      { name: "8 Ball Pool", why: { ja: "勝敗と実力がすぐ見える", en: "Skill and outcome are immediately visible", zh: "胜负和实力立刻可见" } },
-    ],
-    xbox:     [
-      { name: "Gears 5", why: { ja: "目標が明確なチームシューター", en: "A team shooter with clear objectives", zh: "目标明确的团队射击" } },
-      { name: "Forza Motorsport", why: { ja: "タイムと順位で成果が測れる", en: "Results measured in times and places", zh: "用圈速和名次衡量成果" } },
-      { name: "Halo Infinite", why: { ja: "ルールのはっきりした対戦", en: "Competitive play with clear rules", zh: "规则清楚的对战" } },
-    ]},
-  ESFJ: { nickname: { ja: "領事官", en: "The Consul", zh: "执政官" },
-    blurb: { ja: "一人より、みんなで盛り上がる時間が好きなタイプ。誰でもすぐ入れるゲームが向いている。", en: "You'd rather share the moment than play alone. Games anyone can jump into fast suit you best.", zh: "比起独自游玩，你更喜欢和大家一起热闹的时刻，容易上手的游戏最适合你。" },
-    steam: [
-      { name: "PowerWash Simulator", why: { ja: "みんなでやるとなぜか盛り上がる", en: "Oddly fun to do together", zh: "一起玩莫名地很有趣" } },
-      { name: "Golf With Your Friends", why: { ja: "誰でもすぐ参加できる気軽さ", en: "Anyone can jump in within seconds", zh: "任何人都能立刻加入" } },
-      { name: "Phasmophobia", why: { ja: "みんなで悲鳴を上げる楽しさ", en: "Screaming together is half the fun", zh: "一起尖叫本身就是乐趣" } },
-    ],
-    nintendo:     [
-      { name: "Super Mario Party Jamboree", why: { ja: "誰でもすぐ輪に入れる", en: "Anyone can jump into the circle", zh: "任何人都能马上加入圈子" } },
-      { name: "Animal Crossing: New Horizons", why: { ja: "訪れた人と一緒に過ごす時間が本体", en: "The point is time spent with visitors", zh: "和来访的人共度的时间才是本体" } },
-      { name: "Just Dance", why: { ja: "みんなで体を動かして盛り上がる", en: "Get a room moving together", zh: "大家一起动起来炒热气氛" } },
-    ],
-    mobile:     [
-      { name: "Among Us", why: { ja: "会話で場が温まるパーティー", en: "A party that warms up through talk", zh: "靠对话让场面热起来的派对" } },
-      { name: "Pokémon GO", why: { ja: "近所の人と自然に会える", en: "Naturally bump into people nearby", zh: "能自然遇见附近的人" } },
-      { name: "Candy Crush Saga", why: { ja: "誰でもすぐ分かって一緒に話せる", en: "Easy to understand and easy to talk about", zh: "谁都能马上懂并能一起聊" } },
-    ],
-    xbox:     [
-      { name: "Fall Guys", why: { ja: "失敗しても笑えるみんなの競技", en: "A contest where failing is still funny", zh: "失败也能一起笑的集体竞赛" } },
-      { name: "Sea of Thieves", why: { ja: "声を出しながら一緒に冒険する", en: "Adventure out loud with other people", zh: "边出声边一起冒险" } },
-      { name: "Minecraft", why: { ja: "誰でも入れて一緒に作れる", en: "Anyone can join and build together", zh: "谁都能加入一起建造" } },
-    ]},
-  ISTP: { nickname: { ja: "巨匠", en: "The Virtuoso", zh: "鉴赏家" },
-    blurb: { ja: "仕組みに直接手を触れたいタイプ。分解して理解する過程そのものが楽しい。", en: "You want your hands directly on the mechanics. Taking things apart to understand them is the fun part.", zh: "你喜欢亲手接触机制本身，拆解和理解的过程本身就是乐趣。" },
-    steam: [
-      { name: "Grand Theft Auto V", why: { ja: "いじり倒せる自由な箱庭", en: "A sandbox built for tinkering and chaos", zh: "可以随意折腾的自由沙盒" } },
-      { name: "SnowRunner", why: { ja: "車両の挙動を身体で覚える", en: "Learn a vehicle's behavior by feel", zh: "用身体感受车辆的操控" } },
-      { name: "Human: Fall Flat", why: { ja: "物理演算を手探りで攻略", en: "Physics puzzles with zero hand-holding", zh: "靠摸索解决物理谜题" } },
-    ],
-    nintendo:     [
-      { name: "Metroid Dread", why: { ja: "操作と空間を手で覚える探索", en: "Learn space and controls by feel", zh: "用手感记住操作与空间的探索" } },
-      { name: "Mario Kart 8 Deluxe", why: { ja: "車両の挙動を身体で掴む", en: "Feel the kart's behavior in your hands", zh: "用身体抓住车辆的动态" } },
-      { name: "Splatoon 3", why: { ja: "武器の癖を分解するように覚える", en: "Learn a weapon by taking its habits apart", zh: "像拆解一样记住武器的习性" } },
-    ],
-    mobile:     [
-      { name: "Dead Cells", why: { ja: "動きの精度を手で上げていく", en: "Raise mechanical precision by hand", zh: "用手感一点点提高动作精度" } },
-      { name: "Hill Climb Racing 2", why: { ja: "車体の挙動を触って理解する", en: "Understand a vehicle by touching it", zh: "通过触摸理解车体动态" } },
-      { name: "Shadow Fight 3", why: { ja: "コンボを分解して身につける", en: "Break combos down until they stick", zh: "拆解连招并变成身体记忆" } },
-    ],
-    xbox:     [
-      { name: "Forza Horizon 5", why: { ja: "車の挙動を走って覚える", en: "Learn a car by driving it, not reading it", zh: "靠开而不是靠看记住车的动态" } },
-      { name: "Halo Infinite", why: { ja: "銃と移動の手触りが勝負", en: "Gunfeel and movement decide the fight", zh: "枪感和移动决定胜负" } },
-      { name: "Senua's Saga: Hellblade II", why: { ja: "操作と感覚で切り開く戦闘", en: "Combat you cut through by feel", zh: "靠操作与感觉劈开的战斗" } },
-    ]},
-  ISFP: { nickname: { ja: "冒険家", en: "The Adventurer", zh: "探险家" },
-    blurb: { ja: "結果よりも、その瞬間の感覚を大事にするタイプ。美しい世界に浸る時間が好き。", en: "You care more about the feeling in the moment than the outcome. You love sitting inside a beautiful world.", zh: "比起结果，你更在意当下的感受，喜欢沉浸在美丽的世界里。" },
-    steam: [
-      { name: "Gris", why: { ja: "感情そのものを描く美しさ", en: "Beauty that expresses emotion itself", zh: "用美来表达情感本身" } },
-      { name: "Abzu", why: { ja: "何も証明しなくていい海の世界", en: "An ocean with nothing to prove", zh: "无需证明什么的海洋世界" } },
-      { name: "A Short Hike", why: { ja: "急がなくていい短い旅", en: "A short trip with nowhere to rush", zh: "无需匆忙的短途旅行" } },
-    ],
-    nintendo:     [
-      { name: "The Legend of Zelda: Breath of the Wild", why: { ja: "美しい世界にただ浸れる", en: "Sit inside a beautiful world", zh: "可以单纯沉浸在美丽世界里" } },
-      { name: "Kirby and the Forgotten Land", why: { ja: "急かされずに景色を楽しめる", en: "Enjoy the view without being rushed", zh: "不被催促地享受风景" } },
-      { name: "Super Mario Odyssey", why: { ja: "その場の感覚で帽子を飛ばす旅", en: "A trip driven by the feeling of the moment", zh: "凭当下感觉丢帽子前进的旅行" } },
-    ],
-    mobile:     [
-      { name: "Monument Valley 2", why: { ja: "触感と色彩がそのまま遊び", en: "Color and touch are the gameplay", zh: "触感和色彩本身就是玩法" } },
-      { name: "Alto's Odyssey", why: { ja: "リズムよく滑る感覚が心地いい", en: "The feeling of gliding is the point", zh: "有节奏地滑行本身就很舒服" } },
-      { name: "Gris", why: { ja: "感情を景色として体験できる", en: "Experience emotion as landscape", zh: "把情感当成风景来体验" } },
-    ],
-    xbox:     [
-      { name: "Ori and the Will of the Wisps", why: { ja: "美しい動きそのものが報酬", en: "Beautiful movement is the reward", zh: "美丽的动作本身就是奖励" } },
-      { name: "Forza Horizon 5", why: { ja: "景色の中を感覚で走る", en: "Drive by feel through a landscape", zh: "凭感觉在风景中行驶" } },
-      { name: "Coffee Talk", why: { ja: "静かな店で会話の温度を味わう", en: "Taste the temperature of quiet conversation", zh: "在安静的店里品尝对话的温度" } },
-    ]},
-  ESTP: { nickname: { ja: "起業家", en: "The Entrepreneur", zh: "企业家" },
-    blurb: { ja: "じっくりよりスピード重視のタイプ。今この瞬間の判断が快感になる。", en: "Speed beats a slow burn for you. Making the split-second call is where the fun is.", zh: "比起慢慢来，你更喜欢速度，瞬间的判断本身就是乐趣。" },
-    steam: [
-      { name: "Apex Legends", why: { ja: "一瞬の判断が勝敗を分ける", en: "Split-second decisions decide everything", zh: "瞬间的判断决定胜负" } },
-      { name: "Forza Horizon 5", why: { ja: "止まらないスピード感", en: "Speed with barely a pause", zh: "几乎不停歇的速度感" } },
-      { name: "PUBG: BATTLEGROUNDS", why: { ja: "常に緊張感のある状況判断", en: "Constant high-stakes situational calls", zh: "持续紧张的临场判断" } },
-    ],
-    nintendo:     [
-      { name: "Mario Kart 8 Deluxe", why: { ja: "一瞬の判断が順位を決める", en: "Split-second calls decide place", zh: "瞬间判断决定名次" } },
-      { name: "Super Smash Bros. Ultimate", why: { ja: "読み合いより今の一手が勝つ", en: "The present move beats overthinking", zh: "当下的一手胜过过度预判" } },
-      { name: "Splatoon 3", why: { ja: "状況が秒単位で変わる試合", en: "Matches that change every second", zh: "局势每秒都在变的对战" } },
-    ],
-    mobile:     [
-      { name: "Call of Duty: Mobile", why: { ja: "短い試合で反射が試される", en: "Short matches that test reflexes", zh: "短对局里考验反射" } },
-      { name: "Asphalt 9", why: { ja: "スピードそのものが快感", en: "Speed itself is the high", zh: "速度本身就是快感" } },
-      { name: "Brawl Stars", why: { ja: "短いラウンドで決断し続ける", en: "Keep deciding inside short rounds", zh: "在短回合里不断做决定" } },
-    ],
-    xbox:     [
-      { name: "Halo Infinite", why: { ja: "今この瞬間の撃ち合いが本体", en: "The gunfight in this second is the game", zh: "此刻的交火才是本体" } },
-      { name: "Forza Horizon 5", why: { ja: "止まらないスピード感", en: "Speed with barely a pause", zh: "几乎不停歇的速度感" } },
-      { name: "Call of Duty", why: { ja: "反射と状況判断が直結する", en: "Reflexes plug straight into the outcome", zh: "反射与临场判断直接相连" } },
-    ]},
-  ESFP: { nickname: { ja: "エンターテイナー", en: "The Entertainer", zh: "表演者" },
-    blurb: { ja: "みんなで笑っている時間がいちばん楽しいタイプ。誰かと一緒に遊ぶ前提のゲームが向いている。", en: "The best moment is everyone laughing together. Games built to be played with others suit you.", zh: "大家一起笑的时刻最让你开心，为共同游玩设计的游戏最适合你。" },
-    steam: [
-      { name: "Fall Guys", why: { ja: "気軽で誰でも笑える混戦", en: "Easy, chaotic, and fun for anyone", zh: "轻松又能让所有人开怀大笑" } },
-      { name: "The Jackbox Party Pack", why: { ja: "スマホだけで全員参加できる", en: "Everyone joins in with just their phone", zh: "只用手机就能全员参与" } },
-      { name: "Overcooked! 2", why: { ja: "騒ぎながら協力するのが楽しい", en: "Loud, funny teamwork", zh: "热闹又搞笑的团队合作" } },
-    ],
-    nintendo:     [
-      { name: "Just Dance", why: { ja: "みんなで笑って体を動かす", en: "Laugh and move with a room full of people", zh: "和大家一起笑着动起来" } },
-      { name: "Super Mario Party Jamboree", why: { ja: "失敗もネタになるパーティー", en: "Failures become the entertainment", zh: "失败也能变成笑料的派对" } },
-      { name: "Nintendo Switch Sports", why: { ja: "その場の盛り上がりが目的", en: "The point is the energy in the room", zh: "当场的热闹本身就是目的" } },
-    ],
-    mobile:     [
-      { name: "Fall Guys", why: { ja: "カオスを一緒に笑える", en: "Chaos you can laugh through together", zh: "可以一起笑着面对的混乱" } },
-      { name: "Among Us", why: { ja: "声を出して盛り上げるのが楽しい", en: "The fun is getting loud together", zh: "一起出声炒热气氛最好玩" } },
-      { name: "Pokémon GO", why: { ja: "外で人と会いながら遊ぶ", en: "Play while meeting people outside", zh: "在外面边见人边玩" } },
-    ],
-    xbox:     [
-      { name: "Fall Guys", why: { ja: "誰でも参加できて笑える", en: "Anyone can join and get a laugh", zh: "谁都能参加并开怀大笑" } },
-      { name: "Sea of Thieves", why: { ja: "予測不能な出来事を一緒に楽しむ", en: "Enjoy unpredictable events as a group", zh: "一起享受无法预测的事件" } },
-      { name: "Minecraft", why: { ja: "その場の思いつきで騒ぎながら作る", en: "Build loudly from whatever idea hits", zh: "凭当场的想法热闹地建造" } },
-    ]},
+const UI = {
+  ja: {
+    appTitle:"MBTI ゲーム診断", tagline:"20問で、性格タイプとゲームの好みを分けて判定します。向いているゲームも、合わないゲームも出ます。",
+    start:"診断をはじめる", back:"戻る", questionOf:(n,total)=>`質問 ${n} / ${total}`,
+    yourType:"あなたのタイプ", retake:"もう一度診断する", save:"この結果を保存する", saved:"保存しました",
+    savedResults:"保存した結果", delete:"削除", viewOnSteam:"探す",
+    platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"スマホ", platformXbox:"Xbox",
+    loadThis:"この結果を見る", savedOn:"保存日", navHome:"ホーム", navSaved:"履歴",
+    noSaved:"まだ保存した結果がありません。", goQuiz:"診断へ", countLabel:(n)=>`${n}件保存中`,
+    support:"作者にコーヒーをおごる", brand:"MB", heroKicker:"無料・登録不要のゲーム探し診断",
+    howTitle:"使い方", step1Title:"20問に答える", step1Desc:"性格12問＋ゲームの好み8問。2〜3分です。",
+    step2Title:"タイプと嗜好が分かる", step2Desc:"MBTIと、ソロ／対戦／やり込みなどの好みを分けて出します。",
+    step3Title:"ゲームを探す", step3Desc:"おすすめ・向かないゲーム・今日の1本・友達相性まで見られます。",
+    shareTitle:"結果をシェア", shareX:"Xでシェア", shareLine:"LINEでシェア", shareCopy:"リンクをコピー",
+    shareCopied:"コピーしました", shareNative:"シェア",
+    shareText:(type,nickname,games)=>`私のMBTIは${type}（${nickname}）。おすすめは${games}。あなたのタイプは？ #MBTI #ゲーム診断`,
+    footerNote:"本サイトはSteam・Nintendo・XboxおよびMBTIの公式サービスではありません。診断結果は簡易的な目安です。",
+    resultHeading:(type)=>`${type}に合うゲームを探す`,
+    inviteFriend:"友達との相性を見る",
+    compatLabel:"一緒に遊びやすいタイプ",
+    updatedLabel:"更新",
+    typeIndexTitle:"タイプから探す",
+    gameIndexTitle:"ゲームから探す",
+    seoHomeTitle:"MBTI ゲーム診断 | 自分に合うゲームを探す",
+    tabFit:"合うゲーム", tabAvoid:"合わないかも", tabTaste:"ゲーム嗜好", tabToday:"今日の1本", tabFriend:"友達相性",
+    tasteTitle:"あなたのゲーム嗜好",
+    fitTitle:"特に相性がいいゲーム",
+    avoidTitle:"あなたには合わないかも",
+    todayTitle:"今日遊ぶゲーム",
+    todayBtn:"今日の1本を決める",
+    todayAgain:"もう一回",
+    friendTitle:"2人のゲーム相性",
+    friendPick:"友達のタイプを選ぶ",
+    friendGo:"相性を見る",
+    similarTitle:"このタイプのゲーマー傾向",
+    genresTitle:"好まれやすいジャンル",
+    rankingTitle:"このタイプに人気のゲーム",
+    whyTitle:"なぜこのゲーム？",
+    fromGame:"このゲームは誰向き？",
+    searchGame:"ゲーム名で探す",
+    compareTitle:"以前の自分との比較",
+    mbtiNote:(type,taste)=>`MBTIでは${type}ですが、ゲーム選びでは${taste}の傾向が強いです。`,
+    sectionSolo:"ソロ", sectionMulti:"対人", sectionGrind:"やり込み", sectionStory:"ストーリー", sectionChill:"リラックス",
+    sectionHard:"難しさ", sectionBrain:"頭脳", sectionAction:"アクション", sectionShort:"短時間", sectionTension:"緊張感",
+    coop:"協力", versus:"対戦", party:"パーティー", puzzle:"パズル",
+    lookType:"タイプページを見る",
+  },
+  en: {
+    appTitle:"MBTI Game Finder", tagline:"20 questions split personality and game taste. You get fits and mismatches.",
+    start:"Start the quiz", back:"Back", questionOf:(n,total)=>`Question ${n} of ${total}`,
+    yourType:"Your type", retake:"Retake", save:"Save this result", saved:"Saved",
+    savedResults:"Saved results", delete:"Delete", viewOnSteam:"Find it",
+    platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"Mobile", platformXbox:"Xbox",
+    loadThis:"View", savedOn:"Saved on", navHome:"Home", navSaved:"History",
+    noSaved:"No saved results yet.", goQuiz:"Take the quiz", countLabel:(n)=>`${n} saved`,
+    support:"Buy me a coffee", brand:"MB", heroKicker:"Free game-finder quiz, no sign-up",
+    howTitle:"How it works", step1Title:"Answer 20 questions", step1Desc:"12 personality + 8 taste questions.",
+    step2Title:"Type and taste", step2Desc:"MBTI and solo/multi/grind preferences are scored separately.",
+    step3Title:"Explore games", step3Desc:"Fits, mismatches, a daily pick, and friend co-op matching.",
+    shareTitle:"Share", shareX:"Share on X", shareLine:"Share on LINE", shareCopy:"Copy link",
+    shareCopied:"Copied", shareNative:"Share",
+    shareText:(type,nickname,games)=>`My MBTI is ${type} (${nickname}). Top picks: ${games}. What's yours?`,
+    footerNote:"Independent fan project. Not affiliated with Steam, Nintendo, Xbox, or MBTI trademark holders.",
+    resultHeading:(type)=>`Games that fit ${type}`,
+    inviteFriend:"Match with a friend",
+    compatLabel:"Types that play well together",
+    updatedLabel:"Updated",
+    typeIndexTitle:"Browse by type",
+    gameIndexTitle:"Browse by game",
+    seoHomeTitle:"MBTI game quiz | Find games that fit",
+    tabFit:"Fits", tabAvoid:"Maybe skip", tabTaste:"Taste", tabToday:"Play today", tabFriend:"Friends",
+    tasteTitle:"Your game taste",
+    fitTitle:"Best matches",
+    avoidTitle:"Probably not for you",
+    todayTitle:"Play this today",
+    todayBtn:"Pick today's game",
+    todayAgain:"Shuffle",
+    friendTitle:"Two-player fit",
+    friendPick:"Pick your friend's type",
+    friendGo:"See compatibility",
+    similarTitle:"How this type tends to play",
+    genresTitle:"Genres that usually click",
+    rankingTitle:"Popular with this type",
+    whyTitle:"Why this game?",
+    fromGame:"Which types like this?",
+    searchGame:"Search games",
+    compareTitle:"Compared with past you",
+    mbtiNote:(type,taste)=>`MBTI says ${type}, but your game picks lean ${taste}.`,
+    sectionSolo:"Solo", sectionMulti:"Social", sectionGrind:"Mastery", sectionStory:"Story", sectionChill:"Chill",
+    sectionHard:"Challenge", sectionBrain:"Brainy", sectionAction:"Action", sectionShort:"Short sessions", sectionTension:"Tension",
+    coop:"Co-op", versus:"Versus", party:"Party", puzzle:"Puzzle",
+    lookType:"Open type page",
+  },
+  zh: {
+    appTitle:"MBTI 游戏诊断", tagline:"20题把性格和游戏口味分开判断，既有适合的，也有不太适合的。",
+    start:"开始测试", back:"上一题", questionOf:(n,total)=>`第 ${n} / ${total} 题`,
+    yourType:"你的类型", retake:"重新测试", save:"保存结果", saved:"已保存",
+    savedResults:"已保存", delete:"删除", viewOnSteam:"去查找",
+    platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"手机", platformXbox:"Xbox",
+    loadThis:"查看", savedOn:"保存于", navHome:"首页", navSaved:"历史",
+    noSaved:"还没有保存的结果。", goQuiz:"去测试", countLabel:(n)=>`已保存 ${n} 条`,
+    support:"请作者喝杯咖啡", brand:"MB", heroKicker:"免费找游戏测试，无需注册",
+    howTitle:"使用方法", step1Title:"回答20题", step1Desc:"性格12题 + 游戏口味8题。",
+    step2Title:"类型和口味", step2Desc:"MBTI 与单人/对战/肝度等偏好分开计算。",
+    step3Title:"找游戏", step3Desc:"推荐、避雷、今日一款、和朋友的相性。",
+    shareTitle:"分享", shareX:"分享到 X", shareLine:"分享到 LINE", shareCopy:"复制链接",
+    shareCopied:"已复制", shareNative:"分享",
+    shareText:(type,nickname,games)=>`我的MBTI是${type}（${nickname}）。推荐：${games}。你的呢？`,
+    footerNote:"独立项目，与 Steam、Nintendo、Xbox 及 MBTI 官方无关。",
+    resultHeading:(type)=>`适合 ${type} 的游戏`,
+    inviteFriend:"看和朋友的相性",
+    compatLabel:"比较好一起玩的类型",
+    updatedLabel:"更新",
+    typeIndexTitle:"按类型找",
+    gameIndexTitle:"按游戏找",
+    seoHomeTitle:"MBTI游戏测试 | 找出适合你的游戏",
+    tabFit:"适合", tabAvoid:"可能不合", tabTaste:"口味", tabToday:"今天玩", tabFriend:"朋友",
+    tasteTitle:"你的游戏口味",
+    fitTitle:"特别合拍的游戏",
+    avoidTitle:"可能不太适合你",
+    todayTitle:"今天玩这个",
+    todayBtn:"抽今天的游戏",
+    todayAgain:"再抽一次",
+    friendTitle:"两人游戏相性",
+    friendPick:"选择朋友的类型",
+    friendGo:"查看相性",
+    similarTitle:"这一类型玩家的倾向",
+    genresTitle:"更容易喜欢的类型",
+    rankingTitle:"这一类型里更受欢迎的游戏",
+    whyTitle:"为什么是这款？",
+    fromGame:"这款游戏适合谁？",
+    searchGame:"搜索游戏",
+    compareTitle:"和以前的自己比较",
+    mbtiNote:(type,taste)=>`MBTI 是 ${type}，但选游戏时更偏向${taste}。`,
+    sectionSolo:"单人", sectionMulti:"社交", sectionGrind:"肝度", sectionStory:"剧情", sectionChill:"放松",
+    sectionHard:"难度", sectionBrain:"动脑", sectionAction:"动作", sectionShort:"碎片时间", sectionTension:"紧张感",
+    coop:"合作", versus:"对战", party:"派对", puzzle:"解谜",
+    lookType:"查看类型页",
+  },
 };
 
-function computeType(scores) {
-  const ei = scores.E >= scores.I ? "E" : "I";
-  const sn = scores.S >= scores.N ? "S" : "N";
-  const tf = scores.T >= scores.F ? "T" : "F";
-  const jp = scores.J >= scores.P ? "J" : "P";
-  return ei + sn + tf + jp;
+const QUESTIONS = [
+  { axis:"EI", kind:"mbti", text:{ja:"誰かと一緒に過ごすと元気が出る",en:"Being around people energizes me",zh:"和别人在一起会让我充满活力"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"一人の時間で充電する",en:"I recharge alone",zh:"我更需要独处充电"}, bVal:"I" },
+  { axis:"EI", kind:"mbti", text:{ja:"話しながら考えをまとめるタイプだ",en:"I think out loud",zh:"我喜欢边说边想"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"考えてから話す",en:"I think first",zh:"我会先想清楚再说"}, bVal:"I" },
+  { axis:"EI", kind:"mbti", text:{ja:"大勢の集まりが好きだ",en:"I enjoy big gatherings",zh:"我喜欢大型聚会"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"少人数や1対1が好きだ",en:"I prefer small groups",zh:"我更喜欢小圈子"}, bVal:"I" },
+  { axis:"SN", kind:"mbti", text:{ja:"具体的な事実やデータを重視する",en:"I focus on concrete facts",zh:"我更看重具体事实"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"可能性やアイデアを重視する",en:"I focus on possibilities",zh:"我更看重可能性"}, bVal:"N" },
+  { axis:"SN", kind:"mbti", text:{ja:"実績のある確実な方法を選ぶ",en:"I stick with proven methods",zh:"我倾向已验证的方法"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"新しいやり方を試したくなる",en:"I like new approaches",zh:"我更愿意尝试新方法"}, bVal:"N" },
+  { axis:"SN", kind:"mbti", text:{ja:"今、目の前のことに集中する",en:"I focus on the here and now",zh:"我更专注于当下"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"将来のビジョンをよく考える",en:"I think about future possibilities",zh:"我经常想未来"}, bVal:"N" },
+  { axis:"TF", kind:"mbti", text:{ja:"物事は論理で判断する",en:"I decide with logic",zh:"我靠逻辑判断"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"気持ちや価値観で判断する",en:"I decide with values",zh:"我靠感受和价值观"}, bVal:"F" },
+  { axis:"TF", kind:"mbti", text:{ja:"率直にはっきり伝える方だ",en:"I tend to be direct",zh:"我说话比较直接"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"相手を気遣った伝え方をする",en:"I spare feelings",zh:"我会照顾对方感受"}, bVal:"F" },
+  { axis:"TF", kind:"mbti", text:{ja:"公平さを優先したい",en:"I prioritize fairness",zh:"我更重视公平"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"その場の調和を優先したい",en:"I prioritize harmony",zh:"我更重视当下的和谐"}, bVal:"F" },
+  { axis:"JP", kind:"mbti", text:{ja:"計画を立ててから動く",en:"I plan before acting",zh:"我会先计划再行动"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"その場の流れに任せる",en:"I go with the flow",zh:"我更喜欢随机应变"}, bVal:"P" },
+  { axis:"JP", kind:"mbti", text:{ja:"締め切りより早めに終わらせる",en:"I finish early",zh:"我通常会提前完成"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"締め切り直前に一気に動く",en:"I rush near the deadline",zh:"我经常临近截止才冲刺"}, bVal:"P" },
+  { axis:"JP", kind:"mbti", text:{ja:"物事は早めに決めたい",en:"I like deciding early",zh:"我喜欢尽早决定"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"選択肢はなるべく残しておきたい",en:"I keep options open",zh:"我更喜欢保留选择"}, bVal:"P" },
+  { axis:"solo", kind:"game", text:{ja:"ゲームは一人で没頭したい",en:"I prefer playing alone",zh:"我更想一个人沉浸着玩"}, a:{ja:"ソロが好き",en:"Mostly solo",zh:"更爱单人"}, aVal:"soloHi", b:{ja:"誰かと遊びたい",en:"I want company",zh:"更想和别人一起"}, bVal:"soloLo" },
+  { axis:"hard", kind:"game", text:{ja:"難しいゲームの方が燃える",en:"Hard games get me going",zh:"越难越有劲"}, a:{ja:"やり応えが欲しい",en:"I want a challenge",zh:"我要有挑战"}, aVal:"hardHi", b:{ja:"気軽にクリアしたい",en:"I want something casual",zh:"我想轻松通关"}, bVal:"hardLo" },
+  { axis:"story", kind:"game", text:{ja:"物語に浸りたい",en:"I want to sink into a story",zh:"我想沉浸在故事里"}, a:{ja:"ストーリー重視",en:"Story first",zh:"剧情优先"}, aVal:"storyHi", b:{ja:"システムの方が面白い",en:"Systems are more fun",zh:"更爱玩系统"}, bVal:"storyLo" },
+  { axis:"short", kind:"game", text:{ja:"短時間で区切りたい",en:"I like short sessions",zh:"我想短时间就告一段落"}, a:{ja:"スキマ時間向きがいい",en:"Short sessions please",zh:"适合碎片时间"}, aVal:"shortHi", b:{ja:"長時間没頭したい",en:"I like long sessions",zh:"想长时间投入"}, bVal:"shortLo" },
+  { axis:"free", kind:"game", text:{ja:"自由に寄り道したい",en:"I want freedom to wander",zh:"我想自由绕路"}, a:{ja:"サンドボックスが好き",en:"Sandbox please",zh:"喜欢沙盒"}, aVal:"freeHi", b:{ja:"一本道の方が安心",en:"A clear path feels better",zh:"有主线更安心"}, bVal:"freeLo" },
+  { axis:"pvp", kind:"game", text:{ja:"人と勝敗をつけたい",en:"I want to compete with people",zh:"我想和别人分胜负"}, a:{ja:"対人が好き",en:"I like PvP",zh:"喜欢对战"}, aVal:"pvpHi", b:{ja:"対人は疲れる",en:"PvP drains me",zh:"对人会累"}, bVal:"pvpLo" },
+  { axis:"chill", kind:"game", text:{ja:"ゲームで落ち着きたい",en:"I game to unwind",zh:"我想用游戏放松"}, a:{ja:"リラックス重視",en:"Keep it calm",zh:"以放松为主"}, aVal:"chillHi", b:{ja:"緊張感があった方がいい",en:"I want tension",zh:"更想要紧张感"}, bVal:"chillLo" },
+  { axis:"brain", kind:"game", text:{ja:"頭を使うゲームが好きだ",en:"I like games that make me think",zh:"我喜欢动脑的游戏"}, a:{ja:"考えるのが楽しい",en:"Thinking is the fun",zh:"思考就是乐趣"}, aVal:"brainHi", b:{ja:"操作や感覚で遊びたい",en:"I want feel and action",zh:"更想靠手感和动作"}, bVal:"brainLo" },
+];
+
+const TYPES = {
+  INTJ:{ nickname:{ja:"建築家",en:"The Architect",zh:"建筑师"}, blurb:{ja:"設計図を頭の中で組んでから動く。長期戦略とシステムの支配が快感。",en:"You blueprint first. Strategy and systems click.",zh:"先在脑中搭蓝图再行动。"}, taste:{ja:"ソロでシステムを極める",en:"solo systems mastery",zh:"单人钻研系统"}, genres:["sim","strategy","rpg","puzzle"], style:{ja:"一人で黙々とシステムを攻略するのが好き",en:"Quietly mastering systems alone",zh:"喜欢一个人默默攻略系统"} },
+  INTP:{ nickname:{ja:"論理学者",en:"The Theorist",zh:"逻辑学家"}, blurb:{ja:"勝つことより、なぜ動くのかを理解したい。ルールをいじれるゲームが刺さる。",en:"Understanding beats forcing a win.",zh:"比起硬赢，更想理解原理。"}, taste:{ja:"ソロ・低ストレス・やり込み",en:"solo, low-stress mastery",zh:"单人、低压力、可钻研"}, genres:["puzzle","sim","strategy","rpg"], style:{ja:"一人で黙々とシステムを攻略するのが好き",en:"Loves taking systems apart",zh:"喜欢拆解系统"} },
+  ENTJ:{ nickname:{ja:"指揮官",en:"The Commander",zh:"指挥官"}, blurb:{ja:"結果から逆算して最短ルートを取る。任されたものを最適化する。",en:"Work backward from the win.",zh:"从结果反推最快路径。"}, taste:{ja:"統率と効率",en:"command and efficiency",zh:"统率与效率"}, genres:["strategy","sim","action"], style:{ja:"勝敗がはっきりした統率が好き",en:"Likes clear command and outcomes",zh:"喜欢胜负清楚的统率"} },
+  ENTP:{ nickname:{ja:"討論者",en:"The Debater",zh:"辩论家"}, blurb:{ja:"すぐ飽きるが好奇心は止まらない。ゲームの前提に突っ込みたくなる。",en:"Bored fast, endlessly curious.",zh:"容易腻但好奇心不停。"}, taste:{ja:"実験と予想外",en:"experiments and surprise",zh:"实验与意外"}, genres:["rpg","action","party","sandbox"], style:{ja:"毎回違う遊び方を試したくなる",en:"Wants a new approach every run",zh:"每局都想换打法"} },
+  INFJ:{ nickname:{ja:"提唱者",en:"The Advocate",zh:"提倡者"}, blurb:{ja:"クリア率より心に残る体験。静かに深い物語に惹かれる。",en:"Meaning over completion.",zh:"比起通关率更在意体验。"}, taste:{ja:"静かな物語",en:"quiet stories",zh:"安静的故事"}, genres:["story","adventure","rpg"], style:{ja:"静かに深い物語に浸りたい",en:"Wants deep, quiet stories",zh:"想沉浸在深刻故事里"} },
+  INFP:{ nickname:{ja:"仲介者",en:"The Mediator",zh:"调停者"}, blurb:{ja:"優しさが報われる世界を求める。キャラに本気で感情移入する。",en:"Kindness should pay off.",zh:"希望善良真的有回报。"}, taste:{ja:"物語と自分のペース",en:"story at your own pace",zh:"故事和自己的节奏"}, genres:["story","rpg","sim","adventure"], style:{ja:"自分のペースで世界に浸りたい",en:"Lives in a world at their own pace",zh:"按自己的节奏沉浸"} },
+  ENFJ:{ nickname:{ja:"主人公",en:"The Protagonist",zh:"主人公"}, blurb:{ja:"みんなで勝ちたい。気づけば場をまとめている。",en:"You hold the group together.",zh:"希望大家一起赢。"}, taste:{ja:"協力と場づくり",en:"co-op and hosting",zh:"合作与带动气氛"}, genres:["coop","party","adventure"], style:{ja:"みんなで勝ちたい",en:"Wants everyone to win together",zh:"想和大家一起获胜"} },
+  ENFP:{ nickname:{ja:"運動家",en:"The Campaigner",zh:"竞选者"}, blurb:{ja:"決まったルートより寄り道。地図にない発見が楽しい。",en:"Detours are the point.",zh:"比起固定路线更想绕路。"}, taste:{ja:"探索と出会い",en:"exploration and people",zh:"探索与相遇"}, genres:["sandbox","adventure","rpg","party"], style:{ja:"寄り道するほど楽しくなる",en:"Happiest off the main path",zh:"越绕路越开心"} },
+  ISTJ:{ nickname:{ja:"管理者",en:"The Logistician",zh:"物流师"}, blurb:{ja:"きちんと回る仕組みが心地いい。手順通りにやり遂げるのが好き。",en:"A well-run system feels good.",zh:"运转良好的系统让人安心。"}, taste:{ja:"手順と収集",en:"routine and collection",zh:"步骤与收集"}, genres:["sim","strategy","collection"], style:{ja:"決まった作業を着実にこなしたい",en:"Likes doing the job properly",zh:"想踏实做完既定工作"} },
+  ISFJ:{ nickname:{ja:"擁護者",en:"The Defender",zh:"守护者"}, blurb:{ja:"誰かの世話が一番落ち着く。攻略よりケア。",en:"Caretaking relaxes you.",zh:"照顾别人反而最放松。"}, taste:{ja:"世話と日常",en:"care and daily life",zh:"照料与日常"}, genres:["sim","story","chill"], style:{ja:"誰かを助ける遊びが好き",en:"Likes helping someone in-game",zh:"喜欢能帮到谁的玩法"} },
+  ESTJ:{ nickname:{ja:"幹部",en:"The Executive",zh:"总经理"}, blurb:{ja:"ルールと結果がはっきりしていると安心。秩序が快感。",en:"Clear rules, clear results.",zh:"规则和结果清楚就安心。"}, taste:{ja:"管理と勝敗",en:"management and scoreboard",zh:"管理与胜负"}, genres:["sim","strategy","sports"], style:{ja:"順位と成果が見えると燃える",en:"Fired up by visible results",zh:"看到名次和成果就有劲"} },
+  ESFJ:{ nickname:{ja:"領事官",en:"The Consul",zh:"执政官"}, blurb:{ja:"一人よりみんなで盛り上がる時間が好き。",en:"The room laughing is the point.",zh:"更喜欢大家一起热闹。"}, taste:{ja:"気軽な一緒遊び",en:"easy group play",zh:"轻松的一起玩"}, genres:["party","coop","chill"], style:{ja:"誰でも入れる輪が好き",en:"Likes a circle anyone can join",zh:"喜欢谁都能加入的圈子"} },
+  ISTP:{ nickname:{ja:"巨匠",en:"The Virtuoso",zh:"鉴赏家"}, blurb:{ja:"仕組みに直接手を触れたい。分解して理解するのが楽しい。",en:"Hands on the mechanics.",zh:"想亲手接触机制。"}, taste:{ja:"操作と分解",en:"feel and tinkering",zh:"手感与拆解"}, genres:["action","sandbox","racing"], style:{ja:"手触りで理解したい",en:"Learns by touching the system",zh:"想靠手感理解"} },
+  ISFP:{ nickname:{ja:"冒険家",en:"The Adventurer",zh:"探险家"}, blurb:{ja:"結果よりその瞬間の感覚。美しい世界に浸る時間が好き。",en:"The feeling beats the outcome.",zh:"比起结果更在意当下感受。"}, taste:{ja:"雰囲気と自由",en:"mood and freedom",zh:"氛围与自由"}, genres:["adventure","story","chill"], style:{ja:"美しい世界にただ浸りたい",en:"Wants to sit inside a beautiful world",zh:"想沉浸在美丽世界里"} },
+  ESTP:{ nickname:{ja:"起業家",en:"The Entrepreneur",zh:"企业家"}, blurb:{ja:"じっくりよりスピード。今この瞬間の判断が快感。",en:"Speed beats a slow burn.",zh:"比起慢慢来更爱速度。"}, taste:{ja:"瞬間判断と対人",en:"split-second calls",zh:"瞬间判断与对人"}, genres:["action","pvp","racing"], style:{ja:"一瞬の判断で勝負したい",en:"Wants the fight decided now",zh:"想靠瞬间判断定胜负"} },
+  ESFP:{ nickname:{ja:"エンターテイナー",en:"The Entertainer",zh:"表演者"}, blurb:{ja:"みんなで笑っている時間が一番楽しい。",en:"Everyone laughing is the peak.",zh:"大家一起笑最开心。"}, taste:{ja:"パーティーと盛り上がり",en:"party energy",zh:"派对和热闹"}, genres:["party","action","coop"], style:{ja:"騒ぎながら遊ぶのが好き",en:"Likes playing out loud",zh:"喜欢热闹地玩"} },
+};
+
+const steamUrl = (name) => `https://store.steampowered.com/search/?term=${encodeURIComponent(name)}`;
+const nintendoUrl = (name) => `https://www.nintendo.com/jp/search/?q=${encodeURIComponent(name)}`;
+const mobileUrl = (name) => `https://www.google.com/search?q=${encodeURIComponent(name + " アプリ")}`;
+const xboxUrl = (name) => `https://www.xbox.com/ja-JP/Search?q=${encodeURIComponent(name)}`;
+const platformUrl = (platform, name) => platform==="nintendo"?nintendoUrl(name):platform==="mobile"?mobileUrl(name):platform==="xbox"?xboxUrl(name):steamUrl(name);
+const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
+
+const G = (o) => o;
+const GAMES = [
+  G({name:"Civilization VI", platforms:["steam","mobile"], tags:["solo","grind","sim","brain","long"], stats:{solo:5,multi:2,grind:5,story:2,chill:3,hard:4,brain:5,action:1,short:1,tension:2}, boost:{INTJ:96,ENTJ:90,ISTJ:84,INTP:82}, why:{ja:"文明を長期で設計する",en:"Long-range civ design",zh:"长线文明经营"}, avoid:{ja:"短時間で区切りたい人には重い",en:"Too long if you want short sessions",zh:"想碎片时间结束的人会觉得重"}}),
+  G({name:"Slay the Spire", platforms:["steam","mobile","xbox"], tags:["solo","brain","grind","short"], stats:{solo:5,multi:1,grind:5,story:1,chill:3,hard:4,brain:5,action:2,short:4,tension:3}, boost:{INTJ:94,INTP:90,ISTP:78,ENTP:80}, why:{ja:"3手先を読むデッキ構築",en:"Plan three turns ahead",zh:"要提前几步的卡组"}}),
+  G({name:"Baba Is You", platforms:["steam","nintendo"], tags:["solo","brain","puzzle","short"], stats:{solo:5,multi:1,grind:3,story:1,chill:4,hard:4,brain:5,action:1,short:4,tension:2}, boost:{INTP:97,INTJ:88,INFJ:70}, why:{ja:"ルール自体がパズル",en:"The rules are the puzzle",zh:"规则本身就是谜题"}}),
+  G({name:"Portal 2", platforms:["steam","xbox"], tags:["solo","brain","story","coop"], stats:{solo:4,multi:3,grind:2,story:4,chill:3,hard:3,brain:5,action:2,short:3,tension:2}, boost:{INTP:93,INTJ:86,ENTP:84,ENFP:72}, why:{ja:"物理を書き換えて解く",en:"Rewrite physics to solve rooms",zh:"改写物理来解谜"}}),
+  G({name:"Disco Elysium", platforms:["steam","xbox"], tags:["solo","story","brain","rpg"], stats:{solo:5,multi:1,grind:3,story:5,chill:3,hard:3,brain:5,action:1,short:2,tension:3}, boost:{ENTP:95,INFP:90,INFJ:88,INTP:92}, why:{ja:"突飛な発想も拾われる",en:"Weird ideas get a response",zh:"奇怪想法也会有回应"}}),
+  G({name:"Hades", platforms:["steam","nintendo","xbox"], tags:["solo","action","story","grind","short"], stats:{solo:5,multi:1,grind:5,story:4,chill:2,hard:4,brain:3,action:5,short:4,tension:4}, boost:{ENFP:92,ENTP:90,ISTP:86,ESTP:80}, why:{ja:"短いランと物語が両立",en:"Short runs plus real story",zh:"短局和故事能并存"}}),
+  G({name:"Stardew Valley", platforms:["steam","nintendo","mobile","xbox"], tags:["solo","chill","sim","coop","long"], stats:{solo:4,multi:3,grind:3,story:3,chill:5,hard:1,brain:2,action:1,short:3,tension:1}, boost:{INFP:95,ISFJ:92,ISFP:88,ENFP:84}, why:{ja:"自分のペースで優しい暮らし",en:"A gentle life at your pace",zh:"按自己的节奏过温柔日子"}}),
+  G({name:"Minecraft", platforms:["steam","nintendo","mobile","xbox"], tags:["solo","friends","sandbox","coop"], stats:{solo:4,multi:4,grind:4,story:1,chill:4,hard:2,brain:3,action:2,short:3,tension:2}, boost:{INTP:88,INFP:86,ISTP:90,ENFP:84,ESFP:78}, why:{ja:"価値観どおりに世界を作れる",en:"Build a world that matches you",zh:"按自己的价值观建世界"}}),
+  G({name:"Undertale", platforms:["steam","nintendo","xbox"], tags:["solo","story","rpg"], stats:{solo:5,multi:1,grind:2,story:5,chill:3,hard:2,brain:4,action:2,short:3,tension:3}, boost:{INFP:96,INFJ:90,ENFP:82}, why:{ja:"優しさが本当に報われる",en:"Mercy is a real choice",zh:"宽恕真的有回报"}}),
+  G({name:"Outer Wilds", platforms:["steam","nintendo","xbox"], tags:["solo","story","brain","adventure"], stats:{solo:5,multi:1,grind:3,story:5,chill:3,hard:3,brain:5,action:2,short:2,tension:3}, boost:{INFJ:96,INTP:90,INFP:86}, why:{ja:"宇宙の法則を自分で解明する",en:"Discover the rules of a solar system",zh:"自己揭开太阳系法则"}}),
+  G({name:"Animal Crossing: New Horizons", platforms:["nintendo"], tags:["chill","sim","friends","short"], stats:{solo:4,multi:3,grind:2,story:2,chill:5,hard:1,brain:1,action:1,short:4,tension:1}, boost:{ISFJ:95,ESFJ:92,INFP:90,ISFP:86}, why:{ja:"毎日の小さな世話が心地いい",en:"Tiny daily chores feel good",zh:"每天的小事很治愈"}}),
+  G({name:"The Legend of Zelda: Tears of the Kingdom", platforms:["nintendo"], tags:["solo","sandbox","adventure","brain"], stats:{solo:5,multi:1,grind:3,story:4,chill:3,hard:3,brain:4,action:3,short:2,tension:2}, boost:{INTJ:90,INTP:92,ISFP:88,ENFP:86,INFJ:84}, why:{ja:"仕組みを組み合わせて世界を解く",en:"Combine systems to solve the world",zh:"组合机制解开世界"}}),
+  G({name:"Mario Kart 8 Deluxe", platforms:["nintendo"], tags:["friends","pvp","party","short","action"], stats:{solo:2,multi:5,grind:3,story:1,chill:2,hard:3,brain:2,action:4,short:5,tension:4}, boost:{ESTP:93,ESFP:90,ESTJ:86,ESFJ:84,ENTJ:78}, why:{ja:"誰でもすぐ勝敗がつく",en:"Anyone can race and keep score",zh:"谁都能马上分出胜负"}}),
+  G({name:"Super Smash Bros. Ultimate", platforms:["nintendo"], tags:["friends","pvp","party","action"], stats:{solo:2,multi:5,grind:4,story:1,chill:1,hard:4,brain:3,action:5,short:4,tension:5}, boost:{ESTP:94,ENTP:88,ESFP:86,ISTP:84}, why:{ja:"対戦の前提を毎回ひっくり返す",en:"Every match flips the premise",zh:"每场都能推翻前提"}}),
+  G({name:"Overcooked! 2", platforms:["steam","nintendo","xbox"], tags:["friends","coop","party","short"], stats:{solo:1,multi:5,grind:2,story:1,chill:2,hard:3,brain:3,action:3,short:5,tension:4}, boost:{ENFJ:94,ESFJ:92,ESFP:90,ENFP:84}, why:{ja:"まとめ役がいないと崩壊する",en:"Someone has to hold the kitchen",zh:"没人指挥就会崩"}}),
+  G({name:"It Takes Two", platforms:["steam","nintendo","xbox"], tags:["friends","coop","story"], stats:{solo:1,multi:5,grind:2,story:5,chill:3,hard:2,brain:2,action:3,short:3,tension:2}, boost:{ENFJ:96,ESFJ:88,ENFP:86,INFP:80}, why:{ja:"二人で勝つ前提の物語",en:"A story that needs two winners",zh:"以两人一起赢为前提"}}),
+  G({name:"Among Us", platforms:["steam","nintendo","mobile"], tags:["friends","party","pvp","short"], stats:{solo:1,multi:5,grind:1,story:1,chill:2,hard:2,brain:3,action:1,short:5,tension:4}, boost:{ENTP:90,ESFP:92,ENFJ:88,ESFJ:86}, why:{ja:"人を読んで場を壊せる",en:"Read the room, then break it",zh:"读人然后搅局"}}),
+  G({name:"Apex Legends", platforms:["steam","xbox","nintendo"], tags:["pvp","action","friends"], stats:{solo:2,multi:5,grind:4,story:1,chill:1,hard:5,brain:3,action:5,short:4,tension:5}, boost:{ESTP:96,ENTJ:80,ISTP:82,ESFP:78}, why:{ja:"一瞬の判断が勝敗を分ける",en:"Split-second calls decide it",zh:"瞬间判断定胜负"}, avoid:{ja:"対人ストレスと反射の比重が高い",en:"High PvP stress and reflex load",zh:"对人压力和反应要求高"}}),
+  G({name:"Factorio", platforms:["steam"], tags:["solo","grind","sim","brain","long"], stats:{solo:5,multi:2,grind:5,story:1,chill:2,hard:4,brain:5,action:1,short:1,tension:3}, boost:{ISTJ:96,INTJ:94,INTP:88,ENTJ:84}, why:{ja:"効率化そのものが目的",en:"Efficiency is the goal",zh:"效率本身就是目标"}}),
+  G({name:"RimWorld", platforms:["steam"], tags:["solo","sim","story","grind"], stats:{solo:5,multi:1,grind:5,story:4,chill:2,hard:4,brain:5,action:1,short:2,tension:4}, boost:{INTJ:90,ISTJ:88,INTP:86,ENTJ:80}, why:{ja:"コロニーを仕組みで回す",en:"Run a colony as a system",zh:"用系统运转殖民地"}}),
+  G({name:"Spiritfarer", platforms:["steam","nintendo","xbox"], tags:["solo","story","chill"], stats:{solo:5,multi:1,grind:2,story:5,chill:5,hard:1,brain:2,action:1,short:3,tension:1}, boost:{ISFJ:96,INFJ:92,INFP:90}, why:{ja:"誰かの最期に寄り添う",en:"Care for people to the end",zh:"陪伴走到最后"}}),
+  G({name:"Phasmophobia", platforms:["steam","xbox"], tags:["friends","horror","coop"], stats:{solo:2,multi:5,grind:2,story:2,chill:1,hard:3,brain:3,action:2,short:4,tension:5}, boost:{ESFJ:80,ESTP:78,ENFP:76,ESFP:82}, why:{ja:"みんなで悲鳴を上げる",en:"Screaming together is the fun",zh:"一起尖叫就是乐趣"}, avoid:{ja:"緊張と恐怖の比重が高い",en:"Heavy on fear and tension",zh:"紧张和恐怖比重高"}}),
+  G({name:"Fall Guys", platforms:["steam","nintendo","xbox"], tags:["party","friends","short"], stats:{solo:2,multi:5,grind:1,story:1,chill:3,hard:1,brain:1,action:3,short:5,tension:2}, boost:{ESFP:96,ESFJ:90,ENFP:84}, why:{ja:"失敗しても笑える",en:"Failing is still funny",zh:"失败也能笑"}}),
+  G({name:"The Jackbox Party Pack", platforms:["steam","nintendo","xbox"], tags:["party","friends","short"], stats:{solo:1,multi:5,grind:1,story:1,chill:4,hard:1,brain:2,action:1,short:5,tension:1}, boost:{ESFP:95,ESFJ:93,ENFJ:88,ENFP:86}, why:{ja:"スマホだけで全員参加",en:"Everyone joins from a phone",zh:"只用手机就能全员参与"}}),
+  G({name:"Genshin Impact", platforms:["steam","mobile","xbox"], tags:["solo","story","grind","rpg"], stats:{solo:4,multi:3,grind:5,story:4,chill:3,hard:3,brain:2,action:3,short:3,tension:2}, boost:{ENFP:90,INFP:84,ENTP:82,ISFP:80}, why:{ja:"寄り道するほど世界が広がる",en:"The world grows as you wander",zh:"越绕路世界越大"}}),
+  G({name:"Pokémon GO", platforms:["mobile"], tags:["friends","short","collection"], stats:{solo:3,multi:4,grind:3,story:1,chill:4,hard:1,brain:1,action:2,short:5,tension:1}, boost:{ESFJ:90,ENFJ:88,ENFP:86,ISFJ:80}, why:{ja:"外で人と自然につながる",en:"Meet people while you walk",zh:"出门就能自然遇见人"}}),
+  G({name:"Clash Royale", platforms:["mobile"], tags:["pvp","brain","short"], stats:{solo:3,multi:5,grind:4,story:1,chill:1,hard:4,brain:4,action:3,short:5,tension:5}, boost:{ENTJ:90,ESTP:88,ESTJ:84,ENTP:80}, why:{ja:"短い勝負でテンポを握る",en:"Win the tempo in short matches",zh:"短对局里抢节奏"}, avoid:{ja:"対人と時間圧が強い",en:"PvP and time pressure are high",zh:"对人和时间压力强"}}),
+  G({name:"Monument Valley", platforms:["mobile"], tags:["solo","chill","puzzle","short","story"], stats:{solo:5,multi:1,grind:1,story:3,chill:5,hard:2,brain:4,action:1,short:5,tension:1}, boost:{ISFP:94,INFJ:90,INFP:86}, why:{ja:"触感と色彩が遊びになる",en:"Color and touch are the game",zh:"触感和色彩就是玩法"}}),
+  G({name:"Forza Horizon 5", platforms:["steam","xbox"], tags:["action","sandbox","chill"], stats:{solo:3,multi:3,grind:3,story:1,chill:3,hard:2,brain:1,action:5,short:3,tension:3}, boost:{ESTP:92,ISFP:86,ESFP:84,ISTP:90}, why:{ja:"景色の中を感覚で走る",en:"Drive by feel through a landscape",zh:"凭感觉在风景里开"}}),
+  G({name:"Halo Infinite", platforms:["xbox","steam"], tags:["pvp","action","friends"], stats:{solo:3,multi:5,grind:3,story:3,chill:1,hard:4,brain:2,action:5,short:4,tension:5}, boost:{ESTP:94,ESTJ:86,ISTP:84,ENTJ:78}, why:{ja:"今この瞬間の撃ち合い",en:"The gunfight in this second",zh:"此刻的交火"}, avoid:{ja:"反射と対人の比重が高い",en:"Reflex PvP is the core",zh:"反应和对人是核心"}}),
+  G({name:"Sea of Thieves", platforms:["steam","xbox"], tags:["friends","sandbox","coop","pvp"], stats:{solo:2,multi:5,grind:2,story:2,chill:2,hard:3,brain:2,action:3,short:2,tension:4}, boost:{ENTP:88,ESFP:90,ENFJ:86,ESTP:84}, why:{ja:"その場の思いつきが勝つ",en:"Improvisation beats a rigid plan",zh:"临场发挥胜过死计划"}}),
+  G({name:"Cities: Skylines", platforms:["steam","xbox","nintendo"], tags:["solo","sim","brain"], stats:{solo:5,multi:1,grind:4,story:1,chill:3,hard:3,brain:4,action:1,short:2,tension:2}, boost:{ESTJ:94,ISTJ:90,INTJ:86,ENTJ:84}, why:{ja:"計画どおりに街が動く",en:"A city that runs to plan",zh:"城市按你的规划运转"}}),
+  G({name:"XCOM 2", platforms:["steam","xbox"], tags:["solo","strategy","brain","hard"], stats:{solo:5,multi:1,grind:4,story:3,chill:1,hard:5,brain:5,action:2,short:3,tension:5}, boost:{ESTJ:90,INTJ:92,ENTJ:88,ISTJ:84}, why:{ja:"限られた資源を管理する",en:"Tight resources under pressure",zh:"压力下管理有限资源"}}),
+  G({name:"Fire Emblem: Three Houses", platforms:["nintendo"], tags:["solo","strategy","story","rpg"], stats:{solo:5,multi:1,grind:4,story:5,chill:2,hard:4,brain:4,action:2,short:2,tension:3}, boost:{INTJ:93,ENTJ:90,INFJ:86,INFP:80}, why:{ja:"派閥と育成を長期で設計",en:"Long-term faction planning",zh:"长期规划派系与培养"}}),
+  G({name:"Celeste", platforms:["steam","nintendo","xbox"], tags:["solo","action","hard","story"], stats:{solo:5,multi:1,grind:4,story:4,chill:2,hard:5,brain:3,action:5,short:3,tension:4}, boost:{ISFP:80,INFP:82,ISTP:86,INTJ:78}, why:{ja:"精密な操作がそのまま物語",en:"Precision platforming as story",zh:"精密操作本身就是故事"}}),
+  G({name:"Elden Ring", platforms:["steam","xbox"], tags:["solo","hard","action","rpg","sandbox"], stats:{solo:5,multi:2,grind:5,story:4,chill:1,hard:5,brain:3,action:5,short:1,tension:5}, boost:{ISTP:88,INTJ:84,INTP:80,ESTP:78}, why:{ja:"自由と高難度が同居する",en:"Freedom plus real difficulty",zh:"自由和高难度并存"}, avoid:{ja:"失敗と緊張の連続になりやすい",en:"Failure and tension stack up",zh:"失败和紧张容易连续出现"}}),
+  G({name:"PowerWash Simulator", platforms:["steam","xbox","nintendo"], tags:["chill","solo","short","friends"], stats:{solo:4,multi:3,grind:2,story:1,chill:5,hard:1,brain:1,action:1,short:4,tension:1}, boost:{ESFJ:90,ISFJ:88,ISTJ:80}, why:{ja:"単純作業がなぜか気持ちいい",en:"Simple work that feels great",zh:"简单劳动莫名舒服"}}),
+  G({name:"What Remains of Edith Finch", platforms:["steam","nintendo","xbox"], tags:["solo","story","short"], stats:{solo:5,multi:1,grind:1,story:5,chill:4,hard:1,brain:3,action:1,short:4,tension:2}, boost:{INFJ:95,INFP:93,ISFP:86}, why:{ja:"短くて胸に残る一族の話",en:"Short stories that stay with you",zh:"短小却难忘的家族故事"}}),
+  G({name:"Kerbal Space Program", platforms:["steam","xbox"], tags:["solo","sim","brain","sandbox"], stats:{solo:5,multi:1,grind:4,story:1,chill:3,hard:4,brain:5,action:1,short:2,tension:2}, boost:{INTP:96,INTJ:88,ISTP:84}, why:{ja:"本物の軌道力学で遊べる",en:"Real orbital mechanics",zh:"用真实轨道力学玩"}}),
+  G({name:"The Stanley Parable: Ultra Deluxe", platforms:["steam","xbox"], tags:["solo","story","brain","short"], stats:{solo:5,multi:1,grind:1,story:4,chill:4,hard:1,brain:4,action:1,short:4,tension:1}, boost:{ENTP:96,INTP:90,ENFP:82}, why:{ja:"期待を裏切り続ける構造",en:"Built to defy expectations",zh:"整个结构都在颠覆预期"}}),
+  G({name:"No Man's Sky", platforms:["steam","nintendo","xbox"], tags:["solo","sandbox","chill"], stats:{solo:4,multi:3,grind:3,story:2,chill:4,hard:2,brain:2,action:2,short:3,tension:1}, boost:{ENFP:92,INFP:84,INTP:80,ISFP:82}, why:{ja:"間違った方向がない宇宙",en:"No wrong direction",zh:"没有错误方向的宇宙"}}),
+  G({name:"Splatoon 3", platforms:["nintendo"], tags:["pvp","friends","action","short"], stats:{solo:2,multi:5,grind:3,story:2,chill:2,hard:3,brain:2,action:5,short:5,tension:4}, boost:{ESTP:90,ESFP:88,ENFP:84,ENTP:82}, why:{ja:"短い試合で塗り方が変わる",en:"Short matches, new kits",zh:"短对局里打法一直变"}}),
+  G({name:"Two Point Hospital", platforms:["steam","nintendo","xbox"], tags:["sim","chill","solo"], stats:{solo:5,multi:1,grind:3,story:1,chill:4,hard:2,brain:3,action:1,short:3,tension:1}, boost:{ISFJ:92,ESFJ:86,ISTJ:84}, why:{ja:"みんなを漏れなく診る運営",en:"Run the place so everyone is cared for",zh:"把每个人都照顾到"}}),
+  G({name:"Dead Cells", platforms:["steam","nintendo","mobile","xbox"], tags:["solo","action","hard","short"], stats:{solo:5,multi:1,grind:5,story:2,chill:1,hard:5,brain:2,action:5,short:4,tension:4}, boost:{ISTP:93,ESTP:86,INTP:74}, why:{ja:"動きの精度を手で上げる",en:"Raise precision by feel",zh:"用手感提高精度"}}),
+  G({name:"Gris", platforms:["steam","nintendo","mobile","xbox"], tags:["solo","story","chill","short"], stats:{solo:5,multi:1,grind:1,story:5,chill:5,hard:1,brain:1,action:2,short:4,tension:1}, boost:{ISFP:97,INFP:90,INFJ:88}, why:{ja:"感情を景色として体験する",en:"Emotion as landscape",zh:"把情感当成风景"}}),
+  G({name:"Unpacking", platforms:["steam","nintendo","xbox"], tags:["solo","chill","story","short"], stats:{solo:5,multi:1,grind:1,story:4,chill:5,hard:1,brain:2,action:1,short:4,tension:1}, boost:{ISFJ:90,INFP:92,ISFP:88}, why:{ja:"荷物から人生が見える",en:"A life told through objects",zh:"从行李里看出人生"}}),
+  G({name:"Crusader Kings III", platforms:["steam","xbox"], tags:["solo","strategy","story","long"], stats:{solo:5,multi:1,grind:4,story:4,chill:2,hard:4,brain:5,action:1,short:1,tension:3}, boost:{ENTJ:96,INTJ:92,ENTP:84}, why:{ja:"王朝を冷徹に育てる",en:"Patient, ruthless dynasty-building",zh:"冷静地经营王朝"}}),
+  G({name:"Frostpunk", platforms:["steam","xbox"], tags:["solo","sim","hard","brain"], stats:{solo:5,multi:1,grind:3,story:4,chill:1,hard:5,brain:5,action:1,short:3,tension:5}, boost:{ENTJ:94,INTJ:90,ESTJ:82}, why:{ja:"厳しい判断を出し続ける",en:"Hard calls under pressure",zh:"在压力下不断做艰难决定"}}),
+  G({name:"Life is Strange", platforms:["steam","xbox"], tags:["solo","story"], stats:{solo:5,multi:1,grind:1,story:5,chill:3,hard:1,brain:3,action:1,short:3,tension:3}, boost:{INFP:94,INFJ:92,ENFP:80,ISFP:82}, why:{ja:"小さな選択が物語を変える",en:"Small choices ripple",zh:"小小选择改变故事"}}),
+  G({name:"Rocket League", platforms:["steam","nintendo","xbox"], tags:["pvp","friends","action","short"], stats:{solo:3,multi:5,grind:4,story:1,chill:1,hard:4,brain:2,action:5,short:5,tension:4}, boost:{ESTJ:88,ESTP:92,ESFP:80}, why:{ja:"誰が勝っているか一目瞭然",en:"No ambiguity about who is winning",zh:"谁在赢一目了然"}}),
+  G({name:"Ori and the Will of the Wisps", platforms:["steam","nintendo","xbox"], tags:["solo","action","story"], stats:{solo:5,multi:1,grind:3,story:4,chill:3,hard:3,brain:2,action:4,short:3,tension:3}, boost:{ISFP:92,INFJ:86,INFP:84}, why:{ja:"美しい動きそのものが報酬",en:"Beautiful movement is the reward",zh:"美丽的动作就是奖励"}}),
+  G({name:"Just Dance", platforms:["nintendo","xbox"], tags:["party","friends","short"], stats:{solo:2,multi:5,grind:1,story:1,chill:4,hard:1,brain:1,action:3,short:5,tension:1}, boost:{ESFP:97,ESFJ:90,ENFP:82}, why:{ja:"みんなで体を動かして笑える",en:"Move and laugh together",zh:"一起动起来就能笑"}}),
+  G({name:"Arknights", platforms:["mobile"], tags:["solo","brain","grind","strategy"], stats:{solo:5,multi:1,grind:5,story:3,chill:2,hard:4,brain:5,action:1,short:3,tension:3}, boost:{INTJ:90,INTP:86,ISTJ:80}, why:{ja:"配置を事前に組む塔防",en:"Pre-plan every route",zh:"提前规划路线的塔防"}}),
+  G({name:"Sky: Children of the Light", platforms:["mobile","nintendo"], tags:["friends","chill","adventure"], stats:{solo:3,multi:4,grind:2,story:3,chill:5,hard:1,brain:1,action:1,short:4,tension:1}, boost:{ENFP:90,INFP:88,ENFJ:86,ISFP:84}, why:{ja:"見知らぬ人と空をさまよう",en:"Wander the sky with strangers",zh:"和陌生人在天空漫游"}}),
+];
+
+const STAT_KEYS = ["solo","multi","grind","story","chill","hard","brain","action","short","tension"];
+const STAT_LABEL = {
+  ja:{solo:"ソロ",multi:"対人",grind:"やり込み",story:"ストーリー",chill:"リラックス",hard:"難しさ",brain:"頭脳",action:"アクション",short:"短時間",tension:"緊張感"},
+  en:{solo:"Solo",multi:"Social",grind:"Mastery",story:"Story",chill:"Chill",hard:"Challenge",brain:"Brainy",action:"Action",short:"Short",tension:"Tension"},
+  zh:{solo:"单人",multi:"社交",grind:"肝度",story:"剧情",chill:"放松",hard:"难度",brain:"动脑",action:"动作",short:"碎片",tension:"紧张"},
+};
+
+function emptyMbti(){ return {E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0}; }
+function computeType(s){
+  return (s.E>=s.I?"E":"I")+(s.S>=s.N?"S":"N")+(s.T>=s.F?"T":"F")+(s.J>=s.P?"J":"P");
+}
+function emptyPrefs(){ return {solo:3,multi:3,grind:3,story:3,chill:3,hard:3,brain:3,action:3,short:3,tension:3,free:3,pvp:3}; }
+function applyGameAnswer(prefs, val){
+  const next = {...prefs};
+  const map = {
+    soloHi:{solo:5,multi:2}, soloLo:{solo:2,multi:5},
+    hardHi:{hard:5,chill:2,grind:4}, hardLo:{hard:2,chill:4,grind:2},
+    storyHi:{story:5,brain:3}, storyLo:{story:2,brain:4,grind:4},
+    shortHi:{short:5,grind:2}, shortLo:{short:2,grind:5},
+    freeHi:{action:3,chill:3}, freeLo:{story:4},
+    pvpHi:{multi:5,pvp:5,tension:5,solo:2}, pvpLo:{multi:2,pvp:1,tension:2,solo:4},
+    chillHi:{chill:5,tension:1,hard:2}, chillLo:{chill:2,tension:5,hard:4},
+    brainHi:{brain:5,action:2}, brainLo:{brain:2,action:5},
+  };
+  const add = map[val] || {};
+  Object.keys(add).forEach((k)=>{ next[k] = add[k]; });
+  return next;
+}
+function affinity(game, type){
+  if (game.boost && game.boost[type] != null) return game.boost[type];
+  return 54;
+}
+function prefScore(game, prefs){
+  let s = 0, w = 0;
+  STAT_KEYS.forEach((k)=>{
+    const g = game.stats[k] || 3;
+    const p = prefs[k] != null ? prefs[k] : 3;
+    s += 5 - Math.abs(g - p);
+    w += 5;
+  });
+  return (s / w) * 100;
+}
+function matchScore(game, type, prefs){
+  return Math.round(affinity(game, type) * 0.42 + prefScore(game, prefs) * 0.58);
+}
+function rankedGames(type, prefs, platform){
+  return GAMES
+    .filter((g)=>!platform || platform==="all" || g.platforms.includes(platform))
+    .map((g)=>({game:g, score:matchScore(g,type,prefs)}))
+    .sort((a,b)=>b.score-a.score);
+}
+function avoidGames(type, prefs, platform){
+  return rankedGames(type, prefs, platform).slice(-8).reverse().filter((x)=>x.score<72);
+}
+function typesForGame(game){
+  return ALL_TYPES.map((t)=>({type:t, score:affinity(game,t)})).sort((a,b)=>b.score-a.score);
+}
+function tasteSummary(prefs, lang){
+  const bits = [];
+  if (prefs.solo>=4) bits.push(UI[lang].sectionSolo);
+  if (prefs.multi>=4) bits.push(UI[lang].sectionMulti);
+  if (prefs.grind>=4) bits.push(UI[lang].sectionGrind);
+  if (prefs.story>=4) bits.push(UI[lang].sectionStory);
+  if (prefs.chill>=4) bits.push(UI[lang].sectionChill);
+  if (prefs.hard>=4) bits.push(UI[lang].sectionHard);
+  if (prefs.brain>=4) bits.push(UI[lang].sectionBrain);
+  if (prefs.short>=4) bits.push(UI[lang].sectionShort);
+  return bits.slice(0,3).join("・") || UI[lang].sectionChill;
+}
+function stars(n){
+  const v = Math.max(1, Math.min(5, Math.round(n)));
+  return "★".repeat(v) + "☆".repeat(5-v);
+}
+function shareUrlFor(type){
+  try { const u = new URL(window.location.href); u.searchParams.set("type", type); return u.toString(); }
+  catch(e){ return window.location.href; }
+}
+function applySeo(type, lang){
+  const ui = UI[lang] || UI.ja;
+  try {
+    if (!type || !TYPES[type]) { document.title = ui.seoHomeTitle; return; }
+    const nick = TYPES[type].nickname[lang];
+    document.title = `${type}におすすめのゲーム診断 | MBTI ゲーム おすすめ`;
+    const desc = `${type}（${nick}）向けのおすすめゲーム。Steam・Nintendo・スマホ・Xbox。`;
+    const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute("content", val); };
+    set('meta[name="description"]', desc);
+    set('meta[property="og:title"]', `${type}（${nick}）におすすめのゲーム`);
+    set('meta[property="og:description"]', desc);
+    set('meta[name="twitter:title"]', `${type}（${nick}）におすすめのゲーム`);
+    set('meta[name="twitter:description"]', desc);
+  } catch(e){}
 }
 
-const STORAGE_KEY = "mbti-steam-history";
-
-function App() {
+function App(){
   const [lang, setLang] = useState("ja");
   const [screen, setScreen] = useState("start");
   const [qIndex, setQIndex] = useState(0);
-  const [scores, setScores] = useState({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
+  const [mbtiScores, setMbtiScores] = useState(emptyMbti());
+  const [prefs, setPrefs] = useState(emptyPrefs());
   const [resultType, setResultType] = useState(null);
   const [history, setHistory] = useState([]);
   const [saveMsg, setSaveMsg] = useState(false);
+  const [copyMsg, setCopyMsg] = useState(false);
+  const [platform, setPlatform] = useState("all");
+  const [tab, setTab] = useState("fit");
+  const [todayPick, setTodayPick] = useState(null);
+  const [friendType, setFriendType] = useState("ESFP");
+  const [gameQuery, setGameQuery] = useState("");
+  const [focusGame, setFocusGame] = useState(null);
   const t = UI[lang];
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setHistory(JSON.parse(raw));
-    } catch (e) {}
-
+  useEffect(()=>{
+    try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) setHistory(JSON.parse(raw)); } catch(e){}
     try {
       const params = new URLSearchParams(window.location.search);
-      const sharedType = (params.get("type") || "").toUpperCase();
-      if (sharedType && TYPES[sharedType]) {
-        setResultType(sharedType);
-        setScreen("result");
-      }
-    } catch (e) {}
+      const shared = (params.get("type")||"").toUpperCase();
+      const view = params.get("view");
+      if (shared && TYPES[shared]) { setResultType(shared); setScreen("result"); }
+      if (view==="games") setScreen("games");
+      if (view==="types") setScreen("types");
+    } catch(e){}
   }, []);
 
-  const startQuiz = () => {
-    setScores({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
-    setQIndex(0);
-    setScreen("quiz");
-  };
-
-  const answer = (value) => {
-    const next = { ...scores, [value]: scores[value] + 1 };
-    setScores(next);
-    if (qIndex + 1 < QUESTIONS.length) {
-      setQIndex(qIndex + 1);
-    } else {
-      setResultType(computeType(next));
-      setScreen("result");
-    }
-  };
-
-  const goBack = () => { if (qIndex > 0) setQIndex(qIndex - 1); };
-
-  const saveResult = () => {
-    const entry = { type: resultType, date: new Date().toISOString().slice(0, 10) };
-    const next = [entry, ...history].slice(0, 20);
-    setHistory(next);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      setSaveMsg(true);
-      setTimeout(() => setSaveMsg(false), 1800);
-    } catch (e) {}
-  };
-
-  const deleteEntry = (idx) => {
-    const next = history.filter((_, i) => i !== idx);
-    setHistory(next);
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch (e) {}
-  };
-
-  const loadEntry = (type) => { setResultType(type); setScreen("result"); };
-
-  const goHome = () => setScreen("start");
-  const goSaved = () => setScreen("saved");
-
-  const [copyMsg, setCopyMsg] = useState(false);
-  const [platform, setPlatform] = useState("steam");
-  const platformLabel = { steam: t.platformSteam, nintendo: t.platformNintendo, mobile: t.platformMobile, xbox: t.platformXbox };
-  const gamesFor = (typeObj, plat) => (typeObj && typeObj[plat]) ? typeObj[plat] : (typeObj && typeObj.steam) ? typeObj.steam : [];
-
-  const shareUrlFor = (type) => {
-    try {
-      return typePagePath(type);
-    } catch (e) {
-      return window.location.href;
-    }
-  };
-
-  const shareOnX = () => {
-    const text = shareMessage;
-    const url = shareUrlFor(resultType);
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank", "noreferrer");
-  };
-
-  const shareOnLine = () => {
-    const text = shareMessage;
-    const url = shareUrlFor(resultType);
-    window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, "_blank", "noreferrer");
-  };
-
-  const copyLink = async () => {
-    const url = shareUrlFor(resultType);
-    try {
-      await navigator.clipboard.writeText(url);
-    } catch (e) {
-      window.prompt(t.shareCopy, url);
-    }
-    setCopyMsg(true);
-    setTimeout(() => setCopyMsg(false), 1800);
-  };
-
-  const nativeShare = () => {
-    const text = shareMessage;
-    const url = shareUrlFor(resultType);
-    if (navigator.share) {
-      navigator.share({ text, url }).catch(() => {});
-    }
-  };
+  useEffect(()=>{ applySeo(resultType, lang); }, [resultType, lang]);
 
   const current = resultType ? TYPES[resultType] : null;
-  const temp = resultType ? TEMPERAMENTS[temperamentOf(resultType)] : null;
-  const gamesLine = resultType && current ? shareGamesLine(current) : "";
-  const shareMessage = resultType && current ? t.shareText(resultType, current.nickname[lang], gamesLine) : "";
-  useEffect(() => { applySeo(resultType, current, lang); }, [resultType, lang]);
+  const temp = resultType ? TEMPERAMENTS[temperamentOf(resultType)] : TEMPERAMENTS.NT;
   const q = QUESTIONS[qIndex];
+  const ranked = resultType ? rankedGames(resultType, prefs, platform==="all"?null:platform) : [];
+  const top = ranked.slice(0,8);
+  const avoid = resultType ? avoidGames(resultType, prefs, platform==="all"?null:platform).slice(0,4) : [];
   const canNativeShare = typeof navigator !== "undefined" && !!navigator.share;
+  const gamesLine = top.slice(0,3).map((x)=>x.game.name.replace(/: .*$/,"")).join(" / ");
+  const shareMessage = resultType && current ? t.shareText(resultType, current.nickname[lang], gamesLine) : "";
+
+  const startQuiz = () => {
+    setMbtiScores(emptyMbti()); setPrefs(emptyPrefs()); setQIndex(0); setTodayPick(null); setTab("fit"); setScreen("quiz");
+  };
+  const answer = (value) => {
+    const item = QUESTIONS[qIndex];
+    let nextM = mbtiScores, nextP = prefs;
+    if (item.kind==="mbti") nextM = {...mbtiScores, [value]: mbtiScores[value]+1};
+    else nextP = applyGameAnswer(prefs, value);
+    setMbtiScores(nextM); setPrefs(nextP);
+    if (qIndex+1 < QUESTIONS.length) setQIndex(qIndex+1);
+    else { setResultType(computeType(nextM)); setScreen("result"); }
+  };
+  const goBack = () => { if (qIndex>0) setQIndex(qIndex-1); };
+  const saveResult = () => {
+    const entry = { type: resultType, date: new Date().toISOString().slice(0,10), prefs: {...prefs}, top: top[0] && top[0].game.name };
+    const next = [entry, ...history].slice(0,20);
+    setHistory(next);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); setSaveMsg(true); setTimeout(()=>setSaveMsg(false),1800);} catch(e){}
+  };
+  const deleteEntry = (idx) => {
+    const next = history.filter((_,i)=>i!==idx);
+    setHistory(next);
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch(e){}
+  };
+  const loadEntry = (h) => {
+    setResultType(h.type);
+    if (h.prefs) setPrefs(h.prefs);
+    setScreen("result");
+  };
+  const pickToday = () => {
+    const pool = ranked.slice(0,12);
+    if (!pool.length) return;
+    let pick = pool[Math.floor(Math.random()*pool.length)];
+    if (todayPick && pool.length>1) {
+      const filtered = pool.filter((x)=>x.game.name!==todayPick.game.name);
+      pick = filtered[Math.floor(Math.random()*filtered.length)];
+    }
+    setTodayPick(pick); setTab("today");
+  };
+  const shareOnX = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}&url=${encodeURIComponent(shareUrlFor(resultType))}`,"_blank","noreferrer");
+  };
+  const shareOnLine = () => {
+    window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrlFor(resultType))}&text=${encodeURIComponent(shareMessage)}`,"_blank","noreferrer");
+  };
+  const copyLink = async () => {
+    const url = shareUrlFor(resultType);
+    try { await navigator.clipboard.writeText(url); } catch(e){ window.prompt(t.shareCopy, url); }
+    setCopyMsg(true); setTimeout(()=>setCopyMsg(false),1800);
+  };
+  const nativeShare = () => { if (navigator.share) navigator.share({text:shareMessage, url:shareUrlFor(resultType)}).catch(()=>{}); };
 
   const s = styles;
+  const platformLabel = { all:"ALL", steam:t.platformSteam, nintendo:t.platformNintendo, mobile:t.platformMobile, xbox:t.platformXbox };
+  const filteredCatalog = GAMES.filter((g)=>g.name.toLowerCase().includes(gameQuery.toLowerCase()));
+
+  const StatRow = ({label, value}) => (
+    <div style={s.statRow}><span style={s.statLab}>{label}</span><span style={s.statStars}>{stars(value)}</span></div>
+  );
+
+  const GameCard = ({item, showAvoid}) => {
+    const g = item.game, score = item.score;
+    const plat = g.platforms[0];
+    return (
+      <div style={{...s.gameCard, borderLeft:`3px solid ${temp.accent}`}}>
+        <div style={s.gameTop}>
+          <div className="display" style={s.gameName}>{g.name}</div>
+          <div style={{...s.scorePill, color:temp.accent}}>{score}%</div>
+        </div>
+        <div style={s.gameWhy}>{g.why[lang]}{showAvoid && g.avoid ? " — " + g.avoid[lang] : ""}</div>
+        <div style={s.miniStats}>
+          <span>{t.sectionSolo} {stars(g.stats.solo)}</span>
+          <span>{t.sectionBrain} {stars(g.stats.brain)}</span>
+          <span>{t.sectionTension} {stars(g.stats.tension)}</span>
+          <span>{t.sectionGrind} {stars(g.stats.grind)}</span>
+        </div>
+        <div style={s.cardLinks}>
+          {g.platforms.map((p)=>(
+            <a key={p} href={platformUrl(p,g.name)} target="_blank" rel="noreferrer" style={{...s.steamLink, color:temp.accent}}>{platformLabel[p]} →</a>
+          ))}
+          <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
+        </div>
+      </div>
+    );
+  };
+
+  const friendGames = (resultType && friendType)
+    ? GAMES.map((g)=>({game:g, score:Math.round((matchScore(g,resultType,prefs)+affinity(g,friendType))/2)}))
+        .sort((a,b)=>b.score-a.score).slice(0,6)
+    : [];
+  const friendBars = resultType && friendType ? {
+    coop: Math.round(( (TYPES[resultType].genres.includes("coop")?5:3) + (TYPES[friendType].genres.includes("coop")?5:3) )/2),
+    versus: Math.round(( (TYPES[resultType].genres.includes("pvp")||TYPES[resultType].genres.includes("action")?4:2) + (TYPES[friendType].genres.includes("pvp")||TYPES[friendType].genres.includes("action")?4:2) )/2),
+    puzzle: Math.round(( (TYPES[resultType].genres.includes("puzzle")||TYPES[resultType].genres.includes("strategy")?4:2) + (TYPES[friendType].genres.includes("puzzle")||TYPES[friendType].genres.includes("strategy")?4:2))/2),
+    party: Math.round(( (TYPES[resultType].genres.includes("party")?5:2) + (TYPES[friendType].genres.includes("party")?5:2))/2),
+  } : null;
 
   return (
     <div style={s.app}>
       <header style={s.header}>
         <div style={s.headerInner}>
-          <button style={s.brand} onClick={goHome} aria-label={t.navHome}>
+          <button style={s.brand} onClick={()=>setScreen("start")}>
             <span className="display" style={s.brandMark}>{t.brand}</span>
             <span className="display" style={s.brandName}>{t.appTitle}</span>
           </button>
-
           <nav style={s.navRow}>
-            <button onClick={goHome} style={{ ...s.navBtn, ...(screen === "start" ? s.navBtnActive : {}) }}>
-              {t.navHome}
-            </button>
-            <button onClick={goSaved} style={{ ...s.navBtn, ...(screen === "saved" ? s.navBtnActive : {}) }}>
-              {t.navSaved}{history.length > 0 ? ` (${history.length})` : ""}
-            </button>
+            <button onClick={()=>setScreen("start")} style={{...s.navBtn, ...(screen==="start"?s.navBtnActive:{})}}>{t.navHome}</button>
+            <button onClick={()=>setScreen("games")} style={{...s.navBtn, ...(screen==="games"?s.navBtnActive:{})}}>{t.gameIndexTitle}</button>
+            <button onClick={()=>setScreen("types")} style={{...s.navBtn, ...(screen==="types"?s.navBtnActive:{})}}>{t.typeIndexTitle}</button>
+            <button onClick={()=>setScreen("saved")} style={{...s.navBtn, ...(screen==="saved"?s.navBtnActive:{})}}>{t.navSaved}{history.length?` (${history.length})`:""}</button>
           </nav>
-
           <div style={s.langRow}>
-            {["ja", "en", "zh"].map((code) => (
-              <button key={code} onClick={() => setLang(code)}
-                style={{ ...s.langBtn, borderColor: lang === code ? "#7C6CF0" : "#2A2D52", color: lang === code ? "#F2F0E9" : "#A9ACC7" }}>
-                {code === "ja" ? "日本語" : code === "en" ? "English" : "中文"}
+            {["ja","en","zh"].map((code)=>(
+              <button key={code} onClick={()=>setLang(code)} style={{...s.langBtn, borderColor: lang===code?"#7C6CF0":"#2A2D52", color: lang===code?"#F2F0E9":"#A9ACC7"}}>
+                {code==="ja"?"日本語":code==="en"?"English":"中文"}
               </button>
             ))}
           </div>
@@ -1144,52 +869,22 @@ function App() {
       </header>
 
       <main style={s.wrap}>
-        {screen === "start" && (
+        {screen==="start" && (
           <React.Fragment>
             <section style={s.hero}>
-              <div style={s.heroMosaic} aria-hidden="true">
-                {Object.keys(TYPES).map((code) => {
-                  const c = TEMPERAMENTS[temperamentOf(code)];
-                  return (
-                    <span key={code} className="display" style={{ ...s.mosaicChip, color: c.accent, borderColor: c.accent + "40", background: c.accent + "14" }}>
-                      {code}
-                    </span>
-                  );
-                })}
-              </div>
               <p className="display" style={s.eyebrow}>{t.heroKicker}</p>
               <h1 className="display" style={s.title}>{t.appTitle}</h1>
               <p style={s.subtitle}>{t.tagline}</p>
               <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
-
-              <button style={s.savedTeaser} onClick={goSaved}>
+              <button style={s.savedTeaser} onClick={()=>setScreen("saved")}>
                 <span>{t.savedResults}</span>
-                <span style={s.savedTeaserCount}>{history.length > 0 ? t.countLabel(history.length) + " →" : t.noSavedHint}</span>
+                <span style={s.savedTeaserCount}>{history.length? t.countLabel(history.length)+" →" : t.noSaved}</span>
               </button>
             </section>
-
-            <section style={s.howSection}>
-              <h2 className="display" style={s.howSectionTitle}>{t.typeIndexTitle}</h2>
-              <div style={s.heroMosaic}>
-                {Object.keys(TYPES).map((code) => {
-                  const c = TEMPERAMENTS[temperamentOf(code)];
-                  return (
-                    <button key={code} type="button" onClick={() => { setResultType(code); setScreen("result"); }} className="display" style={{ ...s.mosaicChip, color: c.accent, borderColor: c.accent + "40", background: c.accent + "14", cursor: "pointer" }}>
-                      {code}
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-
             <section style={s.howSection}>
               <h2 className="display" style={s.howSectionTitle}>{t.howTitle}</h2>
               <div style={s.stepGrid}>
-                {[
-                  { n: "1", title: t.step1Title, desc: t.step1Desc },
-                  { n: "2", title: t.step2Title, desc: t.step2Desc },
-                  { n: "3", title: t.step3Title, desc: t.step3Desc },
-                ].map((step) => (
+                {[{n:"1",title:t.step1Title,desc:t.step1Desc},{n:"2",title:t.step2Title,desc:t.step2Desc},{n:"3",title:t.step3Title,desc:t.step3Desc}].map((step)=>(
                   <div key={step.n} style={s.stepCard}>
                     <span className="display" style={s.stepNum}>{step.n}</span>
                     <h3 className="display" style={s.stepCardTitle}>{step.title}</h3>
@@ -1198,110 +893,234 @@ function App() {
                 ))}
               </div>
             </section>
+            <section style={s.howSection}>
+              <h2 className="display" style={s.howSectionTitle}>{t.typeIndexTitle}</h2>
+              <div style={s.heroMosaic}>
+                {ALL_TYPES.map((code)=>{
+                  const c = TEMPERAMENTS[temperamentOf(code)];
+                  return (
+                    <button key={code} type="button" onClick={()=>{ setResultType(code); setScreen("type"); }} className="display" style={{...s.mosaicChip, color:c.accent, borderColor:c.accent+"40", background:c.accent+"14", cursor:"pointer"}}>{code}</button>
+                  );
+                })}
+              </div>
+            </section>
           </React.Fragment>
         )}
 
-        {screen === "saved" && (
+        {screen==="quiz" && q && (
+          <div>
+            <p style={s.progress}>{t.questionOf(qIndex+1, QUESTIONS.length)} · {q.kind==="mbti"?"MBTI":"GAME"}</p>
+            <div style={s.progressBarOuter}><div style={{...s.progressBarInner, width:`${(qIndex/QUESTIONS.length)*100}%`}} /></div>
+            <h2 className="display" style={s.question}>{q.text[lang]}</h2>
+            <div style={s.optionCol}>
+              <button style={s.optionBtn} onClick={()=>answer(q.aVal)}>{q.a[lang]}</button>
+              <button style={s.optionBtn} onClick={()=>answer(q.bVal)}>{q.b[lang]}</button>
+            </div>
+            {qIndex>0 && <button style={s.backBtn} onClick={goBack}>{t.back}</button>}
+          </div>
+        )}
+
+        {screen==="result" && current && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.yourType}</p>
+            <div style={s.resultHead}>
+              <span className="display" style={{...s.resultCode, color:temp.accent}}>{resultType}</span>
+              <span className="display" style={s.resultNickname}>{current.nickname[lang]}</span>
+            </div>
+            <h1 className="display" style={s.resultSeoTitle}>{t.resultHeading(resultType)}</h1>
+            <p style={s.subtitle}>{current.blurb[lang]}</p>
+            <p style={s.compatLine}>{t.mbtiNote(resultType, tasteSummary(prefs, lang))}</p>
+            <p style={s.compatLine}>{t.compatLabel}: {(COMPAT[resultType]||[]).join(" / ")}　·　{t.updatedLabel}: {GAMES_UPDATED}</p>
+
+            <div style={s.platformRow}>
+              {["all",...PLATFORMS].map((plat)=>(
+                <button key={plat} onClick={()=>setPlatform(plat)} style={{...s.platformBtn, borderColor: platform===plat?temp.accent:"#2A2D52", background: platform===plat?temp.accent+"22":"#1E2140"}}>{platformLabel[plat]}</button>
+              ))}
+            </div>
+            <div style={s.platformRow}>
+              {[["fit",t.tabFit],["avoid",t.tabAvoid],["taste",t.tabTaste],["today",t.tabToday],["friend",t.tabFriend]].map(([id,label])=>(
+                <button key={id} onClick={()=>setTab(id)} style={{...s.platformBtn, borderColor: tab===id?temp.accent:"#2A2D52", background: tab===id?temp.accent+"22":"#1E2140"}}>{label}</button>
+              ))}
+            </div>
+
+            {tab==="fit" && (
+              <div>
+                <h2 className="display" style={s.blockTitle}>{t.fitTitle}</h2>
+                <div style={s.gameList}>{top.map((item)=><GameCard key={item.game.name} item={item} />)}</div>
+              </div>
+            )}
+            {tab==="avoid" && (
+              <div>
+                <h2 className="display" style={s.blockTitle}>{t.avoidTitle}</h2>
+                <div style={s.gameList}>{avoid.map((item)=><GameCard key={item.game.name} item={item} showAvoid />)}</div>
+              </div>
+            )}
+            {tab==="taste" && (
+              <div>
+                <h2 className="display" style={s.blockTitle}>{t.tasteTitle}</h2>
+                <div style={s.tasteBox}>
+                  {STAT_KEYS.map((k)=><StatRow key={k} label={STAT_LABEL[lang][k]} value={prefs[k]} />)}
+                </div>
+                <h2 className="display" style={s.blockTitle}>{t.similarTitle}</h2>
+                <p style={s.subtitle}>{current.style[lang]}</p>
+                <p style={s.compatLine}>{t.genresTitle}: {current.genres.join(" / ")}</p>
+              </div>
+            )}
+            {tab==="today" && (
+              <div>
+                <h2 className="display" style={s.blockTitle}>{t.todayTitle}</h2>
+                <button style={s.primaryBtn} onClick={pickToday}>{todayPick?t.todayAgain:t.todayBtn}</button>
+                {todayPick && (
+                  <div style={{marginTop:16}}>
+                    <GameCard item={todayPick} />
+                    <p style={s.compatLine}>{t.mbtiNote(resultType, tasteSummary(prefs, lang))}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            {tab==="friend" && (
+              <div>
+                <h2 className="display" style={s.blockTitle}>{t.friendTitle}</h2>
+                <p style={s.compatLine}>{t.friendPick}</p>
+                <div style={s.heroMosaic}>
+                  {ALL_TYPES.map((code)=>(
+                    <button key={code} onClick={()=>setFriendType(code)} className="display" style={{...s.mosaicChip, cursor:"pointer", color: friendType===code?temp.accent:"#A9ACC7", borderColor: friendType===code?temp.accent:"#2A2D52"}}>{code}</button>
+                  ))}
+                </div>
+                {friendBars && (
+                  <div style={s.tasteBox}>
+                    <StatRow label={t.coop} value={friendBars.coop} />
+                    <StatRow label={t.versus} value={friendBars.versus} />
+                    <StatRow label={t.puzzle} value={friendBars.puzzle} />
+                    <StatRow label={t.party} value={friendBars.party} />
+                  </div>
+                )}
+                <div style={s.gameList}>{friendGames.map((item)=><GameCard key={item.game.name} item={item} />)}</div>
+              </div>
+            )}
+
+            <div style={s.actionRow}>
+              <button style={s.primaryBtn} onClick={saveResult}>{saveMsg?t.saved:t.save}</button>
+              <button style={s.ghostBtn} onClick={()=>setTab("friend")}>{t.inviteFriend}</button>
+              <button style={s.ghostBtn} onClick={startQuiz}>{t.retake}</button>
+              <button style={s.ghostBtn} onClick={()=>setScreen("type")}>{t.lookType}</button>
+            </div>
+            <div style={s.shareBox}>
+              <p style={s.shareTitleText}>{t.shareTitle}</p>
+              <div style={s.shareRow}>
+                <button style={s.shareBtn} onClick={shareOnX}>{t.shareX}</button>
+                <button style={s.shareBtn} onClick={shareOnLine}>{t.shareLine}</button>
+                <button style={s.shareBtn} onClick={copyLink}>{copyMsg?t.shareCopied:t.shareCopy}</button>
+                {canNativeShare && <button style={s.shareBtn} onClick={nativeShare}>{t.shareNative}</button>}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {screen==="type" && resultType && TYPES[resultType] && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.typeIndexTitle}</p>
+            <h1 className="display" style={{...s.resultCode, color:temp.accent}}>{resultType}</h1>
+            <p style={s.subtitle}>{TYPES[resultType].style[lang]}</p>
+            <p style={s.compatLine}>{t.genresTitle}: {TYPES[resultType].genres.join(" / ")}</p>
+            <h2 className="display" style={s.blockTitle}>{t.rankingTitle}</h2>
+            <div style={s.gameList}>
+              {rankedGames(resultType, emptyPrefs(), null).slice(0,20).map((item,i)=>(
+                <div key={item.game.name} style={s.rankRow}>
+                  <span className="display" style={{color:temp.accent, fontWeight:700}}>{i+1}</span>
+                  <span>{item.game.name}</span>
+                  <span style={{marginLeft:"auto", color:temp.accent}}>{item.score}%</span>
+                </div>
+              ))}
+            </div>
+            <button style={s.primaryBtn} onClick={()=>setScreen("result")}>{t.fitTitle}</button>
+          </div>
+        )}
+
+        {screen==="types" && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.typeIndexTitle}</p>
+            <div style={s.heroMosaic}>
+              {ALL_TYPES.map((code)=>{
+                const c = TEMPERAMENTS[temperamentOf(code)];
+                return <button key={code} onClick={()=>{ setResultType(code); setScreen("type"); }} className="display" style={{...s.mosaicChip, color:c.accent, borderColor:c.accent+"40", background:c.accent+"14", cursor:"pointer"}}>{code}</button>;
+              })}
+            </div>
+          </div>
+        )}
+
+        {screen==="games" && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.gameIndexTitle}</p>
+            <input value={gameQuery} onChange={(e)=>setGameQuery(e.target.value)} placeholder={t.searchGame} style={s.search} />
+            <div style={s.gameList}>
+              {filteredCatalog.map((g)=>(
+                <button key={g.name} style={{...s.gameCard, textAlign:"left", cursor:"pointer", color:"#F2F0E9"}} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>
+                  <div className="display" style={s.gameName}>{g.name}</div>
+                  <div style={s.gameWhy}>{g.platforms.join(" / ")} · {g.why[lang]}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {screen==="game" && focusGame && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.fromGame}</p>
+            <h1 className="display" style={s.title}>{focusGame.name}</h1>
+            <p style={s.subtitle}>{focusGame.why[lang]}</p>
+            <div style={s.tasteBox}>
+              {STAT_KEYS.map((k)=><StatRow key={k} label={STAT_LABEL[lang][k]} value={focusGame.stats[k]} />)}
+            </div>
+            <h2 className="display" style={s.blockTitle}>{t.rankingTitle}</h2>
+            {typesForGame(focusGame).slice(0,8).map((row)=>(
+              <button key={row.type} style={s.rankRow} onClick={()=>{ setResultType(row.type); setScreen("type"); }}>
+                <span className="display" style={{fontWeight:700}}>{row.type}</span>
+                <span style={{marginLeft:"auto"}}>{row.score}%</span>
+              </button>
+            ))}
+            <div style={s.actionRow}>
+              {focusGame.platforms.map((p)=>(
+                <a key={p} href={platformUrl(p, focusGame.name)} target="_blank" rel="noreferrer" style={s.ghostBtn}>{platformLabel[p]}</a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {screen==="saved" && (
           <div>
             <p className="display" style={s.eyebrow}>{t.navSaved}</p>
-            {history.length === 0 ? (
+            {history.length===0 ? (
               <div style={s.emptyState}>
                 <p style={s.subtitle}>{t.noSaved}</p>
-                <p style={{ ...s.subtitle, marginBottom: 24 }}>{t.noSavedHint}</p>
                 <button style={s.primaryBtn} onClick={startQuiz}>{t.goQuiz}</button>
               </div>
             ) : (
-              <div style={s.historyBox}>
-                {history.map((h, i) => (
+              <div>
+                {history.length>=2 && (
+                  <div style={s.tasteBox}>
+                    <h2 className="display" style={s.blockTitle}>{t.compareTitle}</h2>
+                    <p style={s.compatLine}>{history[1].date} {history[1].type} → {history[0].date} {history[0].type}</p>
+                    <p style={s.compatLine}>{(history[0].top||"")} / {(history[1].top||"")}</p>
+                  </div>
+                )}
+                {history.map((h,i)=>(
                   <div key={i} style={s.historyRow}>
-                    <span className="display" style={{ fontWeight: 700 }}>{h.type}</span>
-                    <span style={{ color: "#A9ACC7", fontSize: 13 }}>{t.savedOn}: {h.date}</span>
-                    <button style={s.smallBtn} onClick={() => loadEntry(h.type)}>{t.loadThis}</button>
-                    <button style={s.smallBtnGhost} onClick={() => deleteEntry(i)}>{t.delete}</button>
+                    <span className="display" style={{fontWeight:700}}>{h.type}</span>
+                    <span style={{color:"#A9ACC7", fontSize:13}}>{t.savedOn}: {h.date}{h.top?` · ${h.top}`:""}</span>
+                    <button style={s.smallBtn} onClick={()=>loadEntry(h)}>{t.loadThis}</button>
+                    <button style={s.smallBtnGhost} onClick={()=>deleteEntry(i)}>{t.delete}</button>
                   </div>
                 ))}
               </div>
             )}
           </div>
         )}
-
-        {screen === "quiz" && q && (
-          <div>
-            <p style={s.progress}>{t.questionOf(qIndex + 1, QUESTIONS.length)}</p>
-            <div style={s.progressBarOuter}>
-              <div style={{ ...s.progressBarInner, width: `${(qIndex / QUESTIONS.length) * 100}%` }} />
-            </div>
-            <h2 className="display" style={s.question}>{q.text[lang]}</h2>
-            <div style={s.optionCol}>
-              <button style={s.optionBtn} onClick={() => answer(q.aVal)}>{q.a[lang]}</button>
-              <button style={s.optionBtn} onClick={() => answer(q.bVal)}>{q.b[lang]}</button>
-            </div>
-            {qIndex > 0 && <button style={s.backBtn} onClick={goBack}>{t.back}</button>}
-          </div>
-        )}
-
-        {screen === "result" && current && (
-          <div>
-            <p className="display" style={s.eyebrow}>{t.yourType}</p>
-            <div style={s.resultHead}>
-              <span className="display" style={{ ...s.resultCode, color: temp.accent }}>{resultType}</span>
-              <span className="display" style={s.resultNickname}>{current.nickname[lang]}</span>
-            </div>
-            <h1 className="display" style={s.resultSeoTitle}>{t.resultHeading(resultType)}</h1>
-            <p style={s.subtitle}>{current.blurb[lang]}</p>
-            <p style={s.compatLine}>{t.compatLabel}: {(COMPAT[resultType] || []).join(" / ")}　·　{t.updatedLabel}: {GAMES_UPDATED}</p>
-
-            <p style={s.platformHint}>{t.platformHint}</p>
-            <div style={s.platformRow}>
-              {PLATFORMS.map((plat) => (
-                <button key={plat} onClick={() => setPlatform(plat)}
-                  style={{ ...s.platformBtn, borderColor: platform === plat ? temp.accent : "#2A2D52", background: platform === plat ? temp.accent + "22" : "#1E2140", color: platform === plat ? "#F2F0E9" : "#A9ACC7" }}>
-                  {platformLabel[plat]}
-                </button>
-              ))}
-            </div>
-            <p style={s.shareTitleText}>{t.gamesForPlatform} · {platformLabel[platform]}</p>
-
-            <div style={s.gameList}>
-              {gamesFor(current, platform).map((g) => (
-                <div key={platform + g.name} style={{ ...s.gameCard, borderLeft: `3px solid ${temp.accent}` }}>
-                  <div className="display" style={s.gameName}>{g.name}</div>
-                  <div style={s.gameWhy}>{g.why[lang]}</div>
-                  <a href={platformUrl(platform, g.name)} target="_blank" rel="noreferrer" style={{ ...s.steamLink, color: temp.accent }}>
-                    {t.viewOnSteam} →
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            <div style={s.actionRow}>
-              <button style={s.primaryBtn} onClick={saveResult}>{saveMsg ? t.saved : t.save}</button>
-              <button style={s.ghostBtn} onClick={startQuiz}>{t.inviteFriend}</button>
-              <button style={s.ghostBtn} onClick={startQuiz}>{t.retake}</button>
-              <button style={s.ghostBtn} onClick={goHome}>{t.navHome}</button>
-              <button style={s.ghostBtn} onClick={goSaved}>{t.savedResults}{history.length ? ` (${history.length})` : ""}</button>
-            </div>
-
-            <div style={s.shareBox}>
-              <p style={s.shareTitleText}>{t.shareTitle}</p>
-              <div style={s.shareRow}>
-                <button style={{ ...s.shareBtn, borderColor: temp.accent + "55" }} onClick={shareOnX}>{t.shareX}</button>
-                <button style={{ ...s.shareBtn, borderColor: temp.accent + "55" }} onClick={shareOnLine}>{t.shareLine}</button>
-                <button style={{ ...s.shareBtn, borderColor: temp.accent + "55" }} onClick={copyLink}>{copyMsg ? t.shareCopied : t.shareCopy}</button>
-                {canNativeShare && (
-                  <button style={{ ...s.shareBtn, borderColor: temp.accent + "55" }} onClick={nativeShare}>{t.shareNative}</button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </main>
 
-      {screen !== "quiz" && (
+      {screen!=="quiz" && (
         <footer style={s.footer}>
-          <a href={SUPPORT_URL} target="_blank" rel="noreferrer" style={s.supportLinkFooter}>
-            ☕ {t.support}
-          </a>
+          <a href={SUPPORT_URL} target="_blank" rel="noreferrer" style={s.supportLinkFooter}>☕ {t.support}</a>
           <p style={s.footerNote}>{t.footerNote}</p>
         </footer>
       )}
@@ -1310,81 +1129,78 @@ function App() {
 }
 
 const styles = {
-  app: { minHeight: "100vh", width: "100%", background: "#14162B", color: "#F2F0E9", display: "flex", flexDirection: "column" },
-
-  header: { borderBottom: "1px solid #22254A", position: "sticky", top: 0, background: "#14162Bee", backdropFilter: "blur(6px)", zIndex: 10 },
-  headerInner: { maxWidth: 760, margin: "0 auto", padding: "14px 20px", display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" },
-  brand: { display: "flex", alignItems: "center", gap: 8, background: "transparent", border: "none", cursor: "pointer", padding: 0, marginRight: "auto" },
-  brandMark: { width: 26, height: 26, borderRadius: 6, background: "#7C6CF0", color: "#14162B", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
-  brandName: { fontSize: 14, fontWeight: 700, color: "#F2F0E9" },
-
-  navRow: { display: "flex", gap: 4, background: "#1E2140", borderRadius: 8, padding: 4 },
-  navBtn: { background: "transparent", border: "none", borderRadius: 6, padding: "8px 12px", fontSize: 13, fontWeight: 600, color: "#A9ACC7", cursor: "pointer", whiteSpace: "nowrap" },
-  navBtnActive: { background: "#7C6CF0", color: "#14162B" },
-
-  langRow: { display: "flex", gap: 6 },
-  langBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 6, padding: "6px 9px", fontSize: 12, cursor: "pointer" },
-
-  wrap: { flex: 1, width: "100%", maxWidth: 760, margin: "0 auto", padding: "0 20px", boxSizing: "border-box" },
-
-  hero: { padding: "48px 0 40px", borderBottom: "1px solid #1E2140" },
-  heroMosaic: { display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 24, maxWidth: 460 },
-  mosaicChip: { fontSize: 11, fontWeight: 700, letterSpacing: 0.5, border: "1px solid", borderRadius: 5, padding: "3px 6px" },
-
-  savedTeaser: { display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", maxWidth: 420, marginTop: 18, background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 8, padding: "14px 16px", color: "#F2F0E9", fontSize: 14, fontWeight: 600, cursor: "pointer", textAlign: "left" },
-  savedTeaserCount: { color: "#A9ACC7", fontWeight: 500, fontSize: 13 },
-
-  howSection: { padding: "40px 0 48px" },
-  howSectionTitle: { fontSize: 20, fontWeight: 700, margin: "0 0 20px" },
-  stepGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 14 },
-  stepCard: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 10, padding: "20px 18px" },
-  stepNum: { display: "inline-block", fontSize: 12, fontWeight: 700, color: "#7C6CF0", border: "1px solid #7C6CF055", borderRadius: 5, padding: "2px 7px", marginBottom: 10 },
-  stepCardTitle: { fontSize: 15, fontWeight: 700, margin: "0 0 6px" },
-  stepCardDesc: { fontSize: 13.5, color: "#A9ACC7", lineHeight: 1.6, margin: 0 },
-
-  emptyState: { paddingTop: 32 },
-  eyebrow: { fontSize: 13, color: "#A9ACC7", margin: "0 0 8px" },
-  title: { fontSize: 36, fontWeight: 700, margin: "0 0 14px", lineHeight: 1.2, maxWidth: 480 },
-  subtitle: { color: "#A9ACC7", fontSize: 15, lineHeight: 1.6, maxWidth: 480, margin: "0 0 28px" },
-  primaryBtn: { background: "#7C6CF0", color: "#14162B", border: "none", borderRadius: 6, padding: "12px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer" },
-  ghostBtn: { background: "transparent", color: "#A9ACC7", border: "1px solid #2A2D52", borderRadius: 6, padding: "12px 20px", fontSize: 14, cursor: "pointer" },
-  progress: { color: "#A9ACC7", fontSize: 13, marginBottom: 8, marginTop: 32 },
-  progressBarOuter: { height: 4, background: "#1E2140", borderRadius: 2, marginBottom: 28, overflow: "hidden" },
-  progressBarInner: { height: "100%", background: "#7C6CF0", transition: "width 200ms ease" },
-  question: { fontSize: 22, fontWeight: 700, lineHeight: 1.4, marginBottom: 24 },
-  optionCol: { display: "flex", flexDirection: "column", gap: 10 },
-  optionBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 8, padding: "16px", color: "#F2F0E9", fontSize: 15, textAlign: "left", cursor: "pointer" },
-  backBtn: { marginTop: 20, marginBottom: 40, background: "transparent", border: "none", color: "#A9ACC7", fontSize: 13, cursor: "pointer", textDecoration: "underline" },
-  resultHead: { display: "flex", alignItems: "baseline", gap: 14, marginBottom: 8, marginTop: 32, flexWrap: "wrap" },
-  resultCode: { fontSize: 48, fontWeight: 700 },
-  resultNickname: { fontSize: 18, color: "#A9ACC7" },
-  resultSeoTitle: { fontSize: 22, fontWeight: 700, margin: "0 0 12px", lineHeight: 1.35, maxWidth: 560 },
-  compatLine: { color: "#A9ACC7", fontSize: 13, margin: "0 0 20px" },
-  platformHint: { color: "#A9ACC7", fontSize: 13, lineHeight: 1.6, margin: "0 0 10px", maxWidth: 520 },
-  gameList: { display: "flex", flexDirection: "column", gap: 12, marginBottom: 32 },
-  gameCard: { background: "#1E2140", borderRadius: 6, padding: 16 },
-  gameName: { fontWeight: 700, fontSize: 16, marginBottom: 4 },
-  gameWhy: { fontSize: 14, color: "#A9ACC7", marginBottom: 10 },
-  steamLink: { fontSize: 13, fontWeight: 600, textDecoration: "none" },
-  actionRow: { display: "flex", gap: 10, flexWrap: "wrap" },
-
-  platformRow: { display: "flex", gap: 8, flexWrap: "wrap", margin: "8px 0 16px" },
-  platformBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 6, padding: "8px 12px", fontSize: 13, fontWeight: 600, cursor: "pointer" },
-
-  shareBox: { marginTop: 32, paddingTop: 24, borderTop: "1px solid #1E2140" },
-  shareTitleText: { fontSize: 13, color: "#A9ACC7", margin: "0 0 12px", fontWeight: 600 },
-  shareRow: { display: "flex", gap: 8, flexWrap: "wrap" },
-  shareBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 6, padding: "9px 14px", fontSize: 13, color: "#F2F0E9", cursor: "pointer" },
-
-  footer: { borderTop: "1px solid #1E2140", marginTop: 40 },
-  footerNote: { maxWidth: 760, margin: "12px auto 0", padding: "0 20px 32px", fontSize: 12, color: "#5E6289", lineHeight: 1.6 },
-  supportLinkFooter: { display: "block", maxWidth: 760, margin: "28px auto 0", padding: "0 20px", color: "#F2A83C", fontSize: 13, fontWeight: 600, textDecoration: "none" },
-
-  historyBox: { marginTop: 20 },
-  historyTitle: { fontSize: 14, color: "#A9ACC7", marginBottom: 12 },
-  historyRow: { display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px solid #1E2140", flexWrap: "wrap" },
-  smallBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#F2F0E9", cursor: "pointer", marginLeft: "auto" },
-  smallBtnGhost: { background: "transparent", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#A9ACC7", cursor: "pointer" },
+  app:{minHeight:"100vh", width:"100%", background:"#14162B", color:"#F2F0E9", display:"flex", flexDirection:"column"},
+  header:{borderBottom:"1px solid #22254A", position:"sticky", top:0, background:"#14162Bee", backdropFilter:"blur(6px)", zIndex:10},
+  headerInner:{maxWidth:760, margin:"0 auto", padding:"14px 20px", display:"flex", alignItems:"center", gap:16, flexWrap:"wrap"},
+  brand:{display:"flex", alignItems:"center", gap:8, background:"transparent", border:"none", cursor:"pointer", padding:0, marginRight:"auto"},
+  brandMark:{width:26, height:26, borderRadius:6, background:"#7C6CF0", color:"#14162B", fontSize:13, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center"},
+  brandName:{fontSize:14, fontWeight:700, color:"#F2F0E9"},
+  navRow:{display:"flex", gap:4, background:"#1E2140", borderRadius:8, padding:4, flexWrap:"wrap"},
+  navBtn:{background:"transparent", border:"none", borderRadius:6, padding:"8px 10px", fontSize:12, fontWeight:600, color:"#A9ACC7", cursor:"pointer"},
+  navBtnActive:{background:"#7C6CF0", color:"#14162B"},
+  langRow:{display:"flex", gap:6},
+  langBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:6, padding:"6px 9px", fontSize:12, cursor:"pointer"},
+  wrap:{flex:1, width:"100%", maxWidth:760, margin:"0 auto", padding:"0 20px", boxSizing:"border-box"},
+  hero:{padding:"48px 0 40px", borderBottom:"1px solid #1E2140"},
+  heroMosaic:{display:"flex", flexWrap:"wrap", gap:6, margin:"12px 0 8px"},
+  mosaicChip:{fontSize:11, fontWeight:700, letterSpacing:0.5, border:"1px solid", borderRadius:5, padding:"6px 8px", background:"transparent"},
+  savedTeaser:{display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", maxWidth:420, marginTop:18, background:"#1E2140", border:"1px solid #2A2D52", borderRadius:8, padding:"14px 16px", color:"#F2F0E9", fontSize:14, fontWeight:600, cursor:"pointer"},
+  savedTeaserCount:{color:"#A9ACC7", fontWeight:500, fontSize:13},
+  howSection:{padding:"32px 0"},
+  howSectionTitle:{fontSize:20, fontWeight:700, margin:"0 0 16px"},
+  stepGrid:{display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(180px, 1fr))", gap:14},
+  stepCard:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:10, padding:"20px 18px"},
+  stepNum:{display:"inline-block", fontSize:12, fontWeight:700, color:"#7C6CF0", border:"1px solid #7C6CF055", borderRadius:5, padding:"2px 7px", marginBottom:10},
+  stepCardTitle:{fontSize:15, fontWeight:700, margin:"0 0 6px"},
+  stepCardDesc:{fontSize:13.5, color:"#A9ACC7", lineHeight:1.6, margin:0},
+  emptyState:{paddingTop:32},
+  eyebrow:{fontSize:13, color:"#A9ACC7", margin:"16px 0 8px"},
+  title:{fontSize:34, fontWeight:700, margin:"0 0 14px", lineHeight:1.2, maxWidth:520},
+  subtitle:{color:"#A9ACC7", fontSize:15, lineHeight:1.6, maxWidth:520, margin:"0 0 20px"},
+  primaryBtn:{background:"#7C6CF0", color:"#14162B", border:"none", borderRadius:6, padding:"12px 20px", fontWeight:700, fontSize:14, cursor:"pointer"},
+  ghostBtn:{background:"transparent", color:"#A9ACC7", border:"1px solid #2A2D52", borderRadius:6, padding:"12px 16px", fontSize:14, cursor:"pointer", textDecoration:"none", display:"inline-block"},
+  progress:{color:"#A9ACC7", fontSize:13, marginBottom:8, marginTop:32},
+  progressBarOuter:{height:4, background:"#1E2140", borderRadius:2, marginBottom:28, overflow:"hidden"},
+  progressBarInner:{height:"100%", background:"#7C6CF0"},
+  question:{fontSize:22, fontWeight:700, lineHeight:1.4, marginBottom:24},
+  optionCol:{display:"flex", flexDirection:"column", gap:10},
+  optionBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:8, padding:16, color:"#F2F0E9", fontSize:15, textAlign:"left", cursor:"pointer"},
+  backBtn:{marginTop:20, marginBottom:40, background:"transparent", border:"none", color:"#A9ACC7", fontSize:13, cursor:"pointer", textDecoration:"underline"},
+  resultHead:{display:"flex", alignItems:"baseline", gap:14, marginBottom:8, flexWrap:"wrap"},
+  resultCode:{fontSize:48, fontWeight:700},
+  resultNickname:{fontSize:18, color:"#A9ACC7"},
+  resultSeoTitle:{fontSize:22, fontWeight:700, margin:"0 0 12px", lineHeight:1.35},
+  compatLine:{color:"#A9ACC7", fontSize:13, margin:"0 0 12px"},
+  blockTitle:{fontSize:18, margin:"20px 0 12px"},
+  gameList:{display:"flex", flexDirection:"column", gap:12, marginBottom:24},
+  gameCard:{background:"#1E2140", borderRadius:8, padding:16},
+  gameTop:{display:"flex", justifyContent:"space-between", gap:12, alignItems:"baseline"},
+  gameName:{fontWeight:700, fontSize:16, marginBottom:4},
+  gameWhy:{fontSize:14, color:"#A9ACC7", marginBottom:10},
+  scorePill:{fontWeight:700, fontSize:18},
+  miniStats:{display:"flex", flexWrap:"wrap", gap:8, fontSize:12, color:"#A9ACC7", marginBottom:10},
+  cardLinks:{display:"flex", flexWrap:"wrap", gap:10, alignItems:"center"},
+  steamLink:{fontSize:13, fontWeight:600, textDecoration:"none"},
+  textBtn:{background:"transparent", border:"none", color:"#A9ACC7", fontSize:12, cursor:"pointer", textDecoration:"underline"},
+  actionRow:{display:"flex", gap:10, flexWrap:"wrap", marginTop:8},
+  platformRow:{display:"flex", gap:8, flexWrap:"wrap", margin:"8px 0 12px"},
+  platformBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:6, padding:"8px 12px", fontSize:13, fontWeight:600, cursor:"pointer", color:"#F2F0E9"},
+  shareBox:{marginTop:32, paddingTop:24, borderTop:"1px solid #1E2140"},
+  shareTitleText:{fontSize:13, color:"#A9ACC7", margin:"0 0 12px", fontWeight:600},
+  shareRow:{display:"flex", gap:8, flexWrap:"wrap"},
+  shareBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:6, padding:"9px 14px", fontSize:13, color:"#F2F0E9", cursor:"pointer"},
+  footer:{borderTop:"1px solid #1E2140", marginTop:40},
+  footerNote:{maxWidth:760, margin:"12px auto 0", padding:"0 20px 32px", fontSize:12, color:"#5E6289", lineHeight:1.6},
+  supportLinkFooter:{display:"block", maxWidth:760, margin:"28px auto 0", padding:"0 20px", color:"#F2A83C", fontSize:13, fontWeight:600, textDecoration:"none"},
+  historyRow:{display:"flex", alignItems:"center", gap:10, padding:"8px 0", borderBottom:"1px solid #1E2140", flexWrap:"wrap"},
+  smallBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:5, padding:"5px 10px", fontSize:12, color:"#F2F0E9", cursor:"pointer", marginLeft:"auto"},
+  smallBtnGhost:{background:"transparent", border:"1px solid #2A2D52", borderRadius:5, padding:"5px 10px", fontSize:12, color:"#A9ACC7", cursor:"pointer"},
+  tasteBox:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:10, padding:16, marginBottom:16},
+  statRow:{display:"flex", justifyContent:"space-between", padding:"6px 0", borderBottom:"1px solid #2A2D52", fontSize:14},
+  statLab:{color:"#A9ACC7"},
+  statStars:{letterSpacing:2},
+  rankRow:{display:"flex", gap:12, alignItems:"center", padding:"10px 0", borderBottom:"1px solid #1E2140", width:"100%", background:"transparent", color:"#F2F0E9", borderLeft:"none", borderRight:"none", borderTop:"none", cursor:"pointer", fontSize:14},
+  search:{width:"100%", boxSizing:"border-box", margin:"8px 0 16px", padding:"12px 14px", borderRadius:8, border:"1px solid #2A2D52", background:"#1E2140", color:"#F2F0E9", fontSize:14},
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
