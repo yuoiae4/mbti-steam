@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>MBTI ゲーム診断 | 自分に合うゲームを探す（Steam・スイッチ・スマホ・Xbox）</title>
-<meta name="description" content="MBTIゲーム診断。20問で性格とゲーム嗜好を分けて判定。合うゲーム・合わないゲーム・今日の1本・友達相性まで。無料・登録不要。" />
+<meta name="description" content="MBTIゲーム診断。MBTIとゲーム人格で、自分に合うゲームを探すサイト。類似推薦・条件検索・今日の1本・友達相性・合わないゲームまで。無料・登録不要。" />
 <meta name="keywords" content="MBTI ゲーム 診断,MBTI おすすめゲーム,性格 ゲーム 診断,MBTI Steam,MBTI スイッチ おすすめ,MBTI スマホゲーム" />
 <link rel="canonical" href="index.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -410,6 +410,29 @@ const UI = {
     sectionHard:"難しさ", sectionBrain:"頭脳", sectionAction:"アクション", sectionShort:"短時間", sectionTension:"緊張感",
     coop:"協力", versus:"対戦", party:"パーティー", puzzle:"パズル",
     lookType:"タイプページを見る",
+    todayHome:"今日やるゲームを決める",
+    todayMood:"今の気分",
+    moodTired:"疲れてる", moodBored:"暇", moodFriends:"誰かと遊びたい",
+    todayTime:"今日の時間",
+    time30:"30分だけ", time60:"1時間", time120:"2時間以上",
+    personaTitle:"あなたのゲーム人格",
+    personaLike:"好きな傾向", personaHate:"苦手な傾向",
+    similarTitle2:"このゲームが好きならこれ",
+    compatWithGame:"このゲームとの相性",
+    filterTitle:"条件で探す",
+    filterFree:"無料〜安い",
+    filterJp:"日本語向き",
+    voteTitle:"このゲームはどんな人向き？",
+    voteSolo:"一人で遊ぶ", voteFriends:"友達と遊ぶ", voteChill:"まったり", voteGrind:"ガチ",
+    voted:"投票した",
+    profileSaved:"プロフィールを保存した",
+    saveProfile:"ゲームプロフィールを保存",
+    whyLong:"なぜあなたにおすすめ？",
+    fightWarn:"2人とも競争心が強いので、対戦では揉めやすいかも",
+    friendScore:"2人のゲーム相性",
+    attrTitle:"ゲームの属性",
+    changeTitle:"ゲーム嗜好の変化",
+    explore:"探索", freedom:"自由度",
   },
   en: {
     appTitle:"MBTI Game Finder", tagline:"20 questions split personality and game taste. You get fits and mismatches.",
@@ -456,6 +479,29 @@ const UI = {
     sectionHard:"Challenge", sectionBrain:"Brainy", sectionAction:"Action", sectionShort:"Short sessions", sectionTension:"Tension",
     coop:"Co-op", versus:"Versus", party:"Party", puzzle:"Puzzle",
     lookType:"Open type page",
+    todayHome:"Decide today's game",
+    todayMood:"Mood",
+    moodTired:"Tired", moodBored:"Free time", moodFriends:"Want company",
+    todayTime:"Time today",
+    time30:"30 minutes", time60:"1 hour", time120:"2+ hours",
+    personaTitle:"Your game persona",
+    personaLike:"You lean toward", personaHate:"You usually skip",
+    similarTitle2:"If you like this, try",
+    compatWithGame:"Fit with this game",
+    filterTitle:"Filter games",
+    filterFree:"Free / cheap",
+    filterJp:"Works in Japanese",
+    voteTitle:"Who is this for?",
+    voteSolo:"Solo", voteFriends:"With friends", voteChill:"Chill", voteGrind:"Sweaty",
+    voted:"Voted",
+    profileSaved:"Profile saved",
+    saveProfile:"Save game profile",
+    whyLong:"Why this pick?",
+    fightWarn:"Both of you are competitive — versus games may get spicy",
+    friendScore:"Duo compatibility",
+    attrTitle:"Game attributes",
+    changeTitle:"How your taste shifted",
+    explore:"Explore", freedom:"Freedom",
   },
   zh: {
     appTitle:"MBTI 游戏诊断", tagline:"20题把性格和游戏口味分开判断，既有适合的，也有不太适合的。",
@@ -502,6 +548,29 @@ const UI = {
     sectionHard:"难度", sectionBrain:"动脑", sectionAction:"动作", sectionShort:"碎片时间", sectionTension:"紧张感",
     coop:"合作", versus:"对战", party:"派对", puzzle:"解谜",
     lookType:"查看类型页",
+    todayHome:"决定今天玩什么",
+    todayMood:"现在的心情",
+    moodTired:"好累", moodBored:"很闲", moodFriends:"想找人一起",
+    todayTime:"今天有多少时间",
+    time30:"只玩30分钟", time60:"1小时", time120:"2小时以上",
+    personaTitle:"你的游戏人格",
+    personaLike:"更偏向", personaHate:"不太适合",
+    similarTitle2:"喜欢这款的话还可以",
+    compatWithGame:"和这款游戏的相性",
+    filterTitle:"按条件找",
+    filterFree:"免费或便宜",
+    filterJp:"适合日语/中文环境",
+    voteTitle:"这款适合怎样的人？",
+    voteSolo:"一个人玩", voteFriends:"和朋友玩", voteChill:"轻松", voteGrind:"肝",
+    voted:"已投票",
+    profileSaved:"已保存档案",
+    saveProfile:"保存游戏档案",
+    whyLong:"为什么推荐给你？",
+    fightWarn:"你们都比较好胜，对战可能会吵",
+    friendScore:"两人游戏相性",
+    attrTitle:"游戏属性",
+    changeTitle:"口味变化",
+    explore:"探索", freedom:"自由度",
   },
 };
 
@@ -572,20 +641,20 @@ const GAMES = [
   G({name:"Super Smash Bros. Ultimate", platforms:["nintendo"], tags:["friends","pvp","party","action"], stats:{solo:2,multi:5,grind:4,story:1,chill:1,hard:4,brain:3,action:5,short:4,tension:5}, boost:{ESTP:94,ENTP:88,ESFP:86,ISTP:84}, why:{ja:"対戦の前提を毎回ひっくり返す",en:"Every match flips the premise",zh:"每场都能推翻前提"}}),
   G({name:"Overcooked! 2", platforms:["steam","nintendo","xbox"], tags:["friends","coop","party","short"], stats:{solo:1,multi:5,grind:2,story:1,chill:2,hard:3,brain:3,action:3,short:5,tension:4}, boost:{ENFJ:94,ESFJ:92,ESFP:90,ENFP:84}, why:{ja:"まとめ役がいないと崩壊する",en:"Someone has to hold the kitchen",zh:"没人指挥就会崩"}}),
   G({name:"It Takes Two", platforms:["steam","nintendo","xbox"], tags:["friends","coop","story"], stats:{solo:1,multi:5,grind:2,story:5,chill:3,hard:2,brain:2,action:3,short:3,tension:2}, boost:{ENFJ:96,ESFJ:88,ENFP:86,INFP:80}, why:{ja:"二人で勝つ前提の物語",en:"A story that needs two winners",zh:"以两人一起赢为前提"}}),
-  G({name:"Among Us", platforms:["steam","nintendo","mobile"], tags:["friends","party","pvp","short"], stats:{solo:1,multi:5,grind:1,story:1,chill:2,hard:2,brain:3,action:1,short:5,tension:4}, boost:{ENTP:90,ESFP:92,ENFJ:88,ESFJ:86}, why:{ja:"人を読んで場を壊せる",en:"Read the room, then break it",zh:"读人然后搅局"}}),
-  G({name:"Apex Legends", platforms:["steam","xbox","nintendo"], tags:["pvp","action","friends"], stats:{solo:2,multi:5,grind:4,story:1,chill:1,hard:5,brain:3,action:5,short:4,tension:5}, boost:{ESTP:96,ENTJ:80,ISTP:82,ESFP:78}, why:{ja:"一瞬の判断が勝敗を分ける",en:"Split-second calls decide it",zh:"瞬间判断定胜负"}, avoid:{ja:"対人ストレスと反射の比重が高い",en:"High PvP stress and reflex load",zh:"对人压力和反应要求高"}}),
+  G({name:"Among Us", free:true, platforms:["steam","nintendo","mobile"], tags:["friends","party","pvp","short"], stats:{solo:1,multi:5,grind:1,story:1,chill:2,hard:2,brain:3,action:1,short:5,tension:4}, boost:{ENTP:90,ESFP:92,ENFJ:88,ESFJ:86}, why:{ja:"人を読んで場を壊せる",en:"Read the room, then break it",zh:"读人然后搅局"}}),
+  G({name:"Apex Legends", free:true, platforms:["steam","xbox","nintendo"], tags:["pvp","action","friends"], stats:{solo:2,multi:5,grind:4,story:1,chill:1,hard:5,brain:3,action:5,short:4,tension:5}, boost:{ESTP:96,ENTJ:80,ISTP:82,ESFP:78}, why:{ja:"一瞬の判断が勝敗を分ける",en:"Split-second calls decide it",zh:"瞬间判断定胜负"}, avoid:{ja:"対人ストレスと反射の比重が高い",en:"High PvP stress and reflex load",zh:"对人压力和反应要求高"}}),
   G({name:"Factorio", platforms:["steam"], tags:["solo","grind","sim","brain","long"], stats:{solo:5,multi:2,grind:5,story:1,chill:2,hard:4,brain:5,action:1,short:1,tension:3}, boost:{ISTJ:96,INTJ:94,INTP:88,ENTJ:84}, why:{ja:"効率化そのものが目的",en:"Efficiency is the goal",zh:"效率本身就是目标"}}),
   G({name:"RimWorld", platforms:["steam"], tags:["solo","sim","story","grind"], stats:{solo:5,multi:1,grind:5,story:4,chill:2,hard:4,brain:5,action:1,short:2,tension:4}, boost:{INTJ:90,ISTJ:88,INTP:86,ENTJ:80}, why:{ja:"コロニーを仕組みで回す",en:"Run a colony as a system",zh:"用系统运转殖民地"}}),
   G({name:"Spiritfarer", platforms:["steam","nintendo","xbox"], tags:["solo","story","chill"], stats:{solo:5,multi:1,grind:2,story:5,chill:5,hard:1,brain:2,action:1,short:3,tension:1}, boost:{ISFJ:96,INFJ:92,INFP:90}, why:{ja:"誰かの最期に寄り添う",en:"Care for people to the end",zh:"陪伴走到最后"}}),
   G({name:"Phasmophobia", platforms:["steam","xbox"], tags:["friends","horror","coop"], stats:{solo:2,multi:5,grind:2,story:2,chill:1,hard:3,brain:3,action:2,short:4,tension:5}, boost:{ESFJ:80,ESTP:78,ENFP:76,ESFP:82}, why:{ja:"みんなで悲鳴を上げる",en:"Screaming together is the fun",zh:"一起尖叫就是乐趣"}, avoid:{ja:"緊張と恐怖の比重が高い",en:"Heavy on fear and tension",zh:"紧张和恐怖比重高"}}),
-  G({name:"Fall Guys", platforms:["steam","nintendo","xbox"], tags:["party","friends","short"], stats:{solo:2,multi:5,grind:1,story:1,chill:3,hard:1,brain:1,action:3,short:5,tension:2}, boost:{ESFP:96,ESFJ:90,ENFP:84}, why:{ja:"失敗しても笑える",en:"Failing is still funny",zh:"失败也能笑"}}),
+  G({name:"Fall Guys", free:true, platforms:["steam","nintendo","xbox"], tags:["party","friends","short"], stats:{solo:2,multi:5,grind:1,story:1,chill:3,hard:1,brain:1,action:3,short:5,tension:2}, boost:{ESFP:96,ESFJ:90,ENFP:84}, why:{ja:"失敗しても笑える",en:"Failing is still funny",zh:"失败也能笑"}}),
   G({name:"The Jackbox Party Pack", platforms:["steam","nintendo","xbox"], tags:["party","friends","short"], stats:{solo:1,multi:5,grind:1,story:1,chill:4,hard:1,brain:2,action:1,short:5,tension:1}, boost:{ESFP:95,ESFJ:93,ENFJ:88,ENFP:86}, why:{ja:"スマホだけで全員参加",en:"Everyone joins from a phone",zh:"只用手机就能全员参与"}}),
-  G({name:"Genshin Impact", platforms:["steam","mobile","xbox"], tags:["solo","story","grind","rpg"], stats:{solo:4,multi:3,grind:5,story:4,chill:3,hard:3,brain:2,action:3,short:3,tension:2}, boost:{ENFP:90,INFP:84,ENTP:82,ISFP:80}, why:{ja:"寄り道するほど世界が広がる",en:"The world grows as you wander",zh:"越绕路世界越大"}}),
-  G({name:"Pokémon GO", platforms:["mobile"], tags:["friends","short","collection"], stats:{solo:3,multi:4,grind:3,story:1,chill:4,hard:1,brain:1,action:2,short:5,tension:1}, boost:{ESFJ:90,ENFJ:88,ENFP:86,ISFJ:80}, why:{ja:"外で人と自然につながる",en:"Meet people while you walk",zh:"出门就能自然遇见人"}}),
+  G({name:"Genshin Impact", free:true, platforms:["steam","mobile","xbox"], tags:["solo","story","grind","rpg"], stats:{solo:4,multi:3,grind:5,story:4,chill:3,hard:3,brain:2,action:3,short:3,tension:2}, boost:{ENFP:90,INFP:84,ENTP:82,ISFP:80}, why:{ja:"寄り道するほど世界が広がる",en:"The world grows as you wander",zh:"越绕路世界越大"}}),
+  G({name:"Pokémon GO", free:true, platforms:["mobile"], tags:["friends","short","collection"], stats:{solo:3,multi:4,grind:3,story:1,chill:4,hard:1,brain:1,action:2,short:5,tension:1}, boost:{ESFJ:90,ENFJ:88,ENFP:86,ISFJ:80}, why:{ja:"外で人と自然につながる",en:"Meet people while you walk",zh:"出门就能自然遇见人"}}),
   G({name:"Clash Royale", platforms:["mobile"], tags:["pvp","brain","short"], stats:{solo:3,multi:5,grind:4,story:1,chill:1,hard:4,brain:4,action:3,short:5,tension:5}, boost:{ENTJ:90,ESTP:88,ESTJ:84,ENTP:80}, why:{ja:"短い勝負でテンポを握る",en:"Win the tempo in short matches",zh:"短对局里抢节奏"}, avoid:{ja:"対人と時間圧が強い",en:"PvP and time pressure are high",zh:"对人和时间压力强"}}),
   G({name:"Monument Valley", platforms:["mobile"], tags:["solo","chill","puzzle","short","story"], stats:{solo:5,multi:1,grind:1,story:3,chill:5,hard:2,brain:4,action:1,short:5,tension:1}, boost:{ISFP:94,INFJ:90,INFP:86}, why:{ja:"触感と色彩が遊びになる",en:"Color and touch are the game",zh:"触感和色彩就是玩法"}}),
   G({name:"Forza Horizon 5", platforms:["steam","xbox"], tags:["action","sandbox","chill"], stats:{solo:3,multi:3,grind:3,story:1,chill:3,hard:2,brain:1,action:5,short:3,tension:3}, boost:{ESTP:92,ISFP:86,ESFP:84,ISTP:90}, why:{ja:"景色の中を感覚で走る",en:"Drive by feel through a landscape",zh:"凭感觉在风景里开"}}),
-  G({name:"Halo Infinite", platforms:["xbox","steam"], tags:["pvp","action","friends"], stats:{solo:3,multi:5,grind:3,story:3,chill:1,hard:4,brain:2,action:5,short:4,tension:5}, boost:{ESTP:94,ESTJ:86,ISTP:84,ENTJ:78}, why:{ja:"今この瞬間の撃ち合い",en:"The gunfight in this second",zh:"此刻的交火"}, avoid:{ja:"反射と対人の比重が高い",en:"Reflex PvP is the core",zh:"反应和对人是核心"}}),
+  G({name:"Halo Infinite", free:true, platforms:["xbox","steam"], tags:["pvp","action","friends"], stats:{solo:3,multi:5,grind:3,story:3,chill:1,hard:4,brain:2,action:5,short:4,tension:5}, boost:{ESTP:94,ESTJ:86,ISTP:84,ENTJ:78}, why:{ja:"今この瞬間の撃ち合い",en:"The gunfight in this second",zh:"此刻的交火"}, avoid:{ja:"反射と対人の比重が高い",en:"Reflex PvP is the core",zh:"反应和对人是核心"}}),
   G({name:"Sea of Thieves", platforms:["steam","xbox"], tags:["friends","sandbox","coop","pvp"], stats:{solo:2,multi:5,grind:2,story:2,chill:2,hard:3,brain:2,action:3,short:2,tension:4}, boost:{ENTP:88,ESFP:90,ENFJ:86,ESTP:84}, why:{ja:"その場の思いつきが勝つ",en:"Improvisation beats a rigid plan",zh:"临场发挥胜过死计划"}}),
   G({name:"Cities: Skylines", platforms:["steam","xbox","nintendo"], tags:["solo","sim","brain"], stats:{solo:5,multi:1,grind:4,story:1,chill:3,hard:3,brain:4,action:1,short:2,tension:2}, boost:{ESTJ:94,ISTJ:90,INTJ:86,ENTJ:84}, why:{ja:"計画どおりに街が動く",en:"A city that runs to plan",zh:"城市按你的规划运转"}}),
   G({name:"XCOM 2", platforms:["steam","xbox"], tags:["solo","strategy","brain","hard"], stats:{solo:5,multi:1,grind:4,story:3,chill:1,hard:5,brain:5,action:2,short:3,tension:5}, boost:{ESTJ:90,INTJ:92,ENTJ:88,ISTJ:84}, why:{ja:"限られた資源を管理する",en:"Tight resources under pressure",zh:"压力下管理有限资源"}}),
@@ -681,6 +750,81 @@ function tasteSummary(prefs, lang){
   if (prefs.short>=4) bits.push(UI[lang].sectionShort);
   return bits.slice(0,3).join("・") || UI[lang].sectionChill;
 }
+function personaScores(prefs){
+  const explore = Math.round(((prefs.free||3)+(6-(prefs.short||3))+((prefs.story||3))) / 15 * 100);
+  const grind = Math.round((prefs.grind||3)/5*100);
+  const solo = Math.round((prefs.solo||3)/5*100);
+  const social = Math.round((prefs.multi||3)/5*100);
+  const story = Math.round((prefs.story||3)/5*100);
+  const chill = Math.round((prefs.chill||3)/5*100);
+  const pvp = Math.round((prefs.pvp||prefs.tension||3)/5*100);
+  const brain = Math.round((prefs.brain||3)/5*100);
+  return {explore, grind, solo, social, story, chill, pvp, brain};
+}
+function personaRole(prefs, lang){
+  const sc = personaScores(prefs);
+  const pairs = [
+    [sc.solo, lang==="zh"?"Solo Player": lang==="en"?"Solo Player":"ソロ勢"],
+    [sc.social, lang==="zh"?"Party Player": lang==="en"?"Party Player":"みんなで勢"],
+    [sc.grind, lang==="zh"?"Grinder": lang==="en"?"Grinder":"やり込み勢"],
+    [sc.explore, lang==="zh"?"Explorer": lang==="en"?"Explorer":"探索勢"],
+    [sc.story, lang==="zh"?"Story Seeker": lang==="en"?"Story Seeker":"物語勢"],
+    [sc.chill, lang==="zh"?"Cozy Player": lang==="en"?"Cozy Player":"まったり勢"],
+    [sc.pvp, lang==="zh"?"Competitor": lang==="en"?"Competitor":"対戦勢"],
+    [sc.brain, lang==="zh"?"Tactician": lang==="en"?"Tactician":"頭脳勢"],
+  ].sort((a,b)=>b[0]-a[0]);
+  return pairs[0][1];
+}
+function likesAndHates(prefs, lang){
+  const sc = personaScores(prefs);
+  const labels = {
+    explore: UI[lang].explore, grind: UI[lang].sectionGrind, solo: UI[lang].sectionSolo,
+    social: UI[lang].sectionMulti, story: UI[lang].sectionStory, chill: UI[lang].sectionChill,
+    pvp: UI[lang].versus, brain: UI[lang].sectionBrain,
+  };
+  const items = Object.keys(sc).map((k)=>({k, v:sc[k], label:labels[k]}));
+  const like = items.filter(x=>x.v>=70).map(x=>x.label);
+  const hate = items.filter(x=>x.v<=40).map(x=>x.label);
+  return {like: like.slice(0,4), hate: hate.slice(0,3)};
+}
+function similarGames(game, n=4){
+  return GAMES.filter((g)=>g.name!==game.name).map((g)=>{
+    let d=0; STAT_KEYS.forEach((k)=>{ d += Math.abs((g.stats[k]||3)-(game.stats[k]||3)); });
+    const tags = new Set(game.tags||[]);
+    const shared = (g.tags||[]).filter((x)=>tags.has(x)).length;
+    return {game:g, score: Math.round(100 - d*2 + shared*6)};
+  }).sort((a,b)=>b.score-a.score).slice(0,n);
+}
+function gameCompatComment(game, prefs, lang){
+  const bits = [];
+  if ((prefs.pvp||0)>=4 && (game.stats.tension||0)>=4) {
+    bits.push(lang==="ja"?"対人は好きでも、長い緊張が続くと疲れやすいです。": lang==="en"?"You like competition, but long tension may drain you.": "你喜欢对战，但长时间紧张容易累。");
+  }
+  if ((prefs.solo||0)>=4 && (game.stats.multi||0)>=4) {
+    bits.push(lang==="ja"?"ソロ志向なので、強制マルチは重く感じやすいかも。": lang==="en"?"Solo lean — forced multiplayer may feel heavy.": "偏单人的话，强制联机可能会累。");
+  }
+  if ((prefs.chill||0)>=4 && (game.stats.hard||0)>=4) {
+    bits.push(lang==="ja"?"リラックスしたい日には難易度が邪魔になることがあります。": lang==="en"?"On tired days the difficulty may get in the way.": "想放松的日子里，难度会碍事。");
+  }
+  return bits[0] || "";
+}
+function filterGames(opts){
+  return GAMES.filter((g)=>{
+    if (opts.platform && opts.platform!=="all" && !(g.platforms||[]).includes(opts.platform)) return false;
+    if (opts.free && !g.free) return false;
+    if (opts.tag && !(g.tags||[]).includes(opts.tag)) return false;
+    if (opts.time==="30" && (g.stats.short||0)<4) return false;
+    if (opts.time==="60" && (g.stats.short||0)<3 && (g.stats.grind||0)>4) return false;
+    if (opts.time==="120" && (g.stats.short||0)>=5 && (g.stats.grind||0)<3) return false;
+    if (opts.mood==="tired" && (g.stats.chill||0)<4) return false;
+    if (opts.mood==="friends" && (g.stats.multi||0)<4) return false;
+    if (opts.q && !g.name.toLowerCase().includes(opts.q.toLowerCase())) return false;
+    return true;
+  });
+}
+function loadVotes(){ try { return JSON.parse(localStorage.getItem("mbti-game-votes")||"{}"); } catch(e){ return {}; } }
+function saveVotes(v){ try { localStorage.setItem("mbti-game-votes", JSON.stringify(v)); } catch(e){} }
+
 function stars(n){
   const v = Math.max(1, Math.min(5, Math.round(n)));
   return "★".repeat(v) + "☆".repeat(5-v);
@@ -721,10 +865,18 @@ function App(){
   const [friendType, setFriendType] = useState("ESFP");
   const [gameQuery, setGameQuery] = useState("");
   const [focusGame, setFocusGame] = useState(null);
+  const [todayMood, setTodayMood] = useState("bored");
+  const [todayTime, setTodayTime] = useState("60");
+  const [filterPlat, setFilterPlat] = useState("all");
+  const [filterTag, setFilterTag] = useState("");
+  const [filterFree, setFilterFree] = useState(false);
+  const [votes, setVotes] = useState({});
+  const [profileMsg, setProfileMsg] = useState(false);
   const t = UI[lang];
 
   useEffect(()=>{
     try { const raw = localStorage.getItem(STORAGE_KEY); if (raw) setHistory(JSON.parse(raw)); } catch(e){}
+    setVotes(loadVotes());
     try {
       const params = new URLSearchParams(window.location.search);
       const shared = (params.get("type")||"").toUpperCase();
@@ -817,6 +969,7 @@ function App(){
           <div style={{...s.scorePill, color:temp.accent}}>{score}%</div>
         </div>
         <div style={s.gameWhy}>{g.why[lang]}{showAvoid && g.avoid ? " — " + g.avoid[lang] : ""}</div>
+        {resultType && <div style={s.gameWhy}>{t.whyLong} {t.mbtiNote(resultType, tasteSummary(prefs, lang))}</div>}
         <div style={s.miniStats}>
           <span>{t.sectionSolo} {stars(g.stats.solo)}</span>
           <span>{t.sectionBrain} {stars(g.stats.brain)}</span>
@@ -876,6 +1029,28 @@ function App(){
               <h1 className="display" style={s.title}>{t.appTitle}</h1>
               <p style={s.subtitle}>{t.tagline}</p>
               <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
+              <div style={s.tasteBox}>
+                <h2 className="display" style={s.blockTitle}>🎲 {t.todayHome}</h2>
+                <p style={s.compatLine}>{t.todayMood}</p>
+                <div style={s.platformRow}>
+                  {[["tired",t.moodTired],["bored",t.moodBored],["friends",t.moodFriends]].map(([id,lab])=>(
+                    <button key={id} onClick={()=>setTodayMood(id)} style={{...s.platformBtn, borderColor: todayMood===id?"#7C6CF0":"#2A2D52"}}>{lab}</button>
+                  ))}
+                </div>
+                <p style={s.compatLine}>{t.todayTime}</p>
+                <div style={s.platformRow}>
+                  {[["30",t.time30],["60",t.time60],["120",t.time120]].map(([id,lab])=>(
+                    <button key={id} onClick={()=>setTodayTime(id)} style={{...s.platformBtn, borderColor: todayTime===id?"#7C6CF0":"#2A2D52"}}>{lab}</button>
+                  ))}
+                </div>
+                <button style={s.primaryBtn} onClick={()=>{
+                  const pool = filterGames({mood: todayMood, time: todayTime});
+                  const list = (pool.length?pool:GAMES).map((g)=>({game:g, score: resultType?matchScore(g,resultType,prefs):60}));
+                  list.sort((a,b)=>b.score-a.score);
+                  const pick = list[Math.floor(Math.random()*Math.min(8,list.length))];
+                  setTodayPick(pick); setTab("today"); setScreen(resultType?"result":"today");
+                }}>{t.todayBtn}</button>
+              </div>
               <button style={s.savedTeaser} onClick={()=>setScreen("saved")}>
                 <span>{t.savedResults}</span>
                 <span style={s.savedTeaserCount}>{history.length? t.countLabel(history.length)+" →" : t.noSaved}</span>
@@ -930,6 +1105,15 @@ function App(){
             <h1 className="display" style={s.resultSeoTitle}>{t.resultHeading(resultType)}</h1>
             <p style={s.subtitle}>{current.blurb[lang]}</p>
             <p style={s.compatLine}>{t.mbtiNote(resultType, tasteSummary(prefs, lang))}</p>
+            <div style={s.tasteBox}>
+              <h2 className="display" style={s.blockTitle}>{t.personaTitle}</h2>
+              <p className="display" style={{margin:"0 0 8px"}}>{resultType} / {personaRole(prefs, lang)}</p>
+              <p style={s.compatLine}>
+                {(() => { const sc = personaScores(prefs); return `${t.sectionGrind}${sc.grind} × ${t.sectionSolo}${sc.solo} × ${t.explore}${sc.explore}`; })()}
+              </p>
+              <p style={s.compatLine}>{t.personaLike}: {likesAndHates(prefs, lang).like.join(" / ") || "-"}</p>
+              <p style={s.compatLine}>{t.personaHate}: {likesAndHates(prefs, lang).hate.join(" / ") || "-"}</p>
+            </div>
             <p style={s.compatLine}>{t.compatLabel}: {(COMPAT[resultType]||[]).join(" / ")}　·　{t.updatedLabel}: {GAMES_UPDATED}</p>
 
             <div style={s.platformRow}>
@@ -989,10 +1173,12 @@ function App(){
                 </div>
                 {friendBars && (
                   <div style={s.tasteBox}>
+                    <p className="display" style={{fontSize:22, margin:"0 0 8px"}}>{t.friendScore} {Math.round((friendBars.coop+friendBars.party+friendBars.puzzle+(6-Math.abs(friendBars.versus-3))) / 20 * 100)}%</p>
                     <StatRow label={t.coop} value={friendBars.coop} />
                     <StatRow label={t.versus} value={friendBars.versus} />
                     <StatRow label={t.puzzle} value={friendBars.puzzle} />
                     <StatRow label={t.party} value={friendBars.party} />
+                    {friendBars.versus>=4 && <p style={s.compatLine}>⚠️ {t.fightWarn}</p>}
                   </div>
                 )}
                 <div style={s.gameList}>{friendGames.map((item)=><GameCard key={item.game.name} item={item} />)}</div>
@@ -1001,6 +1187,12 @@ function App(){
 
             <div style={s.actionRow}>
               <button style={s.primaryBtn} onClick={saveResult}>{saveMsg?t.saved:t.save}</button>
+              <button style={s.ghostBtn} onClick={()=>{
+                const entry = { type: resultType, date: new Date().toISOString().slice(0,10), prefs:{...prefs}, top: top[0] && top[0].game.name, role: personaRole(prefs, lang) };
+                const next = [entry, ...history].slice(0,20);
+                setHistory(next);
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); setProfileMsg(true); setTimeout(()=>setProfileMsg(false),1800);} catch(e){}
+              }}>{profileMsg?t.profileSaved:t.saveProfile}</button>
               <button style={s.ghostBtn} onClick={()=>setTab("friend")}>{t.inviteFriend}</button>
               <button style={s.ghostBtn} onClick={startQuiz}>{t.retake}</button>
               <button style={s.ghostBtn} onClick={()=>setScreen("type")}>{t.lookType}</button>
@@ -1051,13 +1243,24 @@ function App(){
 
         {screen==="games" && (
           <div>
-            <p className="display" style={s.eyebrow}>{t.gameIndexTitle}</p>
+            <p className="display" style={s.eyebrow}>{t.filterTitle}</p>
             <input value={gameQuery} onChange={(e)=>setGameQuery(e.target.value)} placeholder={t.searchGame} style={s.search} />
+            <div style={s.platformRow}>
+              {["all",...PLATFORMS].map((plat)=>(
+                <button key={plat} onClick={()=>setFilterPlat(plat)} style={{...s.platformBtn, borderColor: filterPlat===plat?"#7C6CF0":"#2A2D52"}}>{platformLabel[plat]}</button>
+              ))}
+            </div>
+            <div style={s.platformRow}>
+              {["","solo","friends","chill","grind","story","brain","short","horror","sandbox","party"].map((tag)=>(
+                <button key={tag||"any"} onClick={()=>setFilterTag(tag)} style={{...s.platformBtn, borderColor: filterTag===tag?"#7C6CF0":"#2A2D52"}}>{tag||"ALL"}</button>
+              ))}
+              <button onClick={()=>setFilterFree(!filterFree)} style={{...s.platformBtn, borderColor: filterFree?"#7C6CF0":"#2A2D52"}}>{t.filterFree}</button>
+            </div>
             <div style={s.gameList}>
-              {filteredCatalog.map((g)=>(
+              {filterGames({platform:filterPlat, tag:filterTag, free:filterFree, q:gameQuery}).map((g)=>(
                 <button key={g.name} style={{...s.gameCard, textAlign:"left", cursor:"pointer", color:"#F2F0E9"}} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>
-                  <div className="display" style={s.gameName}>{g.name}</div>
-                  <div style={s.gameWhy}>{g.platforms.join(" / ")} · {g.why[lang]}</div>
+                  <div className="display" style={s.gameName}>{g.name} {g.free?"· FREE":""}</div>
+                  <div style={s.gameWhy}>{(g.tags||[]).join(" / ")} · {g.why[lang]}</div>
                 </button>
               ))}
             </div>
@@ -1069,8 +1272,27 @@ function App(){
             <p className="display" style={s.eyebrow}>{t.fromGame}</p>
             <h1 className="display" style={s.title}>{focusGame.name}</h1>
             <p style={s.subtitle}>{focusGame.why[lang]}</p>
+            {resultType && (
+              <div style={s.tasteBox}>
+                <h2 className="display" style={s.blockTitle}>{t.compatWithGame}</h2>
+                <p className="display" style={{fontSize:28, margin:"0 0 8px"}}>{matchScore(focusGame, resultType, prefs)}%</p>
+                <p style={s.compatLine}>{t.whyLong}</p>
+                <p style={s.compatLine}>{t.mbtiNote(resultType, tasteSummary(prefs, lang))}</p>
+                <p style={s.compatLine}>{gameCompatComment(focusGame, prefs, lang)}</p>
+              </div>
+            )}
+            <h2 className="display" style={s.blockTitle}>{t.attrTitle}</h2>
             <div style={s.tasteBox}>
               {STAT_KEYS.map((k)=><StatRow key={k} label={STAT_LABEL[lang][k]} value={focusGame.stats[k]} />)}
+            </div>
+            <h2 className="display" style={s.blockTitle}>{t.similarTitle2}</h2>
+            <div style={s.gameList}>
+              {similarGames(focusGame).map((item)=>(
+                <button key={item.game.name} style={{...s.gameCard, textAlign:"left", cursor:"pointer", color:"#F2F0E9"}} onClick={()=>setFocusGame(item.game)}>
+                  <div className="display" style={s.gameName}>{item.game.name}</div>
+                  <div style={s.gameWhy}>{item.game.why[lang]}</div>
+                </button>
+              ))}
             </div>
             <h2 className="display" style={s.blockTitle}>{t.rankingTitle}</h2>
             {typesForGame(focusGame).slice(0,8).map((row)=>(
@@ -1079,11 +1301,31 @@ function App(){
                 <span style={{marginLeft:"auto"}}>{row.score}%</span>
               </button>
             ))}
+            <h2 className="display" style={s.blockTitle}>{t.voteTitle}</h2>
+            <div style={s.platformRow}>
+              {[["solo",t.voteSolo],["friends",t.voteFriends],["chill",t.voteChill],["grind",t.voteGrind]].map(([id,lab])=>{
+                const count = ((votes[focusGame.name]||{})[id])||0;
+                return (
+                  <button key={id} style={s.platformBtn} onClick={()=>{
+                    const next = {...votes, [focusGame.name]: {...(votes[focusGame.name]||{}), [id]: count+1}};
+                    setVotes(next); saveVotes(next);
+                  }}>{lab} 👍 {count}</button>
+                );
+              })}
+            </div>
             <div style={s.actionRow}>
               {focusGame.platforms.map((p)=>(
                 <a key={p} href={platformUrl(p, focusGame.name)} target="_blank" rel="noreferrer" style={s.ghostBtn}>{platformLabel[p]}</a>
               ))}
             </div>
+          </div>
+        )}
+
+        {screen==="today" && (
+          <div>
+            <p className="display" style={s.eyebrow}>{t.todayTitle}</p>
+            {todayPick ? <GameCard item={todayPick} /> : <p style={s.subtitle}>{t.todayHome}</p>}
+            <button style={s.ghostBtn} onClick={()=>setScreen("start")}>{t.navHome}</button>
           </div>
         )}
 
@@ -1099,9 +1341,13 @@ function App(){
               <div>
                 {history.length>=2 && (
                   <div style={s.tasteBox}>
-                    <h2 className="display" style={s.blockTitle}>{t.compareTitle}</h2>
-                    <p style={s.compatLine}>{history[1].date} {history[1].type} → {history[0].date} {history[0].type}</p>
-                    <p style={s.compatLine}>{(history[0].top||"")} / {(history[1].top||"")}</p>
+                    <h2 className="display" style={s.blockTitle}>{t.changeTitle}</h2>
+                    <p style={s.compatLine}>{history[1].date} {history[1].type}{history[1].role?" / "+history[1].role:""} → {history[0].date} {history[0].type}{history[0].role?" / "+history[0].role:""}</p>
+                    {history[0].prefs && history[1].prefs && STAT_KEYS.map((k)=>{
+                      const a = history[1].prefs[k]||3, b = history[0].prefs[k]||3;
+                      const diff = b-a;
+                      return <p key={k} style={s.compatLine}>{STAT_LABEL[lang][k]} {stars(a)} → {stars(b)} {diff>0?"↑":diff<0?"↓":"→"}</p>;
+                    })}
                   </div>
                 )}
                 {history.map((h,i)=>(
