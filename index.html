@@ -45,6 +45,7 @@ const UI = {
     noSavedHint: "診断が終わったら「この結果を保存する」を押してみましょう。",
     goQuiz: "診断へ",
     countLabel: (n) => `${n}件保存中`,
+    support: "作者にコーヒーをおごる",
   },
   en: {
     appTitle: "MBTI × Steam Matcher",
@@ -67,6 +68,7 @@ const UI = {
     noSavedHint: "Finish the quiz and tap \"Save this result\" to keep it here.",
     goQuiz: "Take the quiz",
     countLabel: (n) => `${n} saved`,
+    support: "Buy me a coffee",
   },
   zh: {
     appTitle: "MBTI × Steam 匹配器",
@@ -89,8 +91,11 @@ const UI = {
     noSavedHint: "完成测试后，点击「保存这个结果」即可保存在这里。",
     goQuiz: "去测试",
     countLabel: (n) => `已保存 ${n} 条`,
+    support: "请作者喝杯咖啡",
   },
 };
+
+const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
 
 /* ---------- Quiz questions ---------- */
 const QUESTIONS = [
@@ -367,6 +372,9 @@ function App() {
             <h1 className="display" style={s.title}>{t.appTitle}</h1>
             <p style={s.subtitle}>{t.tagline}</p>
             <button style={s.primaryBtn} onClick={startQuiz}>{t.start}</button>
+            <a href={SUPPORT_URL} target="_blank" rel="noreferrer" style={s.supportLink}>
+              ☕ {t.support}
+            </a>
 
             {history.length > 0 && (
               <button style={s.savedTeaser} onClick={goSaved}>
@@ -442,6 +450,9 @@ function App() {
               <button style={s.ghostBtn} onClick={startQuiz}>{t.retake}</button>
               <button style={s.ghostBtn} onClick={goHome}>{t.navHome}</button>
             </div>
+            <a href={SUPPORT_URL} target="_blank" rel="noreferrer" style={s.supportLinkFooter}>
+              ☕ {t.support}
+            </a>
           </div>
         )}
       </div>
@@ -486,6 +497,8 @@ const styles = {
   historyRow: { display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px solid #1E2140", flexWrap: "wrap" },
   smallBtn: { background: "#1E2140", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#F2F0E9", cursor: "pointer", marginLeft: "auto" },
   smallBtnGhost: { background: "transparent", border: "1px solid #2A2D52", borderRadius: 5, padding: "5px 10px", fontSize: 12, color: "#A9ACC7", cursor: "pointer" },
+  supportLink: { display: "inline-block", marginTop: 16, marginLeft: 12, color: "#F2A83C", fontSize: 13, fontWeight: 600, textDecoration: "none" },
+  supportLinkFooter: { display: "inline-block", marginTop: 24, color: "#A9ACC7", fontSize: 13, textDecoration: "none" },
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
