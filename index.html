@@ -5,11 +5,14 @@
 <title>MBTI ゲーム診断 | 合うゲームを探そう（Steam・スイッチ・スマホ・Xbox）</title>
 <meta name="description" content="MBTIゲーム診断。MBTIとゲーム人格で、自分に合うゲームを探すサイト。類似推薦・条件検索・今日の1本・友達相性・合わないゲームまで。無料・登録不要。" />
 <meta name="keywords" content="MBTI ゲーム 診断,MBTI おすすめゲーム,性格 ゲーム 診断,MBTI Steam,MBTI スイッチ おすすめ,MBTI スマホゲーム" />
-<link rel="canonical" href="index.html" />
+<link rel="canonical" href="https://yuoiae4.github.io/mbti-steam/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#14162B" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314162B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%237C6CF0' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314162B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%237C6CF0' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
 
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://yuoiae4.github.io/mbti-steam/" />
 <meta property="og:title" content="MBTI ゲーム診断 | おすすめゲームが分かる性格診断" />
 <meta property="og:description" content="20個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
 <meta property="og:image" content="https://yuoiae4.github.io/mbti-steam/ogp.png" />
@@ -17,10 +20,25 @@
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:alt" content="MBTI ゲーム診断" />
+<meta property="og:locale" content="ja_JP" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://yuoiae4.github.io/mbti-steam/" />
 <meta name="twitter:title" content="MBTI ゲーム診断 | おすすめゲームが分かる性格診断" />
 <meta name="twitter:description" content="20個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
 <meta name="twitter:image" content="https://yuoiae4.github.io/mbti-steam/ogp.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "MBTI ゲーム診断",
+  "url": "https://yuoiae4.github.io/mbti-steam/",
+  "description": "20個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かる無料の性格診断ツール。",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "inLanguage": ["ja", "en", "zh"]
+}
+</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
@@ -411,6 +429,7 @@ const UI = {
     appTitle:"MBTI ゲーム診断", tagline:"MBTIを入口に、ゲームの好みも見ておすすめします。20問で、今の自分に合う1本を出します。",
     start:"診断する →", back:"戻る", questionOf:(n,total)=>`質問 ${n} / ${total}`,
     yourType:"あなたの性格", retake:"もう一度診断する", save:"この結果を保存する", saved:"保存しました",
+    saveError:"保存に失敗しました。プライベートブラウジング中の可能性があります。",
     savedResults:"保存した結果", delete:"削除", viewOnSteam:"探す",
     platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"スマホ", platformXbox:"Xbox",
     loadThis:"この結果を見る", savedOn:"保存日", navHome:"ホーム", navSaved:"履歴",
@@ -514,6 +533,7 @@ const UI = {
     appTitle:"MBTI Game Finder", tagline:"20 questions split personality and game taste. You get fits and mismatches.",
     start:"Start the quiz", back:"Back", questionOf:(n,total)=>`Question ${n} of ${total}`,
     yourType:"Your type", retake:"Retake", save:"Save this result", saved:"Saved",
+    saveError:"Couldn't save. Private browsing mode may block storage.",
     savedResults:"Saved results", delete:"Delete", viewOnSteam:"Find it",
     platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"Mobile", platformXbox:"Xbox",
     loadThis:"View", savedOn:"Saved on", navHome:"Home", navSaved:"History",
@@ -617,6 +637,7 @@ const UI = {
     appTitle:"MBTI 游戏诊断", tagline:"20题把性格和游戏口味分开判断，既有适合的，也有不太适合的。",
     start:"开始测试", back:"上一题", questionOf:(n,total)=>`第 ${n} / ${total} 题`,
     yourType:"你的类型", retake:"重新测试", save:"保存结果", saved:"已保存",
+    saveError:"保存失败，可能处于隐私浏览模式。",
     savedResults:"已保存", delete:"删除", viewOnSteam:"去查找",
     platformSteam:"Steam", platformNintendo:"Nintendo", platformMobile:"手机", platformXbox:"Xbox",
     loadThis:"查看", savedOn:"保存于", navHome:"首页", navSaved:"历史",
@@ -1122,19 +1143,56 @@ function shareUrlFor(type){
   try { const u = new URL(window.location.href); u.searchParams.set("type", type); return u.toString(); }
   catch(e){ return window.location.href; }
 }
+const SEO_DEFAULTS = {
+  ja: { title:"MBTI ゲーム診断 | 合うゲームを探そう", desc:"MBTIゲーム診断。MBTIとゲーム人格で、自分に合うゲームを探すサイト。" },
+  en: { title:"MBTI Game Finder | Find games that fit your personality", desc:"Answer 20 questions to find your MBTI type and matching Steam / Nintendo / mobile / Xbox games." },
+  zh: { title:"MBTI 游戏诊断 | 找到适合你的游戏", desc:"通过MBTI性格测试和游戏偏好，找到最适合你的Steam、任天堂、手机、Xbox游戏。" },
+};
+const SEO_LOCALE = { ja:"ja_JP", en:"en_US", zh:"zh_CN" };
+function seoTitleFor(type, nick, lang){
+  if (lang==="en") return `${type} (${nick}) Game Recommendations | MBTI Game Finder`;
+  if (lang==="zh") return `${type}（${nick}）游戏推荐 | MBTI 游戏诊断`;
+  return `${type}におすすめのゲーム診断 | MBTI ゲーム おすすめ`;
+}
+function seoDescFor(type, nick, lang){
+  if (lang==="en") return `Games recommended for ${type} (${nick}): Steam, Nintendo, mobile, Xbox.`;
+  if (lang==="zh") return `为${type}（${nick}）推荐的游戏：Steam、任天堂、手机、Xbox。`;
+  return `${type}（${nick}）向けのおすすめゲーム。Steam・Nintendo・スマホ・Xbox。`;
+}
 function applySeo(type, lang){
-  const ui = UI[lang] || UI.ja;
   try {
-    if (!type || !TYPES[type]) { document.title = "MBTI ゲーム診断 | 合うゲームを探そう"; return; }
-    const nick = TYPES[type].nickname[lang];
-    document.title = `${type}におすすめのゲーム診断 | MBTI ゲーム おすすめ`;
-    const desc = `${type}（${nick}）向けのおすすめゲーム。Steam・Nintendo・スマホ・Xbox。`;
+    document.documentElement.lang = lang || "ja";
     const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute("content", val); };
+    const setHref = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute("href", val); };
+    set('meta[property="og:locale"]', SEO_LOCALE[lang] || SEO_LOCALE.ja);
+
+    if (!type || !TYPES[type]) {
+      const d = SEO_DEFAULTS[lang] || SEO_DEFAULTS.ja;
+      document.title = d.title;
+      set('meta[name="description"]', d.desc);
+      set('meta[property="og:title"]', d.title);
+      set('meta[property="og:description"]', d.desc);
+      set('meta[name="twitter:title"]', d.title);
+      set('meta[name="twitter:description"]', d.desc);
+      const base = "https://yuoiae4.github.io/mbti-steam/";
+      setHref('link[rel="canonical"]', base);
+      set('meta[property="og:url"]', base);
+      set('meta[name="twitter:url"]', base);
+      return;
+    }
+    const nick = TYPES[type].nickname[lang] || TYPES[type].nickname.ja;
+    const title = seoTitleFor(type, nick, lang);
+    const desc = seoDescFor(type, nick, lang);
+    document.title = title;
     set('meta[name="description"]', desc);
-    set('meta[property="og:title"]', `${type}（${nick}）におすすめのゲーム`);
+    set('meta[property="og:title"]', title);
     set('meta[property="og:description"]', desc);
-    set('meta[name="twitter:title"]', `${type}（${nick}）におすすめのゲーム`);
+    set('meta[name="twitter:title"]', title);
     set('meta[name="twitter:description"]', desc);
+    const shareUrl = shareUrlFor(type);
+    setHref('link[rel="canonical"]', shareUrl);
+    set('meta[property="og:url"]', shareUrl);
+    set('meta[name="twitter:url"]', shareUrl);
   } catch(e){}
 }
 
@@ -1147,6 +1205,7 @@ function App(){
   const [resultType, setResultType] = useState(null);
   const [history, setHistory] = useState([]);
   const [saveMsg, setSaveMsg] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const [copyMsg, setCopyMsg] = useState(false);
   const [platform, setPlatform] = useState("all");
   const [tab, setTab] = useState("fit");
@@ -1211,7 +1270,10 @@ function App(){
     const entry = { type: resultType, date: new Date().toISOString().slice(0,10), prefs: {...prefs}, top: top[0] && top[0].game.name };
     const next = [entry, ...history].slice(0,20);
     setHistory(next);
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); setSaveMsg(true); setTimeout(()=>setSaveMsg(false),1800);} catch(e){}
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      setSaveMsg(true); setSaveError(false); setTimeout(()=>setSaveMsg(false),1800);
+    } catch(e){ setSaveError(true); setSaveMsg(false); setTimeout(()=>setSaveError(false),3000); }
   };
   const deleteEntry = (idx) => {
     const next = history.filter((_,i)=>i!==idx);
@@ -1562,6 +1624,7 @@ function App(){
               </div>
             )}
 
+            {saveError && <p style={{...s.compatLine, color:"#F0668C"}}>{t.saveError}</p>}
             <div style={s.actionRow}>
               <button style={s.primaryBtn} onClick={saveResult}>{saveMsg?t.saved:t.save}</button>
               <button style={s.ghostBtn} onClick={()=>{
@@ -1833,7 +1896,7 @@ const styles = {
   miniStats:{display:"flex", flexWrap:"wrap", gap:8, fontSize:12, color:"#A9ACC7", marginBottom:10},
   cardLinks:{display:"flex", flexWrap:"wrap", gap:10, alignItems:"center"},
   storeGroup:{marginTop:4},
-  storeGroupTitle:{fontSize:11.5, color:"#5E6289", fontWeight:600, letterSpacing:0.3, margin:"0 0 8px"},
+  storeGroupTitle:{fontSize:11.5, color:"#8A8FB8", fontWeight:600, letterSpacing:0.3, margin:"0 0 8px"},
   storeRow:{display:"flex", flexWrap:"wrap", gap:8},
   storeBtn:{display:"inline-flex", alignItems:"center", gap:6, background:"#1E2140", border:"1px solid #2A2D52", borderRadius:20, padding:"7px 12px", fontSize:12.5, fontWeight:600, color:"#F2F0E9", textDecoration:"none"},
   steamLink:{fontSize:13, fontWeight:600, textDecoration:"none"},
@@ -1846,7 +1909,7 @@ const styles = {
   shareRow:{display:"flex", gap:8, flexWrap:"wrap"},
   shareBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:6, padding:"9px 14px", fontSize:13, color:"#F2F0E9", cursor:"pointer"},
   footer:{borderTop:"1px solid #1E2140", marginTop:40},
-  footerNote:{maxWidth:760, margin:"12px auto 0", padding:"0 20px 32px", fontSize:12, color:"#5E6289", lineHeight:1.6},
+  footerNote:{maxWidth:760, margin:"12px auto 0", padding:"0 20px 32px", fontSize:12, color:"#8A8FB8", lineHeight:1.6},
   supportLinkFooter:{display:"block", maxWidth:760, margin:"28px auto 0", padding:"0 20px", color:"#F2A83C", fontSize:13, fontWeight:600, textDecoration:"none"},
   historyRow:{display:"flex", alignItems:"center", gap:10, padding:"8px 0", borderBottom:"1px solid #1E2140", flexWrap:"wrap"},
   smallBtn:{background:"#1E2140", border:"1px solid #2A2D52", borderRadius:5, padding:"5px 10px", fontSize:12, color:"#F2F0E9", cursor:"pointer", marginLeft:"auto"},
