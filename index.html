@@ -11,7 +11,7 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="MBTI ゲーム診断 | おすすめゲームが分かる性格診断" />
-<meta property="og:description" content="12個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
+<meta property="og:description" content="20個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
 <meta property="og:image" content="https://yuoiae4.github.io/mbti-steam/ogp.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="MBTI ゲーム診断" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="MBTI ゲーム診断 | おすすめゲームが分かる性格診断" />
-<meta name="twitter:description" content="12個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
+<meta name="twitter:description" content="20個の質問に答えるだけで、あなたのMBTIタイプと相性の良いSteam・Nintendo・スマホ・Xboxゲームが分かります。" />
 <meta name="twitter:image" content="https://yuoiae4.github.io/mbti-steam/ogp.png" />
 
 <style>
@@ -460,6 +460,7 @@ const UI = {
     time30:"30分だけ", time60:"1時間", time120:"2時間以上",
     personaTitle:"あなたのゲーム人格",
     personaLike:"好きな傾向", personaHate:"苦手な傾向",
+    tonightKicker:"今夜はこれ", tonightWhy:"今の気分と好みから、最初にこれを起動。",
     similarTitle2:"このゲームが好きならこれ",
     compatWithGame:"このゲームとの相性",
     filterTitle:"条件で探す",
@@ -562,6 +563,7 @@ const UI = {
     time30:"30 minutes", time60:"1 hour", time120:"2+ hours",
     personaTitle:"Your game persona",
     personaLike:"You lean toward", personaHate:"You usually skip",
+    tonightKicker:"Play this tonight", tonightWhy:"Start with this, based on how you play.",
     similarTitle2:"If you like this, try",
     compatWithGame:"Fit with this game",
     filterTitle:"Filter games",
@@ -664,6 +666,7 @@ const UI = {
     time30:"只玩30分钟", time60:"1小时", time120:"2小时以上",
     personaTitle:"你的游戏人格",
     personaLike:"更偏向", personaHate:"不太适合",
+    tonightKicker:"今晚先玩这个", tonightWhy:"按你现在的玩法，先启动这一款。",
     similarTitle2:"喜欢这款的话还可以",
     compatWithGame:"和这款游戏的相性",
     filterTitle:"按条件找",
@@ -716,27 +719,27 @@ const UI = {
 };
 
 const QUESTIONS = [
-  { axis:"EI", kind:"mbti", text:{ja:"誰かと一緒に過ごすと元気が出る",en:"Being around people energizes me",zh:"和别人在一起会让我充满活力"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"一人の時間で充電する",en:"I recharge alone",zh:"我更需要独处充电"}, bVal:"I" },
-  { axis:"EI", kind:"mbti", text:{ja:"話しながら考えをまとめるタイプだ",en:"I think out loud",zh:"我喜欢边说边想"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"考えてから話す",en:"I think first",zh:"我会先想清楚再说"}, bVal:"I" },
-  { axis:"EI", kind:"mbti", text:{ja:"大勢の集まりが好きだ",en:"I enjoy big gatherings",zh:"我喜欢大型聚会"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"E", b:{ja:"少人数や1対1が好きだ",en:"I prefer small groups",zh:"我更喜欢小圈子"}, bVal:"I" },
-  { axis:"SN", kind:"mbti", text:{ja:"具体的な事実やデータを重視する",en:"I focus on concrete facts",zh:"我更看重具体事实"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"可能性やアイデアを重視する",en:"I focus on possibilities",zh:"我更看重可能性"}, bVal:"N" },
-  { axis:"SN", kind:"mbti", text:{ja:"実績のある確実な方法を選ぶ",en:"I stick with proven methods",zh:"我倾向已验证的方法"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"新しいやり方を試したくなる",en:"I like new approaches",zh:"我更愿意尝试新方法"}, bVal:"N" },
-  { axis:"SN", kind:"mbti", text:{ja:"今、目の前のことに集中する",en:"I focus on the here and now",zh:"我更专注于当下"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"S", b:{ja:"将来のビジョンをよく考える",en:"I think about future possibilities",zh:"我经常想未来"}, bVal:"N" },
-  { axis:"TF", kind:"mbti", text:{ja:"物事は論理で判断する",en:"I decide with logic",zh:"我靠逻辑判断"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"気持ちや価値観で判断する",en:"I decide with values",zh:"我靠感受和价值观"}, bVal:"F" },
-  { axis:"TF", kind:"mbti", text:{ja:"率直にはっきり伝える方だ",en:"I tend to be direct",zh:"我说话比较直接"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"相手を気遣った伝え方をする",en:"I spare feelings",zh:"我会照顾对方感受"}, bVal:"F" },
-  { axis:"TF", kind:"mbti", text:{ja:"公平さを優先したい",en:"I prioritize fairness",zh:"我更重视公平"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"T", b:{ja:"その場の調和を優先したい",en:"I prioritize harmony",zh:"我更重视当下的和谐"}, bVal:"F" },
-  { axis:"JP", kind:"mbti", text:{ja:"計画を立ててから動く",en:"I plan before acting",zh:"我会先计划再行动"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"その場の流れに任せる",en:"I go with the flow",zh:"我更喜欢随机应变"}, bVal:"P" },
-  { axis:"JP", kind:"mbti", text:{ja:"締め切りより早めに終わらせる",en:"I finish early",zh:"我通常会提前完成"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"締め切り直前に一気に動く",en:"I rush near the deadline",zh:"我经常临近截止才冲刺"}, bVal:"P" },
-  { axis:"JP", kind:"mbti", text:{ja:"物事は早めに決めたい",en:"I like deciding early",zh:"我喜欢尽早决定"}, a:{ja:"そう思う",en:"Agree",zh:"同意"}, aVal:"J", b:{ja:"選択肢はなるべく残しておきたい",en:"I keep options open",zh:"我更喜欢保留选择"}, bVal:"P" },
-  { axis:"solo", kind:"game", text:{ja:"ゲームは一人で没頭したい",en:"I prefer playing alone",zh:"我更想一个人沉浸着玩"}, a:{ja:"ソロが好き",en:"Mostly solo",zh:"更爱单人"}, aVal:"soloHi", b:{ja:"誰かと遊びたい",en:"I want company",zh:"更想和别人一起"}, bVal:"soloLo" },
-  { axis:"hard", kind:"game", text:{ja:"難しいゲームの方が燃える",en:"Hard games get me going",zh:"越难越有劲"}, a:{ja:"やり応えが欲しい",en:"I want a challenge",zh:"我要有挑战"}, aVal:"hardHi", b:{ja:"気軽にクリアしたい",en:"I want something casual",zh:"我想轻松通关"}, bVal:"hardLo" },
-  { axis:"story", kind:"game", text:{ja:"物語に浸りたい",en:"I want to sink into a story",zh:"我想沉浸在故事里"}, a:{ja:"ストーリー重視",en:"Story first",zh:"剧情优先"}, aVal:"storyHi", b:{ja:"システムの方が面白い",en:"Systems are more fun",zh:"更爱玩系统"}, bVal:"storyLo" },
-  { axis:"short", kind:"game", text:{ja:"短時間で区切りたい",en:"I like short sessions",zh:"我想短时间就告一段落"}, a:{ja:"スキマ時間向きがいい",en:"Short sessions please",zh:"适合碎片时间"}, aVal:"shortHi", b:{ja:"長時間没頭したい",en:"I like long sessions",zh:"想长时间投入"}, bVal:"shortLo" },
-  { axis:"free", kind:"game", text:{ja:"自由に寄り道したい",en:"I want freedom to wander",zh:"我想自由绕路"}, a:{ja:"サンドボックスが好き",en:"Sandbox please",zh:"喜欢沙盒"}, aVal:"freeHi", b:{ja:"一本道の方が安心",en:"A clear path feels better",zh:"有主线更安心"}, bVal:"freeLo" },
-  { axis:"pvp", kind:"game", text:{ja:"人と勝敗をつけたい",en:"I want to compete with people",zh:"我想和别人分胜负"}, a:{ja:"対人が好き",en:"I like PvP",zh:"喜欢对战"}, aVal:"pvpHi", b:{ja:"対人は疲れる",en:"PvP drains me",zh:"对人会累"}, bVal:"pvpLo" },
-  { axis:"chill", kind:"game", text:{ja:"ゲームで落ち着きたい",en:"I game to unwind",zh:"我想用游戏放松"}, a:{ja:"リラックス重視",en:"Keep it calm",zh:"以放松为主"}, aVal:"chillHi", b:{ja:"緊張感があった方がいい",en:"I want tension",zh:"更想要紧张感"}, bVal:"chillLo" },
-  { axis:"brain", kind:"game", text:{ja:"頭を使うゲームが好きだ",en:"I like games that make me think",zh:"我喜欢动脑的游戏"}, a:{ja:"考えるのが楽しい",en:"Thinking is the fun",zh:"思考就是乐趣"}, aVal:"brainHi", b:{ja:"操作や感覚で遊びたい",en:"I want feel and action",zh:"更想靠手感和动作"}, bVal:"brainLo" },
-];
+  { axis:"solo", kind:"game", text:{ja:"マルチより、ソロで黙々とやるほうが楽だ",en:"Solo play feels easier than multiplayer",zh:"比起联机，一个人默默玩更轻松"}, a:{ja:"ソロのほうが楽",en:"Solo is easier",zh:"单人更轻松"}, aVal:"soloHi", b:{ja:"誰かと一緒のほうが続く",en:"I last longer with others",zh:"和别人一起更能玩下去"}, bVal:"soloLo" },
+  { axis:"EI", kind:"mbti", text:{ja:"ボイスチャットしながら遊ぶと調子が出る",en:"Voice chat while playing pumps me up",zh:"边打边开麦会更有状态"}, a:{ja:"話しながらが好き",en:"I like talking while I play",zh:"喜欢边聊边玩"}, aVal:"E", b:{ja:"黙々とやるほうが落ち着く",en:"I settle in when it's quiet",zh:"安安静静玩更安心"}, bVal:"I" },
+  { axis:"EI", kind:"mbti", text:{ja:"クリアしたらすぐ誰かに話したくなる",en:"I want to tell someone right after a clear",zh:"通关后马上想找人说"}, a:{ja:"共有したくなる",en:"I want to share it",zh:"会想分享"}, aVal:"E", b:{ja:"一人で余韻に浸りたい",en:"I want to sit with it alone",zh:"想一个人回味"}, bVal:"I" },
+  { axis:"EI", kind:"mbti", text:{ja:"ギルドやパーティがあるとゲームが続く",en:"A guild or party keeps me playing",zh:"有公会或队伍就更能玩下去"}, a:{ja:"人とつながると続く",en:"People keep me going",zh:"有人连着就能继续"}, aVal:"E", b:{ja:"ソロキャンペーンのほうが続く",en:"Solo campaigns keep me going",zh:"单人剧情更能玩下去"}, bVal:"I" },
+  { axis:"SN", kind:"mbti", text:{ja:"攻略wikiを先に見てから動く",en:"I check a wiki before I move",zh:"会先看攻略再动手"}, a:{ja:"調べてから進める",en:"Look it up first",zh:"先查再推进"}, aVal:"S", b:{ja:"何も見ずに自分で試す",en:"I try it blind first",zh:"不看攻略自己试"}, bVal:"N" },
+  { axis:"SN", kind:"mbti", text:{ja:"敵の出現やドロップを覚えるのが好きだ",en:"I like memorizing spawns and drops",zh:"喜欢记出没和掉落"}, a:{ja:"具体的な情報を集めたい",en:"I want concrete info",zh:"想收集具体信息"}, aVal:"S", b:{ja:"世界観や「もしも」を想像したい",en:"I want the what-ifs and lore",zh:"更想想像世界观和如果"}, bVal:"N" },
+  { axis:"SN", kind:"mbti", text:{ja:"今のクエストを着実に片付けたい",en:"I want to clear the current quest cleanly",zh:"想把眼前任务踏实做完"}, a:{ja:"目の前の目標を優先する",en:"Current objective first",zh:"眼前目标优先"}, aVal:"S", b:{ja:"寄り道して設定を掘りたい",en:"I detour to dig the setting",zh:"想绕路挖设定"}, bVal:"N" },
+  { axis:"TF", kind:"mbti", text:{ja:"ビルドは数値と相性で決める",en:"I pick builds by numbers and synergy",zh:"配装看数值和相性"}, a:{ja:"計算して組む",en:"I theorycraft it",zh:"算清楚再组"}, aVal:"T", b:{ja:"好きなキャラや見た目で決める",en:"I pick by favorite or looks",zh:"凭喜欢的角色或外观"}, bVal:"F" },
+  { axis:"TF", kind:"mbti", text:{ja:"負けた理由はデータで振り返る",en:"I review losses with data",zh:"用数据复盘失败"}, a:{ja:"原因を分解したい",en:"I want the cause",zh:"想拆开原因"}, aVal:"T", b:{ja:"場の空気や仲間の気持ちを優先する",en:"The vibe and teammates come first",zh:"更在意气氛和同伴心情"}, bVal:"F" },
+  { axis:"TF", kind:"mbti", text:{ja:"効率の良い編成を優先する",en:"I prioritize an efficient team",zh:"优先高效编成"}, a:{ja:"最適解を選びたい",en:"I want the optimal line",zh:"想选最优解"}, aVal:"T", b:{ja:"物語や関係性を優先する",en:"Story and relationships first",zh:"故事和关系优先"}, bVal:"F" },
+  { axis:"JP", kind:"mbti", text:{ja:"今日のプレイ内容を決めてから起動する",en:"I decide tonight's plan before I boot",zh:"启动前先定今晚玩什么"}, a:{ja:"計画してから遊ぶ",en:"Plan, then play",zh:"先计划再玩"}, aVal:"J", b:{ja:"起動してからその日の気分で決める",en:"I boot first, decide after",zh:"先启动再看今天心情"}, bVal:"P" },
+  { axis:"JP", kind:"mbti", text:{ja:"メインを計画どおりに進めたい",en:"I want the main path on schedule",zh:"想按计划推进主线"}, a:{ja:"予定どおりクリアしたい",en:"Clear on plan",zh:"按计划通关"}, aVal:"J", b:{ja:"イベントや寄り道に流されたい",en:"Let events pull me off path",zh:"想被活动和绕路带走"}, bVal:"P" },
+  { axis:"JP", kind:"mbti", text:{ja:"コンプリート表を埋めて終わりにしたい",en:"I want the completion checklist done",zh:"想把收集表填完收工"}, a:{ja:"終わらせて区切りたい",en:"Finish and close it",zh:"做完并收尾"}, aVal:"J", b:{ja:"選択肢は残したまま遊びたい",en:"I like leaving options open",zh:"想留着选项继续玩"}, bVal:"P" },
+  { axis:"hard", kind:"game", text:{ja:"ゲームオーバーを繰り返しても、難しいほうが燃える",en:"Even with game overs, hard games light me up",zh:"就算反复失败，难的更有劲"}, a:{ja:"やり応えが欲しい",en:"I want a challenge",zh:"我要有挑战"}, aVal:"hardHi", b:{ja:"気軽にクリアしたい",en:"I want something casual",zh:"我想轻松通关"}, bVal:"hardLo" },
+  { axis:"story", kind:"game", text:{ja:"カットシーンや台詞を飛ばさず見たい",en:"I watch cutscenes and lines instead of skipping",zh:"过场和台词不想跳"}, a:{ja:"ストーリーに浸りたい",en:"I want the story",zh:"想沉浸剧情"}, aVal:"storyHi", b:{ja:"システムを触るほうが面白い",en:"Playing the system is more fun",zh:"更想动手玩系统"}, bVal:"storyLo" },
+  { axis:"short", kind:"game", text:{ja:"今夜は30分で止まれるゲームがいい",en:"Tonight I want something I can stop in 30 minutes",zh:"今晚想要30分钟能停的游戏"}, a:{ja:"スキマ時間向きがいい",en:"Short sessions please",zh:"适合碎片时间"}, aVal:"shortHi", b:{ja:"長時間没頭したい",en:"I want a long sink-in",zh:"想长时间投入"}, bVal:"shortLo" },
+  { axis:"free", kind:"game", text:{ja:"地図の端まで寄り道して遊びたい",en:"I want to wander to the edge of the map",zh:"想绕到地图边缘去玩"}, a:{ja:"自由に探索したい",en:"I want to explore freely",zh:"想自由探索"}, aVal:"freeHi", b:{ja:"一本道のほうが迷わない",en:"A clear path keeps me oriented",zh:"有主线更不迷路"}, bVal:"freeLo" },
+  { axis:"pvp", kind:"game", text:{ja:"ランク戦で人と勝敗をつけたい",en:"I want ranked matches against people",zh:"想在排位里和人分胜负"}, a:{ja:"対人が好き",en:"I like PvP",zh:"喜欢对战"}, aVal:"pvpHi", b:{ja:"対人は疲れる",en:"PvP drains me",zh:"对人会累"}, bVal:"pvpLo" },
+  { axis:"chill", kind:"game", text:{ja:"疲れた日は、失敗しても怒られないゲームがいい",en:"On tired days I want a game that won't scold failure",zh:"累的日子想玩失败也不被骂的游戏"}, a:{ja:"リラックス重視",en:"Keep it calm",zh:"以放松为主"}, aVal:"chillHi", b:{ja:"緊張感があった方がいい",en:"I want tension",zh:"更想要紧张感"}, bVal:"chillLo" },
+  { axis:"brain", kind:"game", text:{ja:"攻略を組み立てている時間が好きだ",en:"I like the time spent assembling a plan",zh:"喜欢组攻略的那段时间"}, a:{ja:"考えるのが楽しい",en:"Thinking is the fun",zh:"思考就是乐趣"}, aVal:"brainHi", b:{ja:"操作や感覚で遊びたい",en:"I want feel and action",zh:"更想靠手感和动作"}, bVal:"brainLo" },
+]
 
 const TYPES = {
   INTJ:{ nickname:{ja:"建築家",en:"The Architect",zh:"建筑师"}, blurb:{ja:"設計図を頭の中で組んでから動く。長期戦略とシステムの支配が快感。",en:"You blueprint first. Strategy and systems click.",zh:"先在脑中搭蓝图再行动。"}, taste:{ja:"ソロでシステムを極める",en:"solo systems mastery",zh:"单人钻研系统"}, genres:["sim","strategy","rpg","puzzle"], style:{ja:"一人で黙々とシステムを攻略するのが好き",en:"Quietly mastering systems alone",zh:"喜欢一个人默默攻略系统"} },
@@ -897,6 +900,16 @@ const STAT_LABEL = {
   en:{solo:"Solo",multi:"Social",grind:"Mastery",story:"Story",chill:"Chill",hard:"Challenge",brain:"Brainy",action:"Action",short:"Short",tension:"Tension"},
   zh:{solo:"单人",multi:"社交",grind:"肝度",story:"剧情",chill:"放松",hard:"难度",brain:"动脑",action:"动作",short:"碎片",tension:"紧张"},
 };
+const TAG_LABEL = {
+  ja:{solo:"ソロ",friends:"友達と",chill:"まったり",grind:"やり込み",story:"ストーリー",brain:"頭脳",short:"短時間",horror:"ホラー",sandbox:"自由探索",party:"パーティー",coop:"協力",pvp:"対戦",action:"アクション",rpg:"RPG",sim:"シミュレーション",collection:"収集",adventure:"冒険",strategy:"戦略",puzzle:"パズル",long:"じっくり"},
+  en:{solo:"Solo",friends:"Friends",chill:"Chill",grind:"Grind",story:"Story",brain:"Brainy",short:"Short",horror:"Horror",sandbox:"Sandbox",party:"Party",coop:"Co-op",pvp:"PvP",action:"Action",rpg:"RPG",sim:"Sim",collection:"Collect",adventure:"Adventure",strategy:"Strategy",puzzle:"Puzzle",long:"Long"},
+  zh:{solo:"单人",friends:"和朋友",chill:"轻松",grind:"肝",story:"剧情",brain:"动脑",short:"短时间",horror:"恐怖",sandbox:"沙盒",party:"派对",coop:"合作",pvp:"对战",action:"动作",rpg:"RPG",sim:"模拟",collection:"收集",adventure:"冒险",strategy:"策略",puzzle:"解谜",long:"长时间"},
+};
+function tagLabel(tag, lang){
+  const pack = TAG_LABEL[lang] || TAG_LABEL.ja;
+  return pack[tag] || tag;
+}
+
 
 function emptyMbti(){ return {E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0}; }
 function computeType(s){
@@ -949,16 +962,20 @@ function typesForGame(game){
   return ALL_TYPES.map((t)=>({type:t, score:affinity(game,t)})).sort((a,b)=>b.score-a.score);
 }
 function tasteSummary(prefs, lang){
+  const pairs = [
+    [prefs.solo||3, prefs.multi||3, UI[lang].sectionSolo, UI[lang].sectionMulti],
+    [prefs.grind||3, prefs.chill||3, UI[lang].sectionGrind, UI[lang].sectionChill],
+    [prefs.story||3, prefs.brain||3, UI[lang].sectionStory, UI[lang].sectionBrain],
+    [prefs.short||3, prefs.hard||3, UI[lang].sectionShort, UI[lang].sectionHard],
+  ];
   const bits = [];
-  if (prefs.solo>=4) bits.push(UI[lang].sectionSolo);
-  if (prefs.multi>=4) bits.push(UI[lang].sectionMulti);
-  if (prefs.grind>=4) bits.push(UI[lang].sectionGrind);
-  if (prefs.story>=4) bits.push(UI[lang].sectionStory);
-  if (prefs.chill>=4) bits.push(UI[lang].sectionChill);
-  if (prefs.hard>=4) bits.push(UI[lang].sectionHard);
-  if (prefs.brain>=4) bits.push(UI[lang].sectionBrain);
-  if (prefs.short>=4) bits.push(UI[lang].sectionShort);
-  return bits.slice(0,3).join("・") || UI[lang].sectionChill;
+  pairs.forEach(([a,b,la,lb])=>{
+    if (a-b>=1 && a>=4) bits.push(la);
+    else if (b-a>=1 && b>=4) bits.push(lb);
+    else if (a>=4 && b<4) bits.push(la);
+    else if (b>=4 && a<4) bits.push(lb);
+  });
+  return bits.slice(0,2).join("・") || UI[lang].sectionChill;
 }
 function personaScores(prefs){
   const explore = Math.round(((prefs.free||3)+(6-(prefs.short||3))+((prefs.story||3))) / 15 * 100);
@@ -991,15 +1008,51 @@ function personaBlurb(type, lang){
 }
 function likesAndHates(prefs, lang){
   const sc = personaScores(prefs);
-  const labels = {
-    explore: UI[lang].explore, grind: UI[lang].sectionGrind, solo: UI[lang].sectionSolo,
-    social: UI[lang].sectionMulti, story: UI[lang].sectionStory, chill: UI[lang].sectionChill,
-    pvp: UI[lang].versus, brain: UI[lang].sectionBrain,
-  };
-  const items = Object.keys(sc).map((k)=>({k, v:sc[k], label:labels[k]}));
-  const like = items.filter(x=>x.v>=70).map(x=>x.label);
-  const hate = items.filter(x=>x.v<=40).map(x=>x.label);
-  return {like: like.slice(0,4), hate: hate.slice(0,3)};
+  const pairs = [
+    ["solo","social", UI[lang].sectionSolo, UI[lang].sectionMulti],
+    ["grind","chill", UI[lang].sectionGrind, UI[lang].sectionChill],
+    ["story","pvp", UI[lang].sectionStory, UI[lang].versus],
+    ["brain","explore", UI[lang].sectionBrain, UI[lang].explore],
+  ];
+  const like = [];
+  const hate = [];
+  const used = new Set();
+  pairs.forEach(([ka,kb,la,lb])=>{
+    const va = sc[ka]||0, vb = sc[kb]||0;
+    if (va>=68 && va>vb+8) { like.push(la); used.add(la); if (vb<=42) { hate.push(lb); used.add(lb); } }
+    else if (vb>=68 && vb>va+8) { like.push(lb); used.add(lb); if (va<=42) { hate.push(la); used.add(la); } }
+    else if (va>=75 && !used.has(la)) { like.push(la); used.add(la); }
+    else if (vb>=75 && !used.has(lb)) { like.push(lb); used.add(lb); }
+  });
+  const leftovers = [
+    [sc.grind, UI[lang].sectionGrind],
+    [sc.solo, UI[lang].sectionSolo],
+    [sc.social, UI[lang].sectionMulti],
+    [sc.story, UI[lang].sectionStory],
+    [sc.chill, UI[lang].sectionChill],
+    [sc.pvp, UI[lang].versus],
+    [sc.brain, UI[lang].sectionBrain],
+    [sc.explore, UI[lang].explore],
+  ];
+  leftovers.sort((a,b)=>a[0]-b[0]);
+  leftovers.forEach(([v,label])=>{
+    if (hate.length>=3) return;
+    if (v<=38 && label && !used.has(label)) { hate.push(label); used.add(label); }
+  });
+  return {like: like.slice(0,3), hate: hate.slice(0,3)};
+}
+function gameFitReason(game, prefs, lang){
+  const hits = STAT_KEYS.map((k)=>({
+    k, g: game.stats[k]||3, p: prefs[k]!=null ? prefs[k] : 3
+  })).filter((x)=>x.g>=4 && x.p>=4).sort((a,b)=>(b.g+b.p)-(a.g+a.p));
+  const labels = hits.slice(0,2).map((x)=>STAT_LABEL[lang][x.k]);
+  const why = (game.why && game.why[lang]) || "";
+  if (labels.length) {
+    if (lang==="ja") return why + "。この作品は「" + labels.join("・") + "」が強く、今のあなたと重なる。";
+    if (lang==="zh") return why + "。这作偏「" + labels.join(" / ") + "」，和你现在的偏好重合。";
+    return why + " Strong on " + labels.join(" / ") + ", which matches you right now.";
+  }
+  return why;
 }
 function similarGames(game, type, prefs){
   const others = GAMES.filter((g)=>g.name!==game.name);
@@ -1200,7 +1253,7 @@ function App(){
     <div style={s.statRow}><span style={s.statLab}>{label}</span><span style={s.statStars}>{stars(value)}</span></div>
   );
 
-  const GameCard = ({item, showAvoid}) => {
+  const GameCard = ({item, showAvoid, compact}) => {
     const g = item.game, score = item.score;
     const pref = Math.round(prefScore(g, prefs));
     const mismatch = [];
@@ -1215,36 +1268,36 @@ function App(){
           <a className="display" href={primaryUrl(g)} target="_blank" rel="noreferrer" style={{...s.gameName, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3}}>{g.name}</a>
           <div style={{...s.scorePill, color:temp.accent}}>{score}%</div>
         </div>
-        <div style={s.gameWhy}>{t.matchWhy}</div>
-        <div style={s.matchTrack}><div style={{...s.matchFill, width:bar+"%", background:temp.accent}} /></div>
-        <div style={s.gameWhy}>{t.whyYou}</div>
-        <div style={s.miniStats}>
-          <span>{t.sectionSolo} {stars(g.stats.solo)}</span>
-          <span>{t.freedom} {stars(g.stats.solo>=4 && g.stats.short<=3 ? 5 : 3)}</span>
-          <span>{t.sectionGrind} {stars(g.stats.grind)}</span>
-          <span>{t.sectionTension} {stars(5-(g.stats.tension||3)+1)}</span>
-        </div>
-        <div style={s.gameWhy}>{t.playFit}: {t.sectionSolo}{stars(g.stats.solo)} {t.sectionMulti}{stars(g.stats.multi)} {t.sectionShort}{stars(g.stats.short)} {t.sectionChill}{stars(g.stats.chill)}</div>
-        <div style={s.gameWhy}>{t.whyYouCase}「{tasteSummary(prefs, lang)}」{lang==="ja"?"と相性が高め。":""}</div>
-        <div style={s.gameWhy}>{g.why[lang]}</div>
+        <div style={s.gameWhy}>{gameFitReason(g, prefs, lang)}</div>
+        {!compact && <div style={s.matchTrack}><div style={{...s.matchFill, width:bar+"%", background:temp.accent}} /></div>}
+        {!compact && showAvoid && (
+          <div style={s.miniStats}>
+            <span>{t.sectionSolo} {stars(g.stats.solo)}</span>
+            <span>{t.sectionMulti} {stars(g.stats.multi)}</span>
+            <span>{t.sectionGrind} {stars(g.stats.grind)}</span>
+            <span>{t.sectionChill} {stars(g.stats.chill)}</span>
+          </div>
+        )}
         {showAvoid && (
           <div>
             {mismatch.slice(0,3).map((m)=><div key={m} style={s.compatLine}>⚠️ {m}</div>)}
             <div style={s.gameWhy}>{g.avoid && g.avoid[lang] ? g.avoid[lang] : t.mismatchNote}</div>
           </div>
         )}
-        <div style={s.storeGroup}>
-          <div style={s.storeGroupTitle}>{t.storesTitle}</div>
-          <div style={s.storeRow}>
-            {buildStoreLinks(g, platformUrl, platformLabel).map((item)=>(
-              <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
-            ))}
+        {!compact && (
+          <div style={s.storeGroup}>
+            <div style={s.storeGroupTitle}>{t.storesTitle}</div>
+            <div style={s.storeRow}>
+              {buildStoreLinks(g, platformUrl, platformLabel).map((item)=>(
+                <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         <div style={s.cardLinks}>
           <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
         </div>
-        <div style={{...s.compatLine, marginTop:8}}>{t.dataUpdated}: {GAMES_UPDATED}</div>
+        {!compact && <div style={{...s.compatLine, marginTop:8}}>{t.dataUpdated}: {GAMES_UPDATED}</div>}
       </div>
     );
   };
@@ -1411,14 +1464,19 @@ function App(){
               <span className="display" style={s.resultNickname}>{current.nickname[lang]}</span>
             </div>
             <p style={s.subtitle}>{current.blurb[lang]}</p>
+            {top[0] && (
+              <div style={s.tonightBox}>
+                <p className="display" style={s.tonightKicker}>{t.tonightKicker}</p>
+                <a className="display" href={primaryUrl(top[0].game)} target="_blank" rel="noreferrer" style={s.tonightName}>{top[0].game.name}</a>
+                <p style={s.tonightLead}>{gameFitReason(top[0].game, prefs, lang)}</p>
+                <p style={s.compatLine}>{t.tonightWhy}</p>
+              </div>
+            )}
             <div style={s.tasteBox}>
               <p className="display" style={s.eyebrow}>{t.personaLabel}</p>
               <h1 className="display" style={s.resultSeoTitle}>{personaRole(prefs, lang, resultType)}</h1>
               <p style={s.subtitle}>{personaBlurb(resultType, lang)}</p>
               <p style={s.compatLine}>{t.personaUses}</p>
-              <p style={s.compatLine}>
-                {(() => { const sc = personaScores(prefs); return `${t.sectionGrind} ${sc.grind} · ${t.sectionSolo} ${sc.solo} · ${t.explore} ${sc.explore}`; })()}
-              </p>
               <p style={s.compatLine}>{t.personaLike}: {likesAndHates(prefs, lang).like.join(" / ") || "-"}</p>
               <p style={s.compatLine}>{t.personaHate}: {likesAndHates(prefs, lang).hate.join(" / ") || "-"}</p>
               <div style={{...s.tasteBox, marginTop:12}}>
@@ -1451,7 +1509,7 @@ function App(){
             {tab==="fit" && (
               <div>
                 <h2 className="display" style={s.blockTitle}>{t.fitTitle}</h2>
-                <div style={s.gameList}>{top.map((item)=><GameCard key={item.game.name} item={item} />)}</div>
+                <div style={s.gameList}>{top.map((item)=><GameCard key={item.game.name} item={item} compact />)}</div>
               </div>
             )}
             {tab==="avoid" && (
@@ -1573,7 +1631,7 @@ function App(){
             </div>
             <div style={s.platformRow}>
               {["","solo","friends","chill","grind","story","brain","short","horror","sandbox","party"].map((tag)=>(
-                <button key={tag||"any"} onClick={()=>setFilterTag(tag)} style={{...s.platformBtn, borderColor: filterTag===tag?"#7C6CF0":"#2A2D52"}}>{tag||"ALL"}</button>
+                <button key={tag||"any"} onClick={()=>setFilterTag(tag)} style={{...s.platformBtn, borderColor: filterTag===tag?"#7C6CF0":"#2A2D52"}}>{tag?tagLabel(tag, lang):(lang==="en"?"ALL":lang==="zh"?"全部":"すべて")}</button>
               ))}
               <button onClick={()=>setFilterFree(!filterFree)} style={{...s.platformBtn, borderColor: filterFree?"#7C6CF0":"#2A2D52"}}>{t.filterFree}</button>
             </div>
@@ -1581,7 +1639,7 @@ function App(){
               {filterGames({platform:filterPlat, tag:filterTag, free:filterFree, q:gameQuery}).map((g)=>(
                 <div key={g.name} style={{...s.gameCard}}>
                   <a className="display" href={primaryUrl(g)} target="_blank" rel="noreferrer" style={{...s.gameName, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:3, display:"inline-block"}}>{g.name} {g.free?"· FREE":""}</a>
-                  <div style={s.gameWhy}>{(g.tags||[]).join(" / ")} · {g.why[lang]}</div>
+                  <div style={s.gameWhy}>{(g.tags||[]).map((tag)=>tagLabel(tag, lang)).join(" / ")} · {g.why[lang]}</div>
                   <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
                 </div>
               ))}
@@ -1597,11 +1655,11 @@ function App(){
             <p style={s.compatLine}>{t.likeAbout}</p>
             <div style={s.platformRow}>
               {(focusGame.tags||[]).map((tag)=>(
-                <button key={tag} onClick={()=>setLikeAspect(tag)} style={{...s.platformBtn, borderColor: likeAspect===tag?"#7C6CF0":"#2A2D52"}}>{tag}</button>
+                <button key={tag} onClick={()=>setLikeAspect(tag)} style={{...s.platformBtn, borderColor: likeAspect===tag?"#7C6CF0":"#2A2D52"}}>{tagLabel(tag, lang)}</button>
               ))}
             </div>
             {likeAspect && (
-              <p style={s.compatLine}>{lang==="ja"?`あなたがこのゲームで好きなのは「${likeAspect}」。近いゲームを下に出しています。`:`You liked "${likeAspect}".`}</p>
+              <p style={s.compatLine}>{lang==="ja"?`あなたがこのゲームで好きなのは「${tagLabel(likeAspect, lang)}」。近いゲームを下に出しています。`:lang==="zh"?`你喜欢的是「${tagLabel(likeAspect, lang)}」。`:`You liked "${tagLabel(likeAspect, lang)}".`}</p>
             )}
             {resultType && (
               <div style={s.tasteBox}>
@@ -1763,6 +1821,12 @@ const styles = {
   compatLine:{color:"#A9ACC7", fontSize:13, margin:"0 0 12px"},
   blockTitle:{fontSize:18, margin:"20px 0 12px"},
   gameList:{display:"flex", flexDirection:"column", gap:12, marginBottom:24},
+  tonightBox:{background:"#1E2140", border:"1px solid #7C6CF055", borderRadius:12, padding:"18px 18px 14px", margin:"8px 0 20px"},
+  tonightKicker:{fontSize:12, letterSpacing:2, color:"#7C6CF0", margin:"0 0 8px", fontWeight:700},
+  tonightName:{fontSize:26, fontWeight:700, color:"#F2F0E9", textDecoration:"underline", textUnderlineOffset:4, display:"inline-block", margin:"0 0 8px"},
+  tonightLead:{fontSize:15, color:"#F2F0E9", lineHeight:1.6, margin:"0 0 8px"},
+  matchTrack:{height:6, background:"#2A2D52", borderRadius:99, overflow:"hidden", flex:1, margin:"0 10px"},
+  matchFill:{height:"100%", borderRadius:99},
   gameCard:{background:"#1E2140", borderRadius:8, padding:16},
   gameTop:{display:"flex", justifyContent:"space-between", gap:12, alignItems:"baseline"},
   gameName:{fontWeight:700, fontSize:16, marginBottom:4},
