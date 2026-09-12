@@ -445,6 +445,7 @@ const UI = {
     rankingTitle:"このタイプに人気のゲーム",
     whyTitle:"なぜこのゲーム？",
     fromGame:"このゲームは誰向き？",
+    storesTitle:"この商品を探す",
     searchGame:"ゲーム名で探す",
     compareTitle:"以前の自分との比較",
     mbtiNote:(type,taste)=>`MBTIでは${type}ですが、ゲーム選びでは${taste}の傾向が強いです。`,
@@ -546,6 +547,7 @@ const UI = {
     rankingTitle:"Popular with this type",
     whyTitle:"Why this game?",
     fromGame:"Which types like this?",
+    storesTitle:"Find this game",
     searchGame:"Search games",
     compareTitle:"Compared with past you",
     mbtiNote:(type,taste)=>`MBTI says ${type}, but your game picks lean ${taste}.`,
@@ -647,6 +649,7 @@ const UI = {
     rankingTitle:"这一类型里更受欢迎的游戏",
     whyTitle:"为什么是这款？",
     fromGame:"这款游戏适合谁？",
+    storesTitle:"去哪里找这款游戏",
     searchGame:"搜索游戏",
     compareTitle:"和以前的自己比较",
     mbtiNote:(type,taste)=>`MBTI 是 ${type}，但选游戏时更偏向${taste}。`,
@@ -787,6 +790,17 @@ const amazonUrl = (name) => `https://www.amazon.co.jp/s?k=${encodeURIComponent(n
 const rakutenUrl = (name) => {
   const dest = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(name)}/`;
   return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_ID}/?pc=${encodeURIComponent(dest)}&m=${encodeURIComponent(dest)}`;
+};
+
+const STORE_ICON = {steam:"🎮", nintendo:"🕹️", mobile:"📱", xbox:"🟩", amazon:"🛒", rakuten:"🎁"};
+const buildStoreLinks = (g, platformUrlFn, platformLabelMap) => {
+  const base = (g.platforms||[]).map((p)=>({key:p, icon:STORE_ICON[p]||"🔗", label:platformLabelMap[p], url:platformUrlFn(p, g.name), sponsored:false}));
+  const amazonItem = {key:"amazon", icon:STORE_ICON.amazon, label:"Amazon", url:amazonUrl(g.name), sponsored:true};
+  const rakutenItem = {key:"rakuten", icon:STORE_ICON.rakuten, label:"楽天", url:rakutenUrl(g.name), sponsored:true};
+  const out = [...base];
+  out.splice(Math.min(1, out.length), 0, amazonItem);
+  out.splice(Math.min(3, out.length), 0, rakutenItem);
+  return out;
 };
 const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
 
@@ -1219,12 +1233,15 @@ function App(){
             <div style={s.gameWhy}>{g.avoid && g.avoid[lang] ? g.avoid[lang] : t.mismatchNote}</div>
           </div>
         )}
+        <div style={s.storeGroup}>
+          <div style={s.storeGroupTitle}>{t.storesTitle}</div>
+          <div style={s.storeRow}>
+            {buildStoreLinks(g, platformUrl, platformLabel).map((item)=>(
+              <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
+            ))}
+          </div>
+        </div>
         <div style={s.cardLinks}>
-          {g.platforms.map((p)=>(
-            <a key={p} href={platformUrl(p,g.name)} target="_blank" rel="noreferrer" style={{...s.steamLink, color:temp.accent}}>{platformLabel[p]} →</a>
-          ))}
-          <a href={amazonUrl(g.name)} target="_blank" rel="noreferrer sponsored" style={{...s.steamLink, color:"#F2A83C"}}>Amazon →</a>
-          <a href={rakutenUrl(g.name)} target="_blank" rel="noreferrer sponsored" style={{...s.steamLink, color:"#F2A83C"}}>楽天 →</a>
           <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
         </div>
         <div style={{...s.compatLine, marginTop:8}}>{t.dataUpdated}: {GAMES_UPDATED}</div>
@@ -1636,12 +1653,13 @@ function App(){
                 );
               })}
             </div>
-            <div style={s.actionRow}>
-              {focusGame.platforms.map((p)=>(
-                <a key={p} href={platformUrl(p, focusGame.name)} target="_blank" rel="noreferrer" style={s.ghostBtn}>{platformLabel[p]}</a>
-              ))}
-              <a href={amazonUrl(focusGame.name)} target="_blank" rel="noreferrer sponsored" style={s.ghostBtn}>Amazon →</a>
-              <a href={rakutenUrl(focusGame.name)} target="_blank" rel="noreferrer sponsored" style={s.ghostBtn}>楽天 →</a>
+            <div style={s.storeGroup}>
+              <div style={s.storeGroupTitle}>{t.storesTitle}</div>
+              <div style={s.storeRow}>
+                {buildStoreLinks(focusGame, platformUrl, platformLabel).map((item)=>(
+                  <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -1752,6 +1770,10 @@ const styles = {
   scorePill:{fontWeight:700, fontSize:18},
   miniStats:{display:"flex", flexWrap:"wrap", gap:8, fontSize:12, color:"#A9ACC7", marginBottom:10},
   cardLinks:{display:"flex", flexWrap:"wrap", gap:10, alignItems:"center"},
+  storeGroup:{marginTop:4},
+  storeGroupTitle:{fontSize:11.5, color:"#5E6289", fontWeight:600, letterSpacing:0.3, margin:"0 0 8px"},
+  storeRow:{display:"flex", flexWrap:"wrap", gap:8},
+  storeBtn:{display:"inline-flex", alignItems:"center", gap:6, background:"#1E2140", border:"1px solid #2A2D52", borderRadius:20, padding:"7px 12px", fontSize:12.5, fontWeight:600, color:"#F2F0E9", textDecoration:"none"},
   steamLink:{fontSize:13, fontWeight:600, textDecoration:"none"},
   textBtn:{background:"transparent", border:"none", color:"#A9ACC7", fontSize:12, cursor:"pointer", textDecoration:"underline"},
   actionRow:{display:"flex", gap:10, flexWrap:"wrap", marginTop:8},
