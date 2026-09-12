@@ -1284,16 +1284,14 @@ function App(){
             <div style={s.gameWhy}>{g.avoid && g.avoid[lang] ? g.avoid[lang] : t.mismatchNote}</div>
           </div>
         )}
-        {!compact && (
-          <div style={s.storeGroup}>
-            <div style={s.storeGroupTitle}>{t.storesTitle}</div>
-            <div style={s.storeRow}>
-              {buildStoreLinks(g, platformUrl, platformLabel).map((item)=>(
-                <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
-              ))}
-            </div>
+        <div style={s.storeGroup}>
+          <div style={s.storeGroupTitle}>{t.storesTitle}</div>
+          <div style={s.storeRow}>
+            {buildStoreLinks(g, platformUrl, platformLabel).map((item)=>(
+              <a key={item.key} href={item.url} target="_blank" rel={item.sponsored ? "noreferrer sponsored" : "noreferrer"} style={s.storeBtn}>{item.icon} {item.label}</a>
+            ))}
           </div>
-        )}
+        </div>
         <div style={s.cardLinks}>
           <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
         </div>
