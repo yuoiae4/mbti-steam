@@ -422,7 +422,7 @@ const UI = {
     shareTitle:"結果をシェア", shareX:"Xでシェア", shareLine:"LINEでシェア", shareCopy:"リンクをコピー",
     shareCopied:"コピーしました", shareNative:"シェア",
     shareText:(type,nickname,games)=>`私のMBTIは${type}（${nickname}）。おすすめは${games}。あなたのタイプは？ #MBTI #ゲーム診断 #おすすめゲーム`,
-    footerNote:"本サイトはSteam・Nintendo・XboxおよびMBTIの公式サービスではありません。診断結果は簡易的な目安です。",
+    footerNote:"本サイトはSteam・Nintendo・XboxおよびMBTIの公式サービスではありません。診断結果は簡易的な目安です。掲載リンクの一部にはAmazonアソシエイト・楽天アフィリエイトプログラムによる広告リンクを含みます。",
     resultHeading:(type)=>`${type}に合うゲームを探す`,
     inviteFriend:"友達との相性を見る",
     compatLabel:"一緒に遊びやすいタイプ",
@@ -523,7 +523,7 @@ const UI = {
     shareTitle:"Share", shareX:"Share on X", shareLine:"Share on LINE", shareCopy:"Copy link",
     shareCopied:"Copied", shareNative:"Share",
     shareText:(type,nickname,games)=>`My MBTI is ${type} (${nickname}). Top picks: ${games}. What's yours? #MBTI #GameRecs #Steam`,
-    footerNote:"Independent fan project. Not affiliated with Steam, Nintendo, Xbox, or MBTI trademark holders.",
+    footerNote:"Independent fan project. Not affiliated with Steam, Nintendo, Xbox, or MBTI trademark holders. Some links are affiliate links (Amazon Associates, Rakuten Affiliate).",
     resultHeading:(type)=>`Games that fit ${type}`,
     inviteFriend:"Match with a friend",
     compatLabel:"Types that play well together",
@@ -624,7 +624,7 @@ const UI = {
     shareTitle:"分享", shareX:"分享到 X", shareLine:"分享到 LINE", shareCopy:"复制链接",
     shareCopied:"已复制", shareNative:"分享",
     shareText:(type,nickname,games)=>`我的MBTI是${type}（${nickname}）。推荐：${games}。你的呢？ #MBTI #游戏推荐 #Steam`,
-    footerNote:"独立项目，与 Steam、Nintendo、Xbox 及 MBTI 官方无关。",
+    footerNote:"独立项目，与 Steam、Nintendo、Xbox 及 MBTI 官方无关。部分链接为Amazon联盟、乐天联盟的推广链接。",
     resultHeading:(type)=>`适合 ${type} 的游戏`,
     inviteFriend:"看和朋友的相性",
     compatLabel:"比较好一起玩的类型",
@@ -780,6 +780,14 @@ const mobileUrl = (name) => `https://www.google.com/search?q=${encodeURIComponen
 const xboxUrl = (name) => `https://www.xbox.com/ja-JP/Search?q=${encodeURIComponent(name)}`;
 const platformUrl = (platform, name) => platform==="nintendo"?nintendoUrl(name):platform==="mobile"?mobileUrl(name):platform==="xbox"?xboxUrl(name):steamUrl(name);
 const primaryUrl = (g) => platformUrl((g.platforms&&g.platforms[0])||"steam", g.name);
+
+const AMAZON_TAG = "d4ga9kxf-22";
+const RAKUTEN_ID = "5773784b.cc30332e.5773784c.9b2f9ad1";
+const amazonUrl = (name) => `https://www.amazon.co.jp/s?k=${encodeURIComponent(name)}&tag=${AMAZON_TAG}`;
+const rakutenUrl = (name) => {
+  const dest = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(name)}/`;
+  return `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_ID}/?pc=${encodeURIComponent(dest)}&m=${encodeURIComponent(dest)}`;
+};
 const SUPPORT_URL = "https://buymeacoffee.com/myunaua231hnj";
 
 const G = (o) => o;
@@ -1215,6 +1223,8 @@ function App(){
           {g.platforms.map((p)=>(
             <a key={p} href={platformUrl(p,g.name)} target="_blank" rel="noreferrer" style={{...s.steamLink, color:temp.accent}}>{platformLabel[p]} →</a>
           ))}
+          <a href={amazonUrl(g.name)} target="_blank" rel="noreferrer sponsored" style={{...s.steamLink, color:"#F2A83C"}}>Amazon →</a>
+          <a href={rakutenUrl(g.name)} target="_blank" rel="noreferrer sponsored" style={{...s.steamLink, color:"#F2A83C"}}>楽天 →</a>
           <button style={s.textBtn} onClick={()=>{ setFocusGame(g); setScreen("game"); }}>{t.fromGame}</button>
         </div>
         <div style={{...s.compatLine, marginTop:8}}>{t.dataUpdated}: {GAMES_UPDATED}</div>
@@ -1630,6 +1640,8 @@ function App(){
               {focusGame.platforms.map((p)=>(
                 <a key={p} href={platformUrl(p, focusGame.name)} target="_blank" rel="noreferrer" style={s.ghostBtn}>{platformLabel[p]}</a>
               ))}
+              <a href={amazonUrl(focusGame.name)} target="_blank" rel="noreferrer sponsored" style={s.ghostBtn}>Amazon →</a>
+              <a href={rakutenUrl(focusGame.name)} target="_blank" rel="noreferrer sponsored" style={s.ghostBtn}>楽天 →</a>
             </div>
           </div>
         )}
